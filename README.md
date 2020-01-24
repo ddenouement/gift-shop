@@ -1,7 +1,7 @@
 # gift-shop
 <br>It is a project to practice Spring and Angular
 <br>Later, automated testing will be added
-#How to setup & run project
+# How to setup & run project
 <br>Download this project locally. It has two modules: web and server.
 <br>
 <br>To run both web & server on the same port (:9990) do: 
