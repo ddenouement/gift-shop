@@ -12,7 +12,7 @@
 <br>
 <br>To run only Front-end part, do:
 <br>1. in terminal cd web/src/main/frontend
-<be>2. in terminal ng serve
+<br>2. in terminal ng serve
 <br>3. go to http://localhost:4200/
 <br>4. press Ctrl+S to reload localhost with new changes
 <br>
