@@ -6,7 +6,7 @@
 <br>
 <br>To run both web & server on the same port (:9990) do: 
 <br>1. in terminal (from project root \GiftShop) mvn clean install
-<br>2. in terminal cd web
+<br>2. in terminal cd server
 <br>3. in terminal mvn spring boot:run
 <br>4. go to http://localhost:9990/
 <br>
