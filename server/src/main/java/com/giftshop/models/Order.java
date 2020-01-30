@@ -1,14 +1,21 @@
 package com.giftshop.models;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Order implements Serializable {
     private String orderId;
     private User user;
-    private OrderItem orderItem;
+    private ArrayList<OrderItem> orderItem;
     private OrderState orderState;
     private String address;
-    private String paymentMethod;
+    private String cashPayment;
+    private String postDelivery;
+    private LocalDate orderDate;
+    private BigInteger totalSum;
+
 
     public String getOrderId() {
         return orderId;
@@ -26,11 +33,11 @@ public class Order implements Serializable {
         this.user = user;
     }
 
-    public OrderItem getOrderItem() {
+    public ArrayList<OrderItem> getOrderItem() {
         return orderItem;
     }
 
-    public void setOrderItem(OrderItem orderItem) {
+    public void setOrderItem(ArrayList<OrderItem> orderItem) {
         this.orderItem = orderItem;
     }
 
@@ -50,11 +57,36 @@ public class Order implements Serializable {
         this.address = address;
     }
 
-    public String getPaymentMethod() {
-        return paymentMethod;
+    public String getCashPayment() {
+        return cashPayment;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
+    public void setCashPayment(String cashPayment) {
+        this.cashPayment = cashPayment;
+    }
+
+
+    public String getPostDelivery() {
+        return postDelivery;
+    }
+
+    public void setPostDelivery(String postDelivery) {
+        this.postDelivery = postDelivery;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public BigInteger getTotalSum() {
+        return totalSum;
+    }
+
+    public void setTotalSum(BigInteger totalSum) {
+        this.totalSum = totalSum;
     }
 }

@@ -1,5 +1,6 @@
 package com.giftshop.models;
 
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -11,6 +12,8 @@ public class Product implements Serializable {
     private String productDescripton;
     private BigDecimal productPrice;
     private boolean isAvailable;
+    private BufferedImage photo;
+
 
 
     public String getProductId() {
@@ -75,5 +78,13 @@ public class Product implements Serializable {
 
     public void setCategory(ProductCategory category) {
         this.category = category;
+    }
+
+    public BufferedImage getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(BufferedImage photo) {
+        this.photo = photo;
     }
 }

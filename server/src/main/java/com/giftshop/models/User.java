@@ -1,11 +1,11 @@
 package com.giftshop.models;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class User implements Serializable {
 
-    private String userName;
-    private String password;
+
     private String userId;
     private Role role;
     private String name;
@@ -14,14 +14,8 @@ public class User implements Serializable {
     private String email;
     private String phoneNumber;
     private boolean isActivated;
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+    private String password;
+    private LocalDate birthDate;
 
     public String getPassword() {
         return password;
@@ -93,5 +87,13 @@ public class User implements Serializable {
 
     public void setActivated(boolean activated) {
         isActivated = activated;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 }
