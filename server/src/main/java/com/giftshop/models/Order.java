@@ -1,6 +1,8 @@
 package com.giftshop.models;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
     private String orderId;
     private User user;
     private OrderItem orderItem;

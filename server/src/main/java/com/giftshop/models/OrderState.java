@@ -1,6 +1,8 @@
 package com.giftshop.models;
 
-public class OrderState {
+import java.io.Serializable;
+
+public class OrderState implements Serializable {
     private String orderStateId;
     private String stateName;
 

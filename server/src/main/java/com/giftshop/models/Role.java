@@ -1,6 +1,8 @@
 package com.giftshop.models;
 
-public class Role {
+import java.io.Serializable;
+
+public class Role implements Serializable {
     private String roleId;
     private String roleName;
 

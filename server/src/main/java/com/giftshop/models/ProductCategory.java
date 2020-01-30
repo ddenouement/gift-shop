@@ -1,6 +1,8 @@
 package com.giftshop.models;
 
-public class ProductCategory {
+import java.io.Serializable;
+
+public class ProductCategory implements Serializable {
     private String categoryId;
     private String categoryName;
 
