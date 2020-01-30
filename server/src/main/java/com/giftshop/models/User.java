@@ -2,6 +2,7 @@ package com.giftshop.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class User implements Serializable {
 
@@ -16,6 +17,7 @@ public class User implements Serializable {
     private boolean isActivated;
     private String password;
     private LocalDate birthDate;
+    private ArrayList<WishListItem> wishListItems;
 
     public String getPassword() {
         return password;
@@ -95,5 +97,13 @@ public class User implements Serializable {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public ArrayList<WishListItem> getWishListItems() {
+        return wishListItems;
+    }
+
+    public void setWishListItems(ArrayList<WishListItem> wishListItems) {
+        this.wishListItems = wishListItems;
     }
 }

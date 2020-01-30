@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Order implements Serializable {
     private String orderId;
     private User user;
-    private ArrayList<OrderItem> orderItem;
+    private ArrayList<OrderItem> orderItems;
     private OrderState orderState;
     private String address;
     private String cashPayment;
@@ -33,12 +33,12 @@ public class Order implements Serializable {
         this.user = user;
     }
 
-    public ArrayList<OrderItem> getOrderItem() {
-        return orderItem;
+    public ArrayList<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderItem(ArrayList<OrderItem> orderItem) {
-        this.orderItem = orderItem;
+    public void setOrderItems(ArrayList<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public OrderState getOrderState() {
