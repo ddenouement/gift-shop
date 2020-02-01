@@ -26,7 +26,7 @@ import static org.springframework.http.ResponseEntity.ok;
  * Controller for logging in; registration and signing off account
  */
 @RestController
-public class AuthorizationController {
+public class AuthenticationController {
 
     private IUserService authService;
     /**
@@ -36,7 +36,7 @@ public class AuthorizationController {
     private TokenProvider jwtTokenProvider;
 
     @Autowired
-    AuthorizationController(
+    AuthenticationController(
                             final UserService authService,
                             final AuthenticationManager authenticationManager,
                             final TokenProvider jwtTokenProvider) {

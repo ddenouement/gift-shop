@@ -1,5 +1,5 @@
 package com.giftshop.repository;
-import com.giftshop.repository.interfaces.IUserDao;
+import com.giftshop.repository.interfaces.IUserDAO;
 import com.giftshop.models.Role;
 import com.giftshop.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.List;
 @Repository
 @PropertySource("classpath:sql/user_queries.properties")
 
-public class UserDao implements IUserDao {
+public class UserDAO implements IUserDAO {
     @Autowired
     private NamedParameterJdbcTemplate template;
     @Value("${find_role_id}")

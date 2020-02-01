@@ -1,6 +1,6 @@
 package com.giftshop.services;
 
-import com.giftshop.repository.UserDao;
+import com.giftshop.repository.UserDAO;
         import java.util.ArrayList;
         import java.util.List;
         import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import com.giftshop.repository.UserDao;
 @Service
 public class CustomAuthService implements UserDetailsService {
     @Autowired
-    private UserDao userDAO;
+    private UserDAO userDAO;
     @Override
     public UserDetails loadUserByUsername(final String useremail)
             throws UsernameNotFoundException {
