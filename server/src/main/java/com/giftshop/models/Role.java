@@ -3,14 +3,19 @@ package com.giftshop.models;
 import java.io.Serializable;
 
 public class Role implements Serializable {
-    private String roleId;
+    private int roleId;
     private String roleName;
 
-    public String getRoleId() {
+    public Role(int roleId, String name) {
+        this.roleId = roleId;
+        this.roleName = name;
+    }
+
+    public int getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
 

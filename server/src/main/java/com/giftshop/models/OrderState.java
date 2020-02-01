@@ -3,14 +3,14 @@ package com.giftshop.models;
 import java.io.Serializable;
 
 public class OrderState implements Serializable {
-    private String orderStateId;
+    private int orderStateId;
     private String stateName;
 
-    public String getOrderStateId() {
+    public int getOrderStateId() {
         return orderStateId;
     }
 
-    public void setOrderStateId(String orderStateId) {
+    public void setOrderStateId(int orderStateId) {
         this.orderStateId = orderStateId;
     }
 

@@ -4,16 +4,16 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class ConfirmationToken implements Serializable {
-    private String tokedId;
+    private int tokedId;
     private User user;
     private String token;
     private LocalDate createDate;
 
-    public String getTokedId() {
+    public int getTokedId() {
         return tokedId;
     }
 
-    public void setTokedId(String tokedId) {
+    public void setTokedId(int tokedId) {
         this.tokedId = tokedId;
     }
 

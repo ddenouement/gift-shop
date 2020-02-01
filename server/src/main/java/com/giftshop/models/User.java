@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class User implements Serializable {
 
 
-    private String userId;
+    private int userId;
     private Role role;
     private String name;
     private String surname;
@@ -27,11 +27,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -39,7 +39,7 @@ public class User implements Serializable {
         return role;
     }
 
-    public void setRoleId(Role role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

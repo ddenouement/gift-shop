@@ -14,7 +14,9 @@ spring:
     schema: classpath:sql/Schema.sql
     driver-class-name: org.h2.Driver
     initialization-mode: always
+
   h2:
+
      console:
        enabled: true
        path: /h2

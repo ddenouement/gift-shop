@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Order implements Serializable {
-    private String orderId;
+    private int orderId;
     private User user;
     private ArrayList<OrderItem> orderItems;
     private OrderState orderState;
@@ -17,11 +17,11 @@ public class Order implements Serializable {
     private BigInteger totalSum;
 
 
-    public String getOrderId() {
+    public int getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
+    public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
 
