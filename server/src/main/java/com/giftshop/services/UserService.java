@@ -1,6 +1,6 @@
 package com.giftshop.services;
-import com.giftshop.repository.UserDao;
-import com.giftshop.repository.interfaces.IUserDao;
+import com.giftshop.repository.UserDAO;
+import com.giftshop.repository.interfaces.IUserDAO;
 import com.giftshop.models.Role;
 import com.giftshop.models.User;
 import com.giftshop.services.interfaces.IUserService;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements IUserService {
 
-    private IUserDao userDao;
+    private IUserDAO userDao;
 
     @Autowired
-    UserService(final UserDao userDao) {
+    UserService(final UserDAO userDao) {
         this.userDao = userDao;
     }
     @Override
