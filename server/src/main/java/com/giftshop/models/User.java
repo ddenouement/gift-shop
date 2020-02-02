@@ -11,7 +11,7 @@ public class User implements Serializable {
     private Role role;
     private String name;
     private String surname;
-    private String patronym;
+    private String patronymic;
     private String email;
     private String phoneNumber;
     private boolean isActivated;
@@ -59,12 +59,12 @@ public class User implements Serializable {
         this.surname = surname;
     }
 
-    public String getPatronym() {
-        return patronym;
+    public String getPatronymic() {
+        return patronymic;
     }
 
-    public void setPatronym(String patronym) {
-        this.patronym = patronym;
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
     }
 
     public String getEmail() {

@@ -1,28 +1,37 @@
 package com.giftshop.models;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class ConfirmationToken implements Serializable {
-    private int tokedId;
-    private User user;
+    private int tokenId;
+    private int userId;
     private String token;
-    private LocalDate createDate;
+    private LocalDateTime createDate;
 
-    public int getTokedId() {
-        return tokedId;
+    public ConfirmationToken(){};
+
+    public ConfirmationToken(int userId) {
+        this.userId = userId;
+        createDate = LocalDateTime.now();
+        token = UUID.randomUUID().toString();
     }
 
-    public void setTokedId(int tokedId) {
-        this.tokedId = tokedId;
+    public int getTokenId() {
+        return tokenId;
     }
 
-    public User getUser() {
-        return user;
+    public void setTokenId(int tokenId) {
+        this.tokenId = tokenId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getToken() {
@@ -33,11 +42,11 @@ public class ConfirmationToken implements Serializable {
         this.token = token;
     }
 
-    public LocalDate getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDate createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 }

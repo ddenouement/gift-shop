@@ -10,25 +10,31 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements IUserService {
 
-    private IUserDAO userDao;
+    private IUserDAO userDAO;
 
     @Autowired
-    UserService(final UserDAO userDao) {
-        this.userDao = userDao;
+    UserService(final UserDAO userDAO) {
+        this.userDAO = userDAO;
     }
+
+    @Override
+    public int insertNewUser(User user) {
+        return userDAO.insertNewUser(user);
+    }
+
     @Override
     public User findUserById(int userId) {
-        return userDao.findUserById(userId);
+        return userDAO.findUserById(userId);
     }
 
     @Override
     public User findUserByEmail(String email) {
-        return userDao.findUserByEmail(email);
+        return userDAO.findUserByEmail(email);
     }
 
     @Override
     public Role findUserRoleById(int id) {
-        return userDao.findUserRoleById(id);
+        return userDAO.findUserRoleById(id);
     }
 
     @Override

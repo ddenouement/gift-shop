@@ -1,4 +1,5 @@
 package com.giftshop.repository;
+import com.giftshop.dto.UserRegistrationDTO;
 import com.giftshop.repository.interfaces.IUserDAO;
 import com.giftshop.models.Role;
 import com.giftshop.models.User;
@@ -29,7 +30,11 @@ public class UserDAO implements IUserDAO {
     @Value("${find_user_with_email}")
     private String findUserByEmail;
     @Value("${find_user_role_id}")
-    private String  findRoleIdOfUser;
+    private String findRoleIdOfUser;
+    @Value("${insert_new_user}")
+    private String insertNewUser;
+    @Value("${update_existing_user}")
+    private String updateExistingUser;
 
     @Override
     public boolean isEmailUsed(String email) {
@@ -50,8 +55,6 @@ public class UserDAO implements IUserDAO {
         return  new Role(roleId, name);
     }
 
-
-
     @Override
     public User findUserById(int u_id) {
         SqlParameterSource param = new MapSqlParameterSource()
@@ -64,8 +67,42 @@ public class UserDAO implements IUserDAO {
         } else {
             return foundUsers.get(0);
         }
-
     }
+
+    @Override
+    public int insertNewUser(User user) {
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("firstname", user.getName())
+                .addValue("surname", user.getSurname())
+                .addValue("patronymic", user.getPatronymic())
+                .addValue("birth_date",user.getBirthDate())
+                .addValue("email",user.getEmail())
+                .addValue("phone_number",user.getPhoneNumber())
+                .addValue("password",user.getPassword())
+                .addValue("role",getRoleId("USER"));
+        return template.update(insertNewUser,param);
+    }
+
+    @Override
+    public void updateExistingUser(User user) {
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("firstname", user.getName())
+                .addValue("surname", user.getSurname())
+                .addValue("patronymic", user.getPatronymic())
+                .addValue("birth_date",user.getBirthDate())
+                .addValue("email",user.getEmail())
+                .addValue("phone_number",user.getPhoneNumber())
+                .addValue("password",user.getPassword())
+                .addValue("role", user.getRole())
+                .addValue("is_activated", user.isActivated());
+        int status = template.update(updateExistingUser, param);
+        if(status != 0){
+            System.out.println("User data updated for ID " + user.getUserId());
+        }else{
+            System.out.println("No User found with ID " + user.getUserId());
+        }
+    }
+
     @Override
     public User findUserByEmail(String email) {
         SqlParameterSource param = new MapSqlParameterSource()
@@ -96,11 +133,12 @@ public class UserDAO implements IUserDAO {
         person.setUserId(resultSet.getInt("uid"));
         person.setName(resultSet.getString("firstname"));
         person.setSurname(       resultSet.getString("surname"));
-        person.setPatronym(resultSet.getString("patronymic"));
+        person.setPatronymic(resultSet.getString("patronymic"));
         person.setEmail(resultSet.getString("email"));
         person .setPassword(resultSet.getString("password"));
         person.setActivated(resultSet.getBoolean("is_activated"));
         person.setPhoneNumber(resultSet.getString("phone_number"));
+        person.setBirthDate(resultSet.getDate("birth_date").toLocalDate());
         int roleId = resultSet.getInt("role_id");
         person.setRole(findRoleById(roleId));
         return person;
