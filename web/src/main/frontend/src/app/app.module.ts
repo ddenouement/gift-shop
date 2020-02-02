@@ -1,34 +1,54 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatGridListModule,
-  MatInputModule,
-  MatMenuModule,
-  MatToolbarModule
-} from "@angular/material";
-import { ExampleCmpComponent } from './example-cmp/example-cmp.component';
-import {RouterModule} from "@angular/router";
+/* Routing */
+import { AppRoutingModule } from './app-routing.module';
 
+import { AppComponent } from './app.component';
+
+/* Angular Material */
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './angular-material.module';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+/* FormsModule */
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+/* Angular Flex Layout */
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+/* Components */
+import { LogInComponent } from './components/log-in/log-in.component';
+import { RegisterComponent } from './components/register/register.component';
+
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExampleCmpComponent
+    LogInComponent,
+    RegisterComponent,
+    RegisterComponent,
+    LogInComponent,
+    HomeComponent
   ],
   imports: [
-    HttpClientModule,
-    RouterModule,
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
+    FlexLayoutModule,
+    HttpClientModule
   ],
-  schemas: [NO_ERRORS_SCHEMA],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule {
-}
+
+export class AppModule { }
