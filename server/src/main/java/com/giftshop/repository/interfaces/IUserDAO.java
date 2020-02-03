@@ -8,6 +8,6 @@ public interface IUserDAO {
     User findUserByEmail(String email);
     Role findUserRoleById(Integer id);
     User findUserById(Integer userId);
-    int insertNewUser(User user);
-    void updateExistingUser(User user);
+    Integer insertUser(User user);
+    void updateUser(User user);
 }

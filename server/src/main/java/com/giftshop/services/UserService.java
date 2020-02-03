@@ -19,7 +19,7 @@ public class UserService implements IUserService {
 
     @Override
     public int insertNewUser(User user) {
-        return userDAO.insertNewUser(user);
+        return userDAO.insertUser(user);
     }
 
     @Override

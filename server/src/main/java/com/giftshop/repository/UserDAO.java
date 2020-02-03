@@ -58,7 +58,7 @@ public class UserDAO implements IUserDAO {
     @Override
     public User findUserById(Integer u_id) {
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("user_id_param", u_id);
+                .addValue("id_param", u_id);
         List<User> foundUsers =
                 template.query(findById, param,
                         (resultSet, i) -> toPerson(resultSet));
@@ -70,7 +70,8 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public int insertNewUser(User user) {
+    public Integer insertUser(User user) {
+        if (isEmailUsed(user.getEmail())) return null;
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("firstname", user.getName())
                 .addValue("surname", user.getSurname())
@@ -84,8 +85,9 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public void updateExistingUser(User user) {
+    public void updateUser(User user) {
         SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("uid",user.getUserId())
                 .addValue("firstname", user.getName())
                 .addValue("surname", user.getSurname())
                 .addValue("patronymic", user.getPatronymic())

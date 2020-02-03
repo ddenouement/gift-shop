@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -35,11 +34,11 @@ public class ConfirmationTokenDAO implements IConfirmationTokenDAO{
 
     @Override
     public boolean exists(String token) {
-        return getTokenByToken(token) != null;
+        return getByToken(token) != null;
     }
 
     @Override
-    public ConfirmationToken getTokenById(Integer id) {
+    public ConfirmationToken getById(Integer id) {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("id_param", id);
         List<ConfirmationToken> tokens =
@@ -53,7 +52,7 @@ public class ConfirmationTokenDAO implements IConfirmationTokenDAO{
     }
 
     @Override
-    public ConfirmationToken getTokenByUserId(Integer userId) {
+    public ConfirmationToken getByUserId(Integer userId) {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("id_param", userId);
         List<ConfirmationToken> tokens =
@@ -67,7 +66,7 @@ public class ConfirmationTokenDAO implements IConfirmationTokenDAO{
     }
 
     @Override
-    public ConfirmationToken getTokenByToken(String token) {
+    public ConfirmationToken getByToken(String token) {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("token_param", token);
         List<ConfirmationToken> tokens =
@@ -81,7 +80,7 @@ public class ConfirmationTokenDAO implements IConfirmationTokenDAO{
     }
 
     @Override
-    public int insertNewToken(ConfirmationToken ct) {
+    public int createToken(ConfirmationToken ct) {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("token", ct.getToken())
                 .addValue("create_date", ct.getCreateDate())

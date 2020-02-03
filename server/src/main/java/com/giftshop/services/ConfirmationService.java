@@ -25,13 +25,13 @@ public class ConfirmationService implements IConfirmationService {
     @Override
     public ConfirmationToken generateToken(Integer userId) {
         ConfirmationToken ct = new ConfirmationToken(userId);
-        ctDAO.insertNewToken(ct);
+        ctDAO.createToken(ct);
         return ct;
     }
 
     @Override
     public User confirmUser(String token) {
-        ConfirmationToken ct = ctDAO.getTokenByToken(token);
+        ConfirmationToken ct = ctDAO.getByToken(token);
         if (ct != null) {
             User user = userDAO.findUserById(ct.getUserId());
             activateUser(user);
@@ -62,6 +62,6 @@ public class ConfirmationService implements IConfirmationService {
 
     public void activateUser(User user) {
         user.setActivated(true);
-        userDAO.updateExistingUser(user);
+        userDAO.updateUser(user);
     }
 }

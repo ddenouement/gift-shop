@@ -8,7 +8,7 @@ public class Product implements Serializable {
 
     private Integer productId;
     private String productName;
-    private ArrayList<Category> categories;
+    private ArrayList<Integer> categories;
     private String productDescripton;
     private BigDecimal productPrice;
     private boolean isAvailable;
@@ -55,7 +55,7 @@ public class Product implements Serializable {
     }
 
     //Construstors
-    public Product(Integer productId, String productName, String productDescripton, ArrayList<Category> categories,
+    public Product(Integer productId, String productName, String productDescripton, ArrayList<Integer> categories,
                    BigDecimal productPrice, boolean isAvailable){
         super();
         this.productId = productId;
@@ -70,11 +70,11 @@ public class Product implements Serializable {
 
     }
 
-    public ArrayList<Category> getCategories() {
+    public ArrayList<Integer> getCategories() {
         return categories;
     }
 
-    public void setCategories(ArrayList<Category> categories) {
+    public void setCategories(ArrayList<Integer> categories) {
         this.categories = categories;
     }
 
