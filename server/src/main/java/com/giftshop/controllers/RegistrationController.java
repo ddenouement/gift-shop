@@ -25,6 +25,7 @@ import static org.springframework.http.ResponseEntity.badRequest;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class RegistrationController {
 
     private IUserService userService;

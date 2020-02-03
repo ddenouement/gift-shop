@@ -1,0 +1,28 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title class="card-title">Log in</mat-card-title>
+      </mat-card-header>
+
+      <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input matInput class="card-input" placeholder="Email" [formControl]="f.email">
+            <mat-error *ngIf="f.email.errors">
+              Please enter valid email
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Password" type="password" [formControl]="f.password">
+            <mat-error *ngIf="f.password.errors">
+              {{ f.password.errors.required ? 'Password is required' : 'Password must be at least 6 characters' }}
+            </mat-error>
+          </mat-form-field>
+        </mat-card-content>
+        <button mat-stroked-button class="btn-block" [disabled]="loading">Log in</button>
+      </form>
+    </mat-card>
+
+  </div>
