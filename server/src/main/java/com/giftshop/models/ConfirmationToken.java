@@ -5,32 +5,32 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class ConfirmationToken implements Serializable {
-    private int tokenId;
-    private int userId;
+    private Integer tokenId;
+    private Integer userId;
     private String token;
     private LocalDateTime createDate;
 
     public ConfirmationToken(){};
 
-    public ConfirmationToken(int userId) {
+    public ConfirmationToken(Integer userId) {
         this.userId = userId;
         createDate = LocalDateTime.now();
         token = UUID.randomUUID().toString();
     }
 
-    public int getTokenId() {
+    public Integer getTokenId() {
         return tokenId;
     }
 
-    public void setTokenId(int tokenId) {
+    public void setTokenId(Integer tokenId) {
         this.tokenId = tokenId;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

@@ -3,41 +3,43 @@ package com.giftshop.models;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Dictionary;
 
 public class Order implements Serializable {
-    private int orderId;
-    private User user;
-    private ArrayList<OrderItem> orderItems;
+    private Integer orderId;
+    private Integer userId;
+    private Dictionary<Product, Integer> orderItems;
     private OrderState orderState;
     private String address;
-    private String cashPayment;
-    private String postDelivery;
-    private LocalDate orderDate;
+    private boolean cashPayment;
+    private boolean postDelivery;
+    private LocalDateTime orderDate;
     private BigInteger totalSum;
 
 
-    public int getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getUser() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Integer userId) {
+        this.userId = userId;
     }
 
-    public ArrayList<OrderItem> getOrderItems() {
+    public Dictionary<Product, Integer> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(ArrayList<OrderItem> orderItems) {
+    public void setOrderItems(Dictionary<Product, Integer>orderItems) {
         this.orderItems = orderItems;
     }
 
@@ -57,28 +59,28 @@ public class Order implements Serializable {
         this.address = address;
     }
 
-    public String getCashPayment() {
+    public boolean getCashPayment() {
         return cashPayment;
     }
 
-    public void setCashPayment(String cashPayment) {
+    public void setCashPayment(boolean cashPayment) {
         this.cashPayment = cashPayment;
     }
 
 
-    public String getPostDelivery() {
+    public boolean getPostDelivery() {
         return postDelivery;
     }
 
-    public void setPostDelivery(String postDelivery) {
+    public void setPostDelivery(boolean postDelivery) {
         this.postDelivery = postDelivery;
     }
 
-    public LocalDate getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 

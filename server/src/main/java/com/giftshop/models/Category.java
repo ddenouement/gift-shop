@@ -2,15 +2,15 @@ package com.giftshop.models;
 
 import java.io.Serializable;
 
-public class ProductCategory implements Serializable {
-    private int categoryId;
+public class Category implements Serializable {
+    private Integer categoryId;
     private String categoryName;
 
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 

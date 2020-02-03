@@ -1,27 +1,24 @@
 package com.giftshop.models;
 
-import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Product implements Serializable {
 
-    private int productId;
+    private Integer productId;
     private String productName;
-    private ArrayList<ProductCategory> categories;
+    private ArrayList<Category> categories;
     private String productDescripton;
     private BigDecimal productPrice;
     private boolean isAvailable;
     private String photo;
 
-
-
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -58,7 +55,7 @@ public class Product implements Serializable {
     }
 
     //Construstors
-    public Product(int productId, String productName, String productDescripton, ArrayList<ProductCategory> categories,
+    public Product(Integer productId, String productName, String productDescripton, ArrayList<Category> categories,
                    BigDecimal productPrice, boolean isAvailable){
         super();
         this.productId = productId;
@@ -73,11 +70,11 @@ public class Product implements Serializable {
 
     }
 
-    public ArrayList<ProductCategory> getCategories() {
+    public ArrayList<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(ArrayList<ProductCategory> categories) {
+    public void setCategories(ArrayList<Category> categories) {
         this.categories = categories;
     }
 

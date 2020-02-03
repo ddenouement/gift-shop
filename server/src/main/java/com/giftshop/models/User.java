@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class User implements Serializable {
 
 
-    private int userId;
+    private Integer userId;
     private Role role;
     private String name;
     private String surname;
@@ -17,7 +17,7 @@ public class User implements Serializable {
     private boolean isActivated;
     private String password;
     private LocalDate birthDate;
-    private ArrayList<WishListItem> wishListItems;
+    private ArrayList<Product> wishListItems;
 
     public String getPassword() {
         return password;
@@ -27,11 +27,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -99,11 +99,11 @@ public class User implements Serializable {
         this.birthDate = birthDate;
     }
 
-    public ArrayList<WishListItem> getWishListItems() {
+    public ArrayList<Product> getWishListItems() {
         return wishListItems;
     }
 
-    public void setWishListItems(ArrayList<WishListItem> wishListItems) {
+    public void setWishListItems(ArrayList<Product> wishListItems) {
         this.wishListItems = wishListItems;
     }
 }
