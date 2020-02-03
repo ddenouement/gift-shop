@@ -47,7 +47,7 @@ public class UserDAO implements IUserDAO {
                 Integer.class);
     }
 
-    private Role findRoleById( int roleId) {
+    private Role findRoleById( Integer roleId) {
         SqlParameterSource namedParameters = new MapSqlParameterSource(
                 "id_param", roleId);
         String name =  template.queryForObject(findRoleNameById, namedParameters,
@@ -56,7 +56,7 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public User findUserById(int u_id) {
+    public User findUserById(Integer u_id) {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("user_id_param", u_id);
         List<User> foundUsers =
@@ -119,7 +119,7 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public Role findUserRoleById(int uid) {
+    public Role findUserRoleById(Integer uid) {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("id_param", uid);
          int role_id =        template.queryForObject(findRoleIdOfUser, param, Integer.class);

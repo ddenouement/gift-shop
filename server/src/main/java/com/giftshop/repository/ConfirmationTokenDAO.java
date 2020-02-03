@@ -39,7 +39,7 @@ public class ConfirmationTokenDAO implements IConfirmationTokenDAO{
     }
 
     @Override
-    public ConfirmationToken getTokenById(int id) {
+    public ConfirmationToken getTokenById(Integer id) {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("id_param", id);
         List<ConfirmationToken> tokens =
@@ -53,7 +53,7 @@ public class ConfirmationTokenDAO implements IConfirmationTokenDAO{
     }
 
     @Override
-    public ConfirmationToken getTokenByUserId(int userId) {
+    public ConfirmationToken getTokenByUserId(Integer userId) {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("id_param", userId);
         List<ConfirmationToken> tokens =

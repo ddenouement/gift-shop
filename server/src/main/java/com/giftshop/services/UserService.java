@@ -23,7 +23,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findUserById(int userId) {
+    public User findUserById(Integer userId) {
         return userDAO.findUserById(userId);
     }
 
@@ -33,12 +33,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Role findUserRoleById(int id) {
+    public Role findUserRoleById(Integer id) {
         return userDAO.findUserRoleById(id);
     }
 
     @Override
-    public String userRole(int userId) {
+    public String userRole(Integer userId) {
         return findUserRoleById(userId).getRoleName();
     }
 }

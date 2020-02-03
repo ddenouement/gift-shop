@@ -23,7 +23,7 @@ public class ConfirmationService implements IConfirmationService {
     }
 
     @Override
-    public ConfirmationToken generateToken(int userId) {
+    public ConfirmationToken generateToken(Integer userId) {
         ConfirmationToken ct = new ConfirmationToken(userId);
         ctDAO.insertNewToken(ct);
         return ct;

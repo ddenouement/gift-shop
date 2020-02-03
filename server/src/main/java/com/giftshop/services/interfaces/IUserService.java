@@ -6,11 +6,11 @@ import com.giftshop.models.User;
 
 public interface IUserService {
     int insertNewUser(User user);
-    User findUserById(int userId);
+    User findUserById(Integer userId);
     User findUserByEmail(String email );
 
-    Role findUserRoleById(int id);
-    String userRole(int userId);
+    Role findUserRoleById(Integer id);
+    String userRole(Integer userId);
 
 
 
