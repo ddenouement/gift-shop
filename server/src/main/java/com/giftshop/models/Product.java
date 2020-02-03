@@ -3,12 +3,13 @@ package com.giftshop.models;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class Product implements Serializable {
 
     private int productId;
     private String productName;
-    private ProductCategory category;
+    private ArrayList<ProductCategory> categories;
     private String productDescripton;
     private BigDecimal productPrice;
     private boolean isAvailable;
@@ -57,13 +58,13 @@ public class Product implements Serializable {
     }
 
     //Construstors
-    public Product(int productId, String productName, String productDescripton, ProductCategory category,
+    public Product(int productId, String productName, String productDescripton, ArrayList<ProductCategory> categories,
                    BigDecimal productPrice, boolean isAvailable){
         super();
         this.productId = productId;
         this.productName = productName;
         this.productDescripton = productDescripton;
-        this.category = category;
+        this.categories = categories;
         this.productPrice = productPrice;
         this.isAvailable = isAvailable;
 
@@ -72,12 +73,12 @@ public class Product implements Serializable {
 
     }
 
-    public ProductCategory getCategory() {
-        return category;
+    public ArrayList<ProductCategory> getCategories() {
+        return categories;
     }
 
-    public void setCategory(ProductCategory category) {
-        this.category = category;
+    public void setCategories(ArrayList<ProductCategory> categories) {
+        this.categories = categories;
     }
 
     public String getPhoto() {
