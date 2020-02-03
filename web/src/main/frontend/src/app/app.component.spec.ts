@@ -20,10 +20,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angular-material-login-template'`, () => {
+  it(`should have as title 'gift-shop'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('angular-material-login-template');
+    expect(app.title).toEqual('gift-shop');
   });
 
   it('should render title in a h1 tag', () => {
