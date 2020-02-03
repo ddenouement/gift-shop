@@ -12,7 +12,7 @@ public class Product implements Serializable {
     private String productDescripton;
     private BigDecimal productPrice;
     private boolean isAvailable;
-    private BufferedImage photo;
+    private String photo;
 
 
 
@@ -80,11 +80,11 @@ public class Product implements Serializable {
         this.category = category;
     }
 
-    public BufferedImage getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(BufferedImage photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 }
