@@ -28,7 +28,9 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['/']);
     }
   }
-
+  close(){
+    this.router.navigate(['/']);
+  }
   ngOnInit() {
     const MOBILE_PATTERN = /[0-9\+\-\ ]/;
     this.registerForm = this.formBuilder.group({

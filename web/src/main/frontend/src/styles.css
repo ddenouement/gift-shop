@@ -4,6 +4,14 @@ body {
   margin: 0;
   padding: 0;
 }
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
 
 body {
   background-image: url('./assets/83253083_2371598086465256_1591201562586251264_n.jpg');
@@ -12,7 +20,24 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
   font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
 }
+
+.content {
+  margin-top: 60px;
+  width: 44%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0px 5px 40px rgba(0, 45, 113, 0.06);
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+
 
 .app-header {
   justify-content: space-between;
@@ -22,7 +47,7 @@ body {
   right: 0;
   z-index: 2;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
-  background: #05abc1;
+  background: #a8e6ce;
   margin-bottom: 30px;
 }
 
@@ -32,19 +57,19 @@ body {
 
 .logo {
   text-decoration: none;
-  color: #f6cb40;
+  color: #ff8c94;
 }
 
 .btn-block {
-  color: #fe5955;
+  color: 	#ff9b83;
 }
 
 .nav-btn, .card-title  {
-  color: #f6cb40 !important;
+  color: #ff8c94 !important;
 }
 
 .nav-btn-active {
-  color: #fe5955 !important;
+  color:  	#ff8c94 !important;
 }
 
 .box {
@@ -54,7 +79,7 @@ body {
   float: left;
   padding: 40px 50px 40px 50px;
   width: 100%;
-  background: #05abc1;
+  background:   	#ffd385;
   border-radius: 10px;
   transform: scale(1);
   -webkit-transform: scale(1);
@@ -104,6 +129,7 @@ body {
   width: 100%;
   display: block;
   font-weight: 700;
+  color: #ff8c94;
 }
 
 .login-wrapper mat-card-header mat-card-title {
@@ -123,4 +149,18 @@ body {
 
 .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: 0.8375em 0;
+}
+.content {
+margin: 0 auto;
+  margin-top: 60px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0px 5px 40px #dcedc2;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
 }

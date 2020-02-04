@@ -39,7 +39,9 @@ export class LogInComponent implements OnInit {
   }
 
   get f() { return this.loginForm.controls; }
-
+  close(){
+    this.router.navigate(['/']);
+  }
   onSubmit() {
     this.submitted = true;
 
