@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import static org.springframework.http.ResponseEntity.badRequest;
 
 @RestController
+@RequestMapping("api")
 @CrossOrigin(origins = "http://localhost:4200")
 public class RegistrationController {
 

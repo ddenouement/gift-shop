@@ -23,3 +23,6 @@ spring:
 
 server:
   port: ${PORT:9990}
+
+  servlet:
+    context-path: /
