@@ -8,7 +8,7 @@
 <br>1. in terminal (from project root \GiftShop) mvn clean install
 <br>2. in terminal cd server
 <br>3. in terminal mvn spring-boot:run
-<br>4. go to http://localhost:4200/  (however, backend still runs on :9990)
+<br>4. go to http://localhost:9990
 <br>
 <br>To run only Front-end part, do:
 <br>1. in terminal cd web/src/main/frontend
