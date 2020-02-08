@@ -1,0 +1,11 @@
+
+.logo {
+  font-weight: bold;
+  background-color: #dcedc2;
+  border-radius: 5px;
+  padding: 4px;
+}
+.mat-toolbar-single-row {
+  padding-left: 8px;
+  padding-right: 8px;
+}

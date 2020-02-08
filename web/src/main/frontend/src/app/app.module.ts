@@ -24,6 +24,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './components/home/home.component';
 import {MatCardModule} from "@angular/material/card";
+import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
+import { HeaderComponent } from './components/header/header.component';
+import {SidenavService} from "./_services/sidenav.service";
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import {MatCardModule} from "@angular/material/card";
     RegisterComponent,
     RegisterComponent,
     LogInComponent,
-    HomeComponent
+    HomeComponent,
+    SideNavigationComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +53,7 @@ import {MatCardModule} from "@angular/material/card";
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    SidenavService  ,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
