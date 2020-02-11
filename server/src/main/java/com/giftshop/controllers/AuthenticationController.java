@@ -6,7 +6,9 @@ import com.giftshop.models.User;
 import com.giftshop.services.UserService;
 import com.giftshop.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +52,22 @@ public class AuthenticationController {
             return doAuthentication(data.password, data.email, response);
     }
 
+    //TODO приклад як взяти id юзера з запиту
+    //тільки залогінений юзер може побачити свій id
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')" )
+    @GetMapping(value = "/user/id")
+    public int showMyId(@CookieValue("token")   String token ) {
+        int my_id =  jwtTokenProvider.getUserId(token);
+        return  my_id;
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')" )
+    @GetMapping(value = "/user/logout")
+    public ResponseEntity logout(final HttpServletResponse response) {
+        deleteToken(response);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 
     private ResponseEntity doAuthentication( String password, String email, final HttpServletResponse response){
         authenticationManager.authenticate( new UsernamePasswordAuthenticationToken(email, password));
@@ -81,5 +99,9 @@ public class AuthenticationController {
         setCookie(response, "token", token, 7200); // 2 h
     }
 
+    private void deleteToken(final HttpServletResponse response) {
+        setCookie(response, "token", null, 0);
+
+    }
 
 }
