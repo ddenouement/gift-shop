@@ -27,6 +27,8 @@ import {MatCardModule} from "@angular/material/card";
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
 import { HeaderComponent } from './components/header/header.component';
 import {SidenavService} from "./_services/sidenav.service";
+import { ProductEditComponent } from './components/product-edit/product-edit.component';
+import {MatCheckboxModule} from "@angular/material/typings/checkbox";
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import {SidenavService} from "./_services/sidenav.service";
     LogInComponent,
     HomeComponent,
     SideNavigationComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import {SidenavService} from "./_services/sidenav.service";
     FormsModule,
     FlexLayoutModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
