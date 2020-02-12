@@ -27,6 +27,8 @@ import {MatCardModule} from "@angular/material/card";
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
 import { HeaderComponent } from './components/header/header.component';
 import {SidenavService} from "./_services/sidenav.service";
+import { ViewProductComponent } from './components/view-product/view-product.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {SidenavService} from "./_services/sidenav.service";
     LogInComponent,
     HomeComponent,
     SideNavigationComponent,
-    HeaderComponent
+    HeaderComponent,
+    ViewProductComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
