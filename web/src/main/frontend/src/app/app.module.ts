@@ -29,6 +29,8 @@ import { HeaderComponent } from './components/header/header.component';
 import {SidenavService} from "./_services/sidenav.service";
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import {MatCheckboxModule} from "@angular/material/typings/checkbox";
+import { ViewProductComponent } from './components/view-product/view-product.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import {MatCheckboxModule} from "@angular/material/typings/checkbox";
     HomeComponent,
     SideNavigationComponent,
     HeaderComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    ViewProductComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,44 @@
+
+<div class="wrapper">
+  <div class="overlay" *ngIf="isLoading">
+    <div class="spinner-wrapper">
+      <app-spinner></app-spinner>
+    </div>
+  </div>
+
+
+ <div class="loaded-content" [class.blurred]="isLoading">
+  <div class="img-wrapper"  >
+    <img [src]="current_product.photo? current_product.photo: 'http://img.rg.ru/img/content/165/56/41/iStock-1126800352_d_850.jpg'" alt="Gift"/>
+  </div>
+   <div class="info-wrapper">
+  <p class="name">{{current_product.productName}}</p>
+  <p class="artikul">Art. #  {{id}}</p>
+     <p class="available" *ngIf="current_product.isAvailable">Is available</p>
+     <p class="not-available" *ngIf="!current_product.isAvailable">Not available</p>
+     <div class="price">{{current_product.productPrice}}</div>
+
+     <div class="quantity">
+    <button class="plus-btn" type="button" name="button" (click)="increase()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+    </button>
+    <input type="text" name="name" [value]="amount_added_to_cart">
+    <button class="minus-btn" type="button" name="button" (click)="decrease()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 10h24v4h-24z"/></svg>
+    </button>
+  </div>
+  <button class="add-to-cart">Add to cart</button>
+  <button class="add-to-wishlist">Add to wishlist</button>
+   </div>
+   <div class="categories-wrapper scrollable-horizontal">
+     <mat-nav-list fxLayout="row">
+       <a  *ngFor="let cat of current_product.categories" mat-list-item href="#">{{cat}}</a>
+     </mat-nav-list>
+
+   </div>
+
+   <div class="description">
+     {{current_product.productDescripton}}
+   </div>
+</div>
+
