@@ -9,8 +9,8 @@ public class Product implements Serializable {
     private Integer productId;
     private String productName;
     private ArrayList<Integer> categories;
-    private String productDescripton;
-    private BigDecimal productPrice;
+    private String description;
+    private BigDecimal price;
     private boolean isAvailable;
     private String photo;
 
@@ -30,39 +30,39 @@ public class Product implements Serializable {
         this.productName = productName;
     }
 
-    public String getProductDescripton() {
-        return productDescripton;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProductDescripton(String productDescripton) {
-        this.productDescripton = productDescripton;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public BigDecimal getProductPrice() {
-        return productPrice;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setProductPrice(BigDecimal productPrice) {
-        this.productPrice = productPrice;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public boolean isAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setIsAvailable(boolean isAvailable) {
+        isAvailable = isAvailable;
     }
 
     //Construstors
-    public Product(Integer productId, String productName, String productDescripton, ArrayList<Integer> categories,
-                   BigDecimal productPrice, boolean isAvailable){
+    public Product(Integer productId, String productName, String description, ArrayList<Integer> categories,
+                   BigDecimal price, boolean isAvailable){
         super();
         this.productId = productId;
         this.productName = productName;
-        this.productDescripton = productDescripton;
+        this.description = description;
         this.categories = categories;
-        this.productPrice = productPrice;
+        this.price = price;
         this.isAvailable = isAvailable;
 
     }

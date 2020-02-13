@@ -16,7 +16,7 @@
   <p class="artikul">Art. #  {{id}}</p>
      <p class="available" *ngIf="current_product.isAvailable">Is available</p>
      <p class="not-available" *ngIf="!current_product.isAvailable">Not available</p>
-     <div class="price">{{current_product.productPrice}}</div>
+     <div class="price">{{current_product.price}}</div>
 
      <div class="quantity">
     <button class="plus-btn" type="button" name="button" (click)="increase()">
@@ -38,7 +38,7 @@
    </div>
 
    <div class="description">
-     {{current_product.productDescripton}}
+     {{current_product.description}}
    </div>
 </div>
 

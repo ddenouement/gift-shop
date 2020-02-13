@@ -57,7 +57,7 @@ public class ProductController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
+    @PutMapping("/products")
     public ResponseEntity updateProduct(@RequestBody Product product) {
         productService.updateProduct(product);
 
