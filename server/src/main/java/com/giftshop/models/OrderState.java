@@ -27,4 +27,9 @@ public class OrderState implements Serializable {
     public void setStateName(String stateName) {
         this.stateName = stateName;
     }
+
+    public OrderState(Integer orderStateId, String stateName){
+        this.orderStateId = orderStateId;
+        this.stateName = stateName;
+    }
 }
