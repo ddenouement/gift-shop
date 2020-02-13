@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ViewProductService} from "../../_services/view-product.service";
 import {Product} from "../../_models/product";
@@ -8,7 +8,7 @@ import {Product} from "../../_models/product";
   templateUrl: './view-product.component.html',
   styleUrls: ['./view-product.component.css']
 })
-export class ViewProductComponent implements OnInit {
+export class ViewProductComponent implements OnInit, OnDestroy {
   id: number;
   private sub: any;
   current_product: Product;
@@ -36,6 +36,7 @@ export class ViewProductComponent implements OnInit {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.amount_added_to_cart=1;
   }
 
   decrease(){

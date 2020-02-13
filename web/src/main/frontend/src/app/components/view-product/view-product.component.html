@@ -13,28 +13,39 @@
   </div>
    <div class="info-wrapper">
   <p class="name">{{current_product.productName}}</p>
-  <p class="artikul">Art. #  {{id}}</p>
-     <p class="available" *ngIf="current_product.isAvailable">Is available</p>
-     <p class="not-available" *ngIf="!current_product.isAvailable">Not available</p>
+  <p class="artikul">ARTIKUL:  {{id}}</p>
+     <p class="available" *ngIf="current_product.isAvailable">AVAILABLE</p>
+     <p class="not-available" *ngIf="!current_product.isAvailable">NOT AVAILABLE</p>
      <div class="price">{{current_product.price}}</div>
 
-     <div class="quantity">
-    <button class="plus-btn" type="button" name="button" (click)="increase()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
-    </button>
-    <input type="text" name="name" [value]="amount_added_to_cart">
-    <button class="minus-btn" type="button" name="button" (click)="decrease()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 10h24v4h-24z"/></svg>
-    </button>
-  </div>
-  <button class="add-to-cart">Add to cart</button>
-  <button class="add-to-wishlist">Add to wishlist</button>
+     <div class="input-group">
+     <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" (click)="decrease()">
+                  <span class="glyphicon glyphicon-minus"></span>
+              </button>
+          </span>
+     <input type="text"   class="form-control input-number" [value]="amount_added_to_cart" min="1">
+     <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" (click)="increase()">
+                  <span class="glyphicon glyphicon-plus"></span>
+              </button>
+          </span>
    </div>
-   <div class="categories-wrapper scrollable-horizontal">
-     <mat-nav-list fxLayout="row">
-       <a  *ngFor="let cat of current_product.categories" mat-list-item href="#">{{cat}}</a>
-     </mat-nav-list>
+  <button class="add-to-cart">ADD TO CART</button>
+  <button class="add-to-wishlist">ADD TO WISHLIST</button>
 
+   </div>
+
+   <div class='container scrollable-horizontal'>
+     <div class="row">
+       <div class="list-inline">
+         <div *ngFor="let cat of current_product.categories" class="col-md-2" style="padding: 7px;">
+           <div class="list-inline-item">
+             <span class="badge badge-pill"> {{cat}}   </span>
+           </div>
+         </div>
+       </div>
+     </div>
    </div>
 
    <div class="description">
@@ -42,3 +53,4 @@
    </div>
 </div>
 
+</div>
