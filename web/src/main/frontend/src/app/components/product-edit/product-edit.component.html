@@ -32,7 +32,7 @@
 
           <div class="row">
             <mat-form-field >
-              <input matInput [formControl]="f.price" placeholder="Price" required>
+              <input type="number" matInput [formControl]="f.price" placeholder="Price" required>
               <mat-error *ngIf="f.price.errors">
                 Price is required
               </mat-error>

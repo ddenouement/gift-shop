@@ -96,7 +96,7 @@ public class UserDAO implements IUserDAO {
                 .addValue("phone_number",user.getPhoneNumber())
                 .addValue("password",user.getPassword())
                 .addValue("role", user.getRole())
-                .addValue("is_activated", user.isActivated());
+                .addValue("is_activated", user.getIsActivated());
         int status = template.update(updateExistingUser, param);
         if(status != 0){
             System.out.println("User data updated for ID " + user.getUserId());
@@ -138,7 +138,7 @@ public class UserDAO implements IUserDAO {
         person.setPatronymic(resultSet.getString("patronymic"));
         person.setEmail(resultSet.getString("email"));
         person .setPassword(resultSet.getString("password"));
-        person.setActivated(resultSet.getBoolean("is_activated"));
+        person.setIsActivated(resultSet.getBoolean("is_activated"));
         person.setPhoneNumber(resultSet.getString("phone_number"));
         person.setBirthDate(resultSet.getDate("birth_date").toLocalDate());
         int roleId = resultSet.getInt("role_id");

@@ -91,7 +91,7 @@ public class ProductDAO implements IProductDAO {
                 .addValue("product_description", product.getDescription())
                 .addValue("price", product.getPrice())
                 .addValue("photo",product.getPhoto())
-                .addValue("is_available",product.isAvailable());
+                .addValue("is_available",product.getIsAvailable());
         return template.update(insertProduct,param);
     }
 
@@ -103,7 +103,7 @@ public class ProductDAO implements IProductDAO {
                 .addValue("product_description", product.getDescription())
                 .addValue("price", product.getPrice())
                 .addValue("photo",product.getPhoto())
-                .addValue("is_available",product.isAvailable());
+                .addValue("is_available",product.getIsAvailable());
         int status = template.update(updateProduct, param);
         if(status != 0){
             System.out.println("Product data updated for ID " + product.getProductId());

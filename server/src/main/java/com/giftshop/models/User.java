@@ -83,12 +83,12 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public boolean isActivated() {
+    public boolean getIsActivated() {
         return isActivated;
     }
 
-    public void setActivated(boolean activated) {
-        isActivated = activated;
+    public void setIsActivated(boolean isActivated) {
+        isActivated = isActivated;
     }
 
     public LocalDate getBirthDate() {
