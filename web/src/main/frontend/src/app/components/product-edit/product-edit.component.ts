@@ -37,7 +37,7 @@ export class ProductEditComponent implements OnInit {
       productId: ['', Validators.required],
       productName: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', Validators.required, Validators.min(0)],
+      price: ['', Validators.required],
       photo: [''],
       isAvailable: [false, Validators.required]
     });
@@ -75,8 +75,6 @@ export class ProductEditComponent implements OnInit {
     }
 
     this.current_product=this.editForm.value;
-
-    console.log(this.current_product);
 
     this.loading = true;
     this.productService.update(this.current_product)

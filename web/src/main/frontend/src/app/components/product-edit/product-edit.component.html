@@ -32,7 +32,7 @@
 
           <div class="row">
             <mat-form-field >
-              <input type="number" matInput [formControl]="f.price" placeholder="Price" required>
+              <input type="number" step="1" min="1" matInput [formControl]="f.price" placeholder="Price" required>
               <mat-error *ngIf="f.price.errors">
                 Price is required
               </mat-error>
@@ -46,7 +46,7 @@
           </div>
 
           <div class="row">
-              <mat-checkbox matInput [formControl]="f.isAvailable" placeholder="Photo">Available</mat-checkbox>
+              <mat-checkbox [formControl]="f.isAvailable" >Available</mat-checkbox>
           </div>
 
 
