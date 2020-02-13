@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {first} from "rxjs/operators";
 import {AlertService} from "../../_services";
 import {ProductService} from "../../_services/product.service";
+import {Product} from "../../_models/product";
 
 @Component({
   selector: 'app-product-edit',
@@ -11,6 +12,9 @@ import {ProductService} from "../../_services/product.service";
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
+  id: number;
+  private sub: any;
+  current_product: Product;
   editForm: FormGroup;
   loading = false;
   submitted = false;
@@ -18,6 +22,7 @@ export class ProductEditComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private productService: ProductService,
     private alertService: AlertService) {
 
@@ -29,11 +34,34 @@ export class ProductEditComponent implements OnInit {
 
   ngOnInit() {
     this.editForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      productId: ['', Validators.required],
+      productName: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', Validators.required, Validators.min(0)],
       photo: [''],
-      is_available: ['', Validators.required]
+      isAvailable: [false, Validators.required]
+    });
+
+
+    this.sub = this.route.params.subscribe(params => {
+      this.loading = true;
+      this.id = +params['id'];
+      this.productService.getById(+this.id)
+        .subscribe(productData =>{
+          this.loading = false;
+          this.current_product = productData;
+
+          this.editForm.controls["productId"].setValue(productData.productId);
+          this.editForm.controls["productName"].setValue(productData.productName);
+          this.editForm.controls["description"].setValue(productData.description);
+          this.editForm.controls["price"].setValue(productData.price);
+          this.editForm.controls["photo"].setValue(productData.photo);
+          this.editForm.controls["isAvailable"].setValue(productData.isAvailable);
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
+        });
     });
   }
 
@@ -42,13 +70,16 @@ export class ProductEditComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // stop here if form is invalid
     if (this.editForm.invalid) {
       return;
     }
 
+    this.current_product=this.editForm.value;
+
+    console.log(this.current_product);
+
     this.loading = true;
-    this.productService.update(this.editForm.value)
+    this.productService.update(this.current_product)
       .pipe(first())
       .subscribe(
         data => {

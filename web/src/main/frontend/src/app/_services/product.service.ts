@@ -13,7 +13,7 @@ export class ProductService {
     }
 
     getById(id: number) {
-        return this.http.get(`${environment.apiUrl}/products/${id}`);
+        return this.http.get<Product>(`${environment.apiUrl}/products/${id}`);
     }
 
     create(product: Product) {
@@ -21,6 +21,6 @@ export class ProductService {
     }
 
     update(product: Product) {
-        return this.http.put(`${environment.apiUrl}/products/${product.id}`, product);
+        return this.http.put(`${environment.apiUrl}/products`, product);
     }
 }
