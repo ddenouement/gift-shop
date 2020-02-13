@@ -84,11 +84,11 @@ public class User implements Serializable {
     }
 
     public boolean getIsActivated() {
-        return isActivated;
+        return this.isActivated;
     }
 
     public void setIsActivated(boolean isActivated) {
-        isActivated = isActivated;
+        this.isActivated = isActivated;
     }
 
     public LocalDate getBirthDate() {

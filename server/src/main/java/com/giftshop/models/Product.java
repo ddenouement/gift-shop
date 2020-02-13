@@ -47,11 +47,11 @@ public class Product implements Serializable {
     }
 
     public boolean getIsAvailable() {
-        return isAvailable;
+        return this.isAvailable;
     }
 
     public void setIsAvailable(boolean isAvailable) {
-        isAvailable = isAvailable;
+        this.isAvailable = isAvailable;
     }
 
     //Construstors
