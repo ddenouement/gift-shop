@@ -9,7 +9,7 @@
 
  <div class="loaded-content" [class.blurred]="isLoading">
   <div class="img-wrapper"  >
-    <img [src]="current_product.photo? current_product.photo: 'http://img.rg.ru/img/content/165/56/41/iStock-1126800352_d_850.jpg'" alt="Gift"/>
+    <img class="image" style="width:100%; height:100%; object-fit: cover;" [src]="current_product.photo? current_product.photo: 'http://img.rg.ru/img/content/165/56/41/iStock-1126800352_d_850.jpg'" alt="Gift"/>
   </div>
    <div class="info-wrapper">
   <p class="name">{{current_product.productName}}</p>

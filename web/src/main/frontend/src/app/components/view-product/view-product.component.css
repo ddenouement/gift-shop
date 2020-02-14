@@ -67,8 +67,8 @@ input:focus {
 
 .img-wrapper{
   display: inline-block;
-  max-height:400px;
-  max-width:400px;
+   height:400px;
+   width:400px;
   overflow: hidden;
   vertical-align:top;
 }
