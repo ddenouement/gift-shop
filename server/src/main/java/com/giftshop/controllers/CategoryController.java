@@ -41,7 +41,7 @@ public class CategoryController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
+    @PutMapping("/categories")
     public ResponseEntity updateCategory(@RequestBody Category category) {
         categoryService.updateCategory(category);
 
