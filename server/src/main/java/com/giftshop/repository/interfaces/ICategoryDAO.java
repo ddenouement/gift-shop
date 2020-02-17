@@ -10,6 +10,6 @@ public interface ICategoryDAO  {
 
     Integer createCategory(Category category);
     void updateCategory(Category category);
-    void deleteCategory(Category category);
+    void deleteCategory(Integer categoryId);
 
 }

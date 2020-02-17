@@ -61,7 +61,7 @@ public class CategoryDAO implements ICategoryDAO {
     @Override
     public void updateCategory(Category category) {
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("uid",category.getCategoryId())
+                .addValue("id_param",category.getCategoryId())
                 .addValue("category_name", category.getCategoryName());
         int status = template.update(updateCategory, param);
         if(status != 0){
@@ -73,21 +73,21 @@ public class CategoryDAO implements ICategoryDAO {
     }
 
     @Override
-    public void deleteCategory(Category category) {
+    public void deleteCategory(Integer categoryId) {
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("uid", category.getCategoryId());
+                .addValue("id_param", categoryId);
         List<Integer> productIds =
                 template.query(getProduct, param,
                         (resultSet, i) -> resultSet.getInt("product_id"));
         if(productIds.size() > 0){
-            System.out.println("Unable to delete category " + category.getCategoryName() + "\n Some Products use it:" + productIds.toString());
+            System.out.println("Unable to delete category " + categoryId + "\n Some Products use it:" + productIds.toString());
         }
         else{
             int status = template.update(deleteCategory, param);
             if(status != 0){
-                System.out.println("Category id " + category.getCategoryId() + " deleted");
+                System.out.println("Category id " + categoryId + " deleted");
             }else{
-                System.out.println("Category id " + category.getCategoryId() + " failed to delete");
+                System.out.println("Category id " + categoryId + " failed to delete");
             }
         }
 
