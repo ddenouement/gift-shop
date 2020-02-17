@@ -1,0 +1,56 @@
+
+<div class="wrapper">
+  <div class="overlay" *ngIf="isLoading">
+    <div class="spinner-wrapper">
+      <app-spinner></app-spinner>
+    </div>
+  </div>
+
+
+ <div class="loaded-content" [class.blurred]="isLoading">
+  <div class="img-wrapper"  >
+    <img class="image" style="width:100%; height:100%; object-fit: cover;" [src]="current_product.photo? current_product.photo: 'http://img.rg.ru/img/content/165/56/41/iStock-1126800352_d_850.jpg'" alt="Gift"/>
+  </div>
+   <div class="info-wrapper">
+  <p class="name">{{current_product.productName}}</p>
+  <p class="artikul">ARTIKUL:  {{id}}</p>
+     <p class="available" *ngIf="current_product.isAvailable">AVAILABLE</p>
+     <p class="not-available" *ngIf="!current_product.isAvailable">NOT AVAILABLE</p>
+     <div class="price">{{current_product.price}}</div>
+
+     <div class="input-group">
+     <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" (click)="decrease()">
+                  <span class="glyphicon glyphicon-minus"></span>
+              </button>
+          </span>
+     <input type="text"   class="form-control input-number" [value]="amount_added_to_cart" min="1">
+     <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" (click)="increase()">
+                  <span class="glyphicon glyphicon-plus"></span>
+              </button>
+          </span>
+   </div>
+  <button class="add-to-cart">ADD TO CART</button>
+  <button class="add-to-wishlist">ADD TO WISHLIST</button>
+
+   </div>
+
+   <div class='container scrollable-horizontal'>
+     <div class="row">
+       <div class="list-inline">
+         <div *ngFor="let cat of current_product.categories" class="col-md-2" style="padding: 7px;">
+           <div class="list-inline-item">
+             <span class="badge badge-pill"> {{cat}}   </span>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+
+   <div class="description">
+     {{current_product.description}}
+   </div>
+</div>
+
+</div>

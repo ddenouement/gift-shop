@@ -38,5 +38,9 @@ export class AuthenticationService {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+
+        this.http.get<any>(`${environment.apiUrl}/user/logout`);
+      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
     }
 }

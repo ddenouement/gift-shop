@@ -1,0 +1,16 @@
+mat-error{
+  font-size: 8px;
+}
+input {
+  font-size: 10px;
+}
+mat-form-field{
+  display: block;
+}
+mat-card {
+  max-width: 400px;
+}
+.close {
+  font-size: 60px;
+  color: red;
+}

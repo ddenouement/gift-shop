@@ -61,7 +61,7 @@ public class ConfirmationService implements IConfirmationService {
     }
 
     public void activateUser(User user) {
-        user.setActivated(true);
+        user.setIsActivated(true);
         userDAO.updateUser(user);
     }
 }

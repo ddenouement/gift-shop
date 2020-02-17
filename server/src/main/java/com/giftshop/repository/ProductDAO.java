@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,10 +88,10 @@ public class ProductDAO implements IProductDAO {
     public Integer insertProduct(Product product) {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("product_name", product.getProductName())
-                .addValue("product_description", product.getProductDescripton())
-                .addValue("price", product.getProductPrice())
+                .addValue("product_description", product.getDescription())
+                .addValue("price", product.getPrice())
                 .addValue("photo",product.getPhoto())
-                .addValue("is_available",product.isAvailable());
+                .addValue("is_available",product.getIsAvailable());
         return template.update(insertProduct,param);
     }
 
@@ -101,10 +100,10 @@ public class ProductDAO implements IProductDAO {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("uid",product.getProductId())
                 .addValue("product_name", product.getProductName())
-                .addValue("product_description", product.getProductDescripton())
-                .addValue("price", product.getProductPrice())
+                .addValue("product_description", product.getDescription())
+                .addValue("price", product.getPrice())
                 .addValue("photo",product.getPhoto())
-                .addValue("is_available",product.isAvailable());
+                .addValue("is_available",product.getIsAvailable());
         int status = template.update(updateProduct, param);
         if(status != 0){
             System.out.println("Product data updated for ID " + product.getProductId());
@@ -126,9 +125,9 @@ public class ProductDAO implements IProductDAO {
         Product product = new Product();
         product.setProductId(resultSet.getInt("uid"));
         product.setProductName(resultSet.getString("product_name"));
-        product.setProductDescripton(resultSet.getString("product_description"));
-        product.setProductPrice(resultSet.getBigDecimal("price"));
-        product.setAvailable(resultSet.getBoolean("is_available"));
+        product.setDescription(resultSet.getString("product_description"));
+        product.setPrice(resultSet.getBigDecimal("price"));
+        product.setIsAvailable(resultSet.getBoolean("is_available"));
         product.setPhoto(resultSet.getString("photo"));
         ArrayList<Integer> categories = new ArrayList<>();
 
