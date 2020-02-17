@@ -1,7 +1,6 @@
 package com.giftshop.repository;
 
 import com.giftshop.models.Category;
-import com.giftshop.models.Product;
 import com.giftshop.repository.interfaces.ICategoryDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,9 +21,9 @@ public class CategoryDAO implements ICategoryDAO {
 
     @Autowired
     private NamedParameterJdbcTemplate template;
-    @Value("${get_by_id}")
+    @Value("${get_category_by_id}")
     private String getById;
-    @Value("${get_all}")
+    @Value("${get_all_categories}")
     private String getAll;
     @Value("${insert_category}")
     private String insertCategory;
@@ -62,7 +61,7 @@ public class CategoryDAO implements ICategoryDAO {
     @Override
     public void updateCategory(Category category) {
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("category_id",category.getCategoryId())
+                .addValue("uid",category.getCategoryId())
                 .addValue("category_name", category.getCategoryName());
         int status = template.update(updateCategory, param);
         if(status != 0){
@@ -76,7 +75,7 @@ public class CategoryDAO implements ICategoryDAO {
     @Override
     public void deleteCategory(Category category) {
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("category_id", category.getCategoryId());
+                .addValue("uid", category.getCategoryId());
         List<Integer> productIds =
                 template.query(getProduct, param,
                         (resultSet, i) -> resultSet.getInt("product_id"));
@@ -96,7 +95,7 @@ public class CategoryDAO implements ICategoryDAO {
 
     private Category toCategory(ResultSet resultSet) throws SQLException {
         Category category = new Category();
-        category.setCategoryId(resultSet.getInt("category_id"));
+        category.setCategoryId(resultSet.getInt("uid"));
         category.setCategoryName(resultSet.getString("category_name"));
         return category;
     }

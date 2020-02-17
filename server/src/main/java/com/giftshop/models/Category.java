@@ -22,13 +22,4 @@ public class Category implements Serializable {
         this.categoryName = categoryName;
     }
 
-    public Category(Integer categoryId, String categoryName){
-        this.categoryId = categoryId;
-        this.categoryName = categoryName;
-    }
-
-    public Category(){
-
-    }
-
 }
