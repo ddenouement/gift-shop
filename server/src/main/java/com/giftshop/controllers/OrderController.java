@@ -39,7 +39,7 @@ public class OrderController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("orders")
+    @PutMapping("/orders")
     public ResponseEntity updateOrder(@RequestBody Order order){
         orderService.updateOrder(order);
         return ResponseEntity.ok().build();
