@@ -31,6 +31,13 @@ public class ProductDAO implements IProductDAO {
     @Value("${get_by_categories}")
     private String getByCategories;
 
+    @Value("${get_from_to}")
+    private String getFromTo;
+    @Value("${get_by_category_from_to}")
+    private String getByCategoryFromTo;
+    @Value("${get_by_categories_from_to}")
+    private String getByCategoriesFromTo;
+
     @Value("${insert_product}")
     private String insertProduct;
     @Value("${update_product}")
@@ -73,10 +80,44 @@ public class ProductDAO implements IProductDAO {
 
     @Override
     public ArrayList<Product> getByCategories(ArrayList<Integer> categories) {
-//        List<Integer> list = Arrays.asList(categories);
-
         SqlParameterSource param = new MapSqlParameterSource(
                 "id_params", categories);
+        List<Product> products =
+                template.query(getByCategories, param,
+                        (resultSet, i) -> toProduct(resultSet));
+        products = products.stream().distinct().collect(Collectors.toList());
+        return (ArrayList<Product>) products;
+    }
+
+    @Override
+    public ArrayList<Product> getFromTo(Integer startRow, Integer endRow) {
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("from", startRow)
+                .addValue("to", endRow);
+        List<Product> products =
+                template.query(getFromTo, param,
+                                (resultSet, i) -> toProduct(resultSet));
+        return (ArrayList<Product>) products;
+    }
+
+    @Override
+    public ArrayList<Product> getByCategoryFromTo(Integer categoryId, Integer startRow, Integer endRow) {
+        SqlParameterSource param = new MapSqlParameterSource(
+                "id_param", categoryId)
+                .addValue("from", startRow)
+                .addValue("to", endRow);
+        List<Product> products =
+                template.query(getByCategory, param,
+                        (resultSet, i) -> toProduct(resultSet));
+        return (ArrayList<Product>) products;
+    }
+
+    @Override
+    public ArrayList<Product> getByCategoriesFromTo(ArrayList<Integer> categories, Integer startRow, Integer endRow) {
+        SqlParameterSource param = new MapSqlParameterSource(
+                "id_params", categories)
+                .addValue("from", startRow)
+                .addValue("to", endRow);
         List<Product> products =
                 template.query(getByCategories, param,
                         (resultSet, i) -> toProduct(resultSet));
