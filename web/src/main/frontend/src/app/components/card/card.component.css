@@ -1,0 +1,28 @@
+.product-card {
+  max-width: 350px;
+  width: 350px;
+  min-height: 550px;
+  max-height: 550px;
+  margin-bottom: 40px;
+}
+
+.card-image {
+  height: 300px;
+  width: 350px;
+}
+
+.add-to-cart{
+  background-color: black;
+  height: 60px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
+.card-title {
+  cursor: pointer;
+}

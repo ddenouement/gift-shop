@@ -1,0 +1,21 @@
+<mat-card class="product-card">
+
+  <mat-card-header>
+    <mat-card-title routerLink="/viewproduct/{{product.productId}}" class="card-title">{{product.productName}}</mat-card-title>
+    <mat-card-subtitle>{{'$'+product.price}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <img mat-card-image class="card-image" [src]="product.photo || 'http://img.rg.ru/img/content/165/56/41/iStock-1126800352_d_850.jpg'">
+
+  <mat-card-content>
+    <p>
+      {{product.description.length <= 150 ? product.description : product.description.slice(0,150) + '...'}}
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-button (click)="addProductToCart()">ADD TO CART</button>
+    <button mat-button (click)="addProductToWishlist()">ADD TO WISHLIST</button>
+  </mat-card-actions>
+
+</mat-card>

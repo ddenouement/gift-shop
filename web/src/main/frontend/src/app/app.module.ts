@@ -23,14 +23,15 @@ import { RegisterComponent } from './components/register/register.component';
 
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './components/home/home.component';
-import {MatCardModule} from "@angular/material/card";
+import { MatCardModule } from '@angular/material/card';
 import { SideNavigationComponent } from './components/side-navigation/side-navigation.component';
 import { HeaderComponent } from './components/header/header.component';
-import {SidenavService} from "./_services/sidenav.service";
+import { SidenavService } from './_services/sidenav.service';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { ViewProductComponent } from './components/view-product/view-product.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import {MatCheckboxModule} from "@angular/material";
+import { MatCheckboxModule } from '@angular/material';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {MatCheckboxModule} from "@angular/material";
     HeaderComponent,
     ProductEditComponent,
     ViewProductComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

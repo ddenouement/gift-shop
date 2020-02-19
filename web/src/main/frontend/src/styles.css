@@ -17,10 +17,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 body {
-  background-image: url('./assets/83253083_2371598086465256_1591201562586251264_n.jpg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   min-height: 100vh;
   font-family: 'Roboto', sans-serif;
   overflow-x: hidden;

@@ -1,4 +1,16 @@
 <div style="height: 100vh">
-<p> Home </p>
-<h1>{{currentUser ? 'You are logged in' : 'You are not logged in' }}!</h1>
+  <div fxLayout="row wrap"  class="card-deck-container mat-elevation-z4">
+    <div fxFlex *ngFor="let product of productsToShow"  class="card-item">
+      <app-card [product]="product"></app-card>
+    </div>
+
+    <div class="paginator mat-elevation-z4" *ngIf="products.length > 10">
+      <mat-paginator
+        [length]="pages"
+        [pageSize]="12"
+        [pageSizeOptions]="[12]"
+        >
+      </mat-paginator>
+    </div>
+  </div>
 </div>
