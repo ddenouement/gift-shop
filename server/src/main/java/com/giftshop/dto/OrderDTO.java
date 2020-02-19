@@ -1,17 +1,21 @@
-package com.giftshop.models;
+package com.giftshop.dto;
 
-import java.io.Serializable;
+import com.giftshop.models.OrderState;
+import com.giftshop.models.Product;
+import com.giftshop.models.ProductIdQuantityPair;
+import javafx.util.Pair;
+
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
 
-public class Order implements Serializable {
+public class OrderDTO {
     private Integer orderId;
     private Integer userId;
-    private ArrayList<ProductQuantityPair> orderItems;
-    private OrderState orderState;
+    private ArrayList<ProductIdQuantityPair> orderItems;
+    private Integer orderState;
     private String address;
     private boolean cashPayment;
     private boolean postDelivery;
@@ -27,27 +31,27 @@ public class Order implements Serializable {
         this.orderId = orderId;
     }
 
-    public Integer getUser() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUser(Integer userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public ArrayList<ProductQuantityPair> getOrderItems() {
+    public ArrayList<ProductIdQuantityPair> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(ArrayList<ProductQuantityPair>orderItems) {
+    public void setOrderItems(ArrayList<ProductIdQuantityPair>orderItems) {
         this.orderItems = orderItems;
     }
 
-    public OrderState getOrderState() {
+    public Integer getOrderState() {
         return orderState;
     }
 
-    public void setOrderState(OrderState orderState) {
+    public void setOrderStateId(Integer orderState) {
         this.orderState = orderState;
     }
 

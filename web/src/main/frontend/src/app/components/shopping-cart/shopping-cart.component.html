@@ -1,0 +1,7 @@
+<p>your shopping-cart:</p>
+<div *ngFor="let line of orderLines">
+  Item id: {{line.productId}} Amount: {{line.quantity}}
+</div>
+SUM : {{sum}}
+<button (click)="deleteLocalStorage()">DELETE CART</button>
+<button [disabled]="!isLogged" (click)="createOrder()">ORDER THESE ITEMS</button>

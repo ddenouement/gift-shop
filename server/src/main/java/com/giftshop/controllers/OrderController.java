@@ -1,14 +1,17 @@
 package com.giftshop.controllers;
 
+import com.giftshop.config.TokenProvider;
+import com.giftshop.dto.OrderDTO;
 import com.giftshop.models.Order;
+import com.giftshop.models.ProductIdQuantityPair;
 import com.giftshop.services.OrderService;
 import com.giftshop.services.interfaces.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 import static org.springframework.http.ResponseEntity.badRequest;
 
@@ -17,9 +20,10 @@ import static org.springframework.http.ResponseEntity.badRequest;
 @CrossOrigin(origins = "http://localhost:4200")
 public class OrderController {
     private IOrderService orderService;
-
+    private TokenProvider jwtTokenProvider;
     @Autowired
-    OrderController(final OrderService orderService) {
+    OrderController(final OrderService orderService,final TokenProvider jwtTokenProvider) {
+        this.jwtTokenProvider = jwtTokenProvider;
         this.orderService = orderService;
     }
 
@@ -34,9 +38,18 @@ public class OrderController {
     }
 
     @PostMapping("/orders")
-    public ResponseEntity insertOrder(@Valid @RequestBody Order order, final HttpServletResponse response){
-        if(orderService.insertOrder((order)) == 0) return badRequest().body("Error");
+    public ResponseEntity insertOrder(@CookieValue("token") String token,  @RequestBody OrderDTO order){
+
+        Integer my_id = jwtTokenProvider.getUserId(token);
+        order.setUserId(my_id);
+
+        if(orderService.insertOrder((order)) == -1) return badRequest().body("Error");
         return ResponseEntity.ok().build();
+    }
+    @PostMapping("/orders/checkSum")
+    public Integer checkSum(@RequestBody ProductIdQuantityPair[] order){
+        System.out.println(order.length);
+        return orderService.getSum((order)) ;
     }
 
     @PutMapping("/orders")

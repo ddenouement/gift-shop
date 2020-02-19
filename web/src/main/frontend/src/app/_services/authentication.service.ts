@@ -19,6 +19,9 @@ export class AuthenticationService {
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
     }
+    public isLoggedAsUser(){
+      return this.http.get<any>(`${environment.apiUrl}/user/islogged`, );
+    }
 
     login(email: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/user/login`, { email, password })

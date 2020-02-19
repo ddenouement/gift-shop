@@ -31,6 +31,8 @@ import { ProductEditComponent } from './components/product-edit/product-edit.com
 import { ViewProductComponent } from './components/view-product/view-product.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import {MatCheckboxModule} from "@angular/material";
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { CreateOrderComponent } from './components/create-order/create-order.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import {MatCheckboxModule} from "@angular/material";
     HeaderComponent,
     ProductEditComponent,
     ViewProductComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ShoppingCartComponent,
+    CreateOrderComponent
   ],
   imports: [
     BrowserModule,

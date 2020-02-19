@@ -167,7 +167,7 @@ public class ProductDAO implements IProductDAO {
         product.setProductId(resultSet.getInt("uid"));
         product.setProductName(resultSet.getString("product_name"));
         product.setDescription(resultSet.getString("product_description"));
-        product.setPrice(resultSet.getBigDecimal("price"));
+        product.setPrice(resultSet.getInt("price"));
         product.setIsAvailable(resultSet.getBoolean("is_available"));
         product.setPhoto(resultSet.getString("photo"));
         ArrayList<Integer> categories = new ArrayList<>();

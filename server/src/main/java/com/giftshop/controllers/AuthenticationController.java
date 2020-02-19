@@ -68,6 +68,13 @@ public class AuthenticationController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('USER')" )
+    @GetMapping(value = "/user/islogged")
+    public int isLogged( ) {
+        System.out.println("is logged");
+        return  1;
+    }
+
 
     private ResponseEntity doAuthentication( String password, String email, final HttpServletResponse response){
         authenticationManager.authenticate( new UsernamePasswordAuthenticationToken(email, password));
