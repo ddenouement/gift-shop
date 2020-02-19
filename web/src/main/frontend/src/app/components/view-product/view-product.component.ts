@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ViewProductService} from "../../_services/view-product.service";
 import {Product} from "../../_models/product";
+import {first} from "rxjs/operators";
+import {LocalStorageService} from "../../_services/localstorage.service";
 
 @Component({
   selector: 'app-view-product',
@@ -15,7 +17,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   isLoading: boolean;
   amount_added_to_cart: number;
 
-  constructor(private route: ActivatedRoute, private productviewService: ViewProductService) {}
+  constructor(private route: ActivatedRoute, private productviewService: ViewProductService, private local: LocalStorageService) {}
 
   ngOnInit() {
 
@@ -28,7 +30,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         .subscribe(productData =>{
           this.isLoading = false;
           this.current_product = productData;
-
+//todo load categories
         });
 
     });
@@ -41,10 +43,33 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   decrease(){
     if(this.amount_added_to_cart >0){
-      this.amount_added_to_cart -=1;;
+      this.amount_added_to_cart -=1;
     }
   }
   increase() {
     this.amount_added_to_cart+=1;
+  }
+
+  addToCart() {
+    let products = [];
+    if(this.local.existsCartInMemory()){
+      products =this.local.getOrderLines();
+    }
+    const  index =  products.findIndex(k => k.productId===this.id);
+    if( index === -1){
+      products.push({'productId' : this.id, 'quantity' : this.amount_added_to_cart});
+
+    }
+    //якщо вже такий продукт є, додаємо кількість до існючого (замінюємо на нове значення)
+    else {
+      const first_quantity = products[index].amount;
+      const new_quantity = first_quantity + this.amount_added_to_cart;
+      products.splice(index,1);
+      products.push({'productId' : this.id, 'quantity' : new_quantity});
+
+      alert("changed amount of products");
+    }
+    localStorage.setItem('products', JSON.stringify(products));
+    alert("saved to cart");
   }
 }

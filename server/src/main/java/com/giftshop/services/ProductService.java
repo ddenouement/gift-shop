@@ -40,6 +40,21 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public ArrayList<Product> getFromTo(Integer startRow, Integer endRow) {
+        return productDAO.getFromTo(startRow, endRow);
+    }
+
+    @Override
+    public ArrayList<Product> getByCategoryFromTo(Integer categoryId, Integer startRow, Integer endRow) {
+        return productDAO.getByCategoryFromTo(categoryId, startRow, endRow);
+    }
+
+    @Override
+    public ArrayList<Product> getByCategoriesFromTo(ArrayList<Integer> categories, Integer startRow, Integer endRow) {
+        return productDAO.getByCategoriesFromTo(categories, startRow, endRow);
+    }
+
+    @Override
     public Integer insertProduct(Product product) {
         return productDAO.insertProduct(product);
     }

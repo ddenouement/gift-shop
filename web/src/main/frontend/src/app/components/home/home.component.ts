@@ -41,6 +41,4 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {}
-
-  updateProductsDisplayedInPage(event) {}
 }

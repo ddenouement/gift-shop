@@ -10,7 +10,7 @@ public class Product implements Serializable {
     private String productName;
     private ArrayList<Integer> categories;
     private String description;
-    private BigDecimal price;
+    private Integer price;
     private boolean isAvailable;
     private String photo;
 
@@ -38,11 +38,11 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -56,7 +56,7 @@ public class Product implements Serializable {
 
     //Construstors
     public Product(Integer productId, String productName, String description, ArrayList<Integer> categories,
-                   BigDecimal price, boolean isAvailable){
+                   Integer price, boolean isAvailable){
         super();
         this.productId = productId;
         this.productName = productName;
@@ -85,4 +85,5 @@ public class Product implements Serializable {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
 }

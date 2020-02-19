@@ -32,6 +32,8 @@ import { ViewProductComponent } from './components/view-product/view-product.com
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { MatCheckboxModule } from '@angular/material';
 import { CardComponent } from './components/card/card.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { CreateOrderComponent } from './components/create-order/create-order.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { CardComponent } from './components/card/card.component';
     ProductEditComponent,
     ViewProductComponent,
     SpinnerComponent,
-    CardComponent
+    CardComponent,
+    ShoppingCartComponent,
+    CreateOrderComponent
   ],
   imports: [
     BrowserModule,

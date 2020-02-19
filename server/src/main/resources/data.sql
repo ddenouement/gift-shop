@@ -114,6 +114,9 @@ INSERT INTO `user` (`uid`, `firstname`, `surname`, `patronymic`, `birth_date`, `
 
 insert  into user (firstname, surname, patronymic, birth_date, is_activated, email, password, phone_number, role_id) values ('Julia', 'Aleksandrova', 'Really', '1999-01-08', TRUE, 'admin@gmail.com', 'admin','0964521233',2);
 
+insert  into user (firstname, surname, patronymic, birth_date, is_activated, email, password, phone_number, role_id) values ('Julia', 'Aleksandrova', 'Really', '1999-01-08', TRUE, 'julia@gmail.com', 'julia','233223233',1);
+
+
 
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (1, 'Bracelet CLAW with rose quartz', 'CLAW silver bracelet is beautiful and sharp with the two stones that nearly meet. The bracelet is comfortable to wear as it cannot turn around with its oval shape. The bracelet is easy to put on as it has a hinge that flips open and close, smart. \n The rose quartz exists in various pink nuances, from light pink to dark and all stones are different.  The stone shines and sparkles very nicely in the light. It exists in another three stones: smokey quartz, onyx, and quartz. ', 1299, 'https://quickbutik.imgix.net/2482K/products/5e4123ba71b6d.jpeg', 0);
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (2, 'Sterling Silver Rose Quartz Bracelet', 'Natural rose quartz is often a very pale pink. The stronger the pink color, the more valuable most consider it, though metaphysically the paler pinks are equally valuable. \n In the psychic and spiritual realms, rose quartz is often used to attract love, for love spells and charms. Rose quartz can also be helpful for dream recall and dream work. Emotionally, rose quartz is used to balance emotions and bring peace and calm. Fear, resentments, and anger can be removed.', 499, 'https://i0.wp.com/www.laurelnymph.com/wp-content/uploads/2017/05/rose-quartz-bracelet-silver-cuff-dangle-chain-sterling-925-handmade-gemstone-gothic-dark-antique-vintage-jewelry-5914c8021.jpg?fit=1500%2C1112&ssl=1', 1);
@@ -324,7 +327,7 @@ INSERT INTO `state` (`state_name`) VALUES ('CANCELLED');
 INSERT INTO `state` (`state_name`) VALUES ('DELIVERED');
 
 
-
+/*
 INSERT INTO `orders` (`uid`, `address`, `cash_payment`, `post_delivery`, `order_date`, `total_sum`, `user_id`, `state_id`) VALUES (1, '99421 Patience Keys Apt. 500\nNorth Rosa, OK 35026', 1, 0, '2018-06-12 17:07:38', 8964, 4, 4);
 INSERT INTO `orders` (`uid`, `address`, `cash_payment`, `post_delivery`, `order_date`, `total_sum`, `user_id`, `state_id`) VALUES (2, '75763 Ena Canyon Suite 266\nOthastad, IA 96539', 0, 1, '2019-07-03 15:27:25', 9467, 46, 3);
 INSERT INTO `orders` (`uid`, `address`, `cash_payment`, `post_delivery`, `order_date`, `total_sum`, `user_id`, `state_id`) VALUES (3, '9090 Macejkovic Park\nEast Drake, ND 62459-5135', 1, 1, '2018-06-12 17:07:38', 2189, 2, 2);
@@ -529,7 +532,7 @@ INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`) VALUES (6, 38, 3
 INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`) VALUES (3, 61, 1);
 
 
-
+*/
 
 
 INSERT INTO `wishlist_item` (`product_id`, `user_id`) VALUES (1, 69);

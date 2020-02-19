@@ -27,9 +27,15 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/products")
+    @GetMapping("/products/")
     public Iterable<Product> getAll() {
         return productService.getAll();
+    }
+
+    @GetMapping("/products/{start-row}/{end-row}")
+    public Iterable<Product> getFromTo(@PathVariable("start-row") Integer startRow,
+                                       @PathVariable("end-row") Integer endRow) {
+        return productService.getFromTo(startRow, endRow);
     }
 
     @GetMapping("/products/{product-id}")
@@ -42,12 +48,29 @@ public class ProductController {
         return productService.getByCategory(categoryId);
     }
 
+    @GetMapping("/products/category/{category-id}/{start-row}/{end-row}")
+    public Iterable<Product> getFromTo(@PathVariable("category-id") Integer categoryId,
+                                       @PathVariable("start-row") Integer startRow,
+                                       @PathVariable("end-row") Integer endRow) {
+        return productService.getByCategoryFromTo(categoryId, startRow, endRow);
+    }
+
     @GetMapping("/products/category")
     public Iterable<Product> getByCategories(@RequestParam("categories") Integer[] categories) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         Collections.addAll(list, categories);
 
         return productService.getByCategories(list);
+    }
+
+    @GetMapping("/products/category/{start-row}/{end-row}")
+    public Iterable<Product> getByCategoriesFromTo(@RequestParam("categories") Integer[] categories,
+                                                                   @PathVariable("start-row") Integer startRow,
+                                                                   @PathVariable("end-row") Integer endRow) {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        Collections.addAll(list, categories);
+
+        return productService.getByCategoriesFromTo(list, startRow, endRow);
     }
 
     @PostMapping("/products")

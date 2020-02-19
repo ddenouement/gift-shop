@@ -14,6 +14,7 @@ export class AppComponent {
   public onSideNavChange: boolean;
 
   constructor(private _sidenavService: SidenavService) {
+
     this._sidenavService.sideNavState$.subscribe( res => {
       console.log(res)
       this.onSideNavChange = res;
