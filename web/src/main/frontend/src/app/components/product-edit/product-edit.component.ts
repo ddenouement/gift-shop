@@ -5,6 +5,8 @@ import {first} from "rxjs/operators";
 import {AlertService} from "../../_services";
 import {ProductService} from "../../_services/product.service";
 import {Product} from "../../_models/product";
+import {Category} from "../../_models/category";
+import {CategoryService} from "../../_services/category.service";
 
 @Component({
   selector: 'app-product-edit',
@@ -19,11 +21,14 @@ export class ProductEditComponent implements OnInit {
   loading = false;
   submitted = false;
 
+  categoriesList: Category[];
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private productService: ProductService,
+    private categoryService: CategoryService,
     private alertService: AlertService) {
 
   }
@@ -45,23 +50,38 @@ export class ProductEditComponent implements OnInit {
 
     this.sub = this.route.params.subscribe(params => {
       this.loading = true;
-      this.id = +params['id'];
-      this.productService.getById(+this.id)
-        .subscribe(productData =>{
-          this.loading = false;
-          this.current_product = productData;
 
-          this.editForm.controls["productId"].setValue(productData.productId);
-          this.editForm.controls["productName"].setValue(productData.productName);
-          this.editForm.controls["description"].setValue(productData.description);
-          this.editForm.controls["price"].setValue(productData.price);
-          this.editForm.controls["photo"].setValue(productData.photo);
-          this.editForm.controls["isAvailable"].setValue(productData.isAvailable);
+      this.categoryService.getAll().subscribe(data =>{
+          this.loading = false;
+          this.categoriesList = data;
+
+          this.id = +params['id'];
+
+          this.productService.getById(+this.id)
+            .subscribe(productData =>{
+                this.loading = false;
+                this.current_product = productData;
+
+                this.editForm.controls["productId"].setValue(productData.productId);
+                this.editForm.controls["productName"].setValue(productData.productName);
+                this.editForm.controls["description"].setValue(productData.description);
+                this.editForm.controls["price"].setValue(productData.price);
+                this.editForm.controls["photo"].setValue(productData.photo);
+                this.editForm.controls["isAvailable"].setValue(productData.isAvailable);
+                this.editForm.controls["categories"].setValue(productData.categories);
+              },
+              error => {
+                this.alertService.error(error);
+                this.loading = false;
+              });
+
+
         },
         error => {
           this.alertService.error(error);
           this.loading = false;
         });
+
     });
   }
 
