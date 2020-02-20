@@ -1,4 +1,42 @@
-<p>create-order!</p>
-<p>your order sum: </p>
+<p>Order-create!</p>
+
+<p>Card data:</p>
+0000 0000 0000 0000
+Mykhailo Verbytsky
+
+<p>Your order sum:</p>
 {{sum}}
-<button [disabled]="!isLogged" (click)="sendExampleData()">SEND EXAMPLE DATA</button>
+
+<div class="radio">
+  <input type="radio" id="cashPaymentRadio" name="cashPaymentRadio" value="cashPaymentRadio" (click)="setRadio('cashPaymentRadio')" [checked]='true' ngModel>
+  <label for="cashPaymentRadio">Cash payment</label><br>
+</div>
+
+<div *ngIf="isSelected('cashPaymentRadio')" >
+  <form>
+    <!--
+        <label for="zipcode">ZIP code:</label><br>
+        <input type="text" id="zipcode" name="zipcode">
+
+        <label for="state">State:</label><br>
+        <input type="text" id="state" name="state">
+
+        <label for="city">City:</label><br>
+        <input type="text" id="city" name="city"><br>
+    //-->
+    <label for="billingAddressLine">Billing address line:</label><br>
+    <input type="text" id="billingAddressLine" name="billingAddressLine" ngModel>
+
+  </form>
+</div>
+
+<div class="radio">
+  <input type="radio" id="PostDeliveryRadio" name="postDeliveryRadio" value="postDeliveryRadio" (click)="setRadio('postDeliveryRadio')" [checked]='false' ngModel>
+  <label for="postDeliveryRadio">Post delivery</label><br>
+</div>
+
+<div *ngIf="isSelected('postDeliveryRadio')" >
+  7v Pobedy avenue, Kyiv, 01135
+</div>
+
+<button [disabled]="!isLogged" (click)="sendData(isSelected('cashPaymentRadio'), document.getElementById('billingAddressLine').value, isSelected('postDeliveryRadio'), $sum)">Submit order</button>
