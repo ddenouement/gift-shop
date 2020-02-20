@@ -21,9 +21,7 @@ export class HomeComponent implements OnInit {
   isLoading: boolean;
 
   lastRow = 0;
-  maxProductsOnPage = 200;
-  productsChunkSize = 12;
-  scrollDistance = 12;
+  productsChunkSize = DEFAULT_PRODUCTS_PER_PAGE;
   products: Product[];
   private sub: Subscription;
 
@@ -41,6 +39,12 @@ export class HomeComponent implements OnInit {
       this.currentUser = user;
     });
 
+    this.productService.getAmount()
+      .subscribe(amount => {
+        this.isLoading = false;
+        this.pages = Math.floor(amount / DEFAULT_PRODUCTS_PER_PAGE);
+      });
+
     this.loadProductsChunk();
   }
 
@@ -49,10 +53,9 @@ export class HomeComponent implements OnInit {
   }
 
   loadProductsChunk() {
-    if (this.lastRow < this.maxProductsOnPage) {
       this.isLoading = true;
 
-      /*this.productService.getFromTo(this.lastRow, this.productsChunkSize).subscribe(data =>
+      /*this.productService.getFromTo(this.lastRow, this.productsChunkSize).toPromise().then(data =>
       {
         this.isLoading = false;
         if (data) {
@@ -65,7 +68,7 @@ export class HomeComponent implements OnInit {
       })*/
       console.log(this.products);
 
-      this.productService.getFromTo(this.lastRow, this.productsChunkSize).toPromise().then(
+      this.productService.getFromTo(DEFAULT_PRODUCTS_PER_PAGE*(this.page-1), DEFAULT_PRODUCTS_PER_PAGE).subscribe(
         data => {
           this.isLoading = false;
           if (data) {
@@ -76,8 +79,5 @@ export class HomeComponent implements OnInit {
         }, error => {
           console.log(error);
         })
-
-
-    }
   }
 }

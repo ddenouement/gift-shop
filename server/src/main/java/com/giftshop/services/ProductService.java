@@ -63,4 +63,9 @@ public class ProductService implements IProductService {
     public void updateProduct(Product product) {
         productDAO.updateProduct(product);
     }
+
+    @Override
+    public Integer getAmount() {
+        return productDAO.getAmount();
+    }
 }

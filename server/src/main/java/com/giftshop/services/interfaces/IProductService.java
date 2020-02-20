@@ -16,4 +16,6 @@ public interface IProductService {
 
     Integer insertProduct(Product product);
     void updateProduct(Product product);
+
+    Integer getAmount();
 }

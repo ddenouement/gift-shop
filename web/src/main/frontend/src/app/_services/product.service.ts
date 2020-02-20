@@ -13,6 +13,10 @@ export class ProductService {
     return this.http.get<Product[]>(`${environment.apiUrl}/products`);
   }
 
+  getAmount() {
+    return this.http.get<number>(`${environment.apiUrl}/products/amount`);
+  }
+
   getFromTo(from: number, to:number): Observable<Product[]> {
     return this.http.get<Product[]>(`${environment.apiUrl}/products/${from}/${to}`);
   }

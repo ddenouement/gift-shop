@@ -27,10 +27,13 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/products/")
+    @GetMapping("/products")
     public Iterable<Product> getAll() {
         return productService.getAll();
     }
+
+    @GetMapping("/products/amount")
+    public Integer getAmount() { return productService.getAmount(); }
 
     @GetMapping("/products/{start-row}/{end-row}")
     public Iterable<Product> getFromTo(@PathVariable("start-row") Integer startRow,

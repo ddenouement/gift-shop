@@ -50,6 +50,9 @@ public class ProductDAO implements IProductDAO {
     @Value("${delete_categories_for_product}")
     private String deleteCategoriesForProduct;
 
+    @Value("${get_amount}")
+    private String getAmount;
+
     @Override
     public Product getById(Integer productId) {
         SqlParameterSource param = new MapSqlParameterSource(
@@ -155,6 +158,17 @@ public class ProductDAO implements IProductDAO {
             updateCategoriesForProduct(product.getProductId(), product.getCategories());
         }else{
             System.out.println("No Product found with ID " + product.getProductId());
+        }
+    }
+
+    @Override
+    public Integer getAmount() {
+        List<Integer> data = template.query(getAmount,
+                        (resultSet, i) -> resultSet.getInt("count"));
+        if (data.size() == 0) {
+            return null;
+        } else {
+            return data.get(0);
         }
     }
 

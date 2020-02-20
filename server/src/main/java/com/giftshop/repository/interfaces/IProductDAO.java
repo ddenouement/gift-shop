@@ -16,4 +16,6 @@ public interface IProductDAO {
 
     Integer insertProduct(Product product);
     void updateProduct(Product product);
+
+    Integer getAmount();
 }
