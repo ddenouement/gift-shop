@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "../../_models/product";
-import {OrderDTO} from "../../_models/OrderDTO";
 import {OrderService} from "../../_services/order.service";
 import {AuthenticationService} from "../../_services";
-import {IndexHtmlWebpackPlugin} from "@angular-devkit/build-angular/src/angular-cli-files/plugins/index-html-webpack-plugin";
-import {IHash} from "../../_models/IHash";
 import {Router} from "@angular/router";
 import {LocalStorageService} from "../../_services/localstorage.service";
 

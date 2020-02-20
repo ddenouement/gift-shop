@@ -1,7 +1,4 @@
-import DateTimeFormat = Intl.DateTimeFormat;
-import {IHash} from "./IHash";
-
-export  class OrderDTO {
+export class OrderDTO {
 
   public orderId: number;
   public userId: number;
