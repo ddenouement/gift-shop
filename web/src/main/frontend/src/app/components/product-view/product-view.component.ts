@@ -1,23 +1,22 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {ViewProductService} from "../../_services/view-product.service";
 import {Product} from "../../_models/product";
-import {first} from "rxjs/operators";
 import {LocalStorageService} from "../../_services/localstorage.service";
+import {ProductService} from "../../_services/product.service";
 
 @Component({
-  selector: 'app-view-product',
-  templateUrl: './view-product.component.html',
-  styleUrls: ['./view-product.component.css']
+  selector: 'app-product-view',
+  templateUrl: './product-view.component.html',
+  styleUrls: ['./product-view.component.css']
 })
-export class ViewProductComponent implements OnInit, OnDestroy {
+export class ProductViewComponent implements OnInit, OnDestroy {
   id: number;
   private sub: any;
   current_product: Product;
   isLoading: boolean;
   amount_added_to_cart: number;
 
-  constructor(private route: ActivatedRoute, private productviewService: ViewProductService, private local: LocalStorageService) {}
+  constructor(private route: ActivatedRoute, private productService: ProductService, private local: LocalStorageService) {}
 
   ngOnInit() {
 
@@ -26,7 +25,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       this.isLoading = true;
       this.id = +params['id']; // (+) converts string 'id' from path to a number
       //when ID loaded, we can access DB to get Product Object
-      this.productviewService.getById(+this.id)
+      this.productService.getById(+this.id)
         .subscribe(productData =>{
           this.isLoading = false;
           this.current_product = productData;

@@ -28,12 +28,12 @@ import { SideNavigationComponent } from './components/side-navigation/side-navig
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavService } from './_services/sidenav.service';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
-import { ViewProductComponent } from './components/view-product/view-product.component';
+import { ProductViewComponent } from './components/product-view/product-view.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { MatCheckboxModule } from '@angular/material';
-import { CardComponent } from './components/card/card.component';
+import { CardComponent } from './components/product-card/card.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-import { CreateOrderComponent } from './components/create-order/create-order.component';
+import { OrderCreateComponent } from './components/order-create/order-create.component';
 
 @NgModule({
   declarations: [
@@ -46,11 +46,11 @@ import { CreateOrderComponent } from './components/create-order/create-order.com
     SideNavigationComponent,
     HeaderComponent,
     ProductEditComponent,
-    ViewProductComponent,
+    ProductViewComponent,
     SpinnerComponent,
     CardComponent,
     ShoppingCartComponent,
-    CreateOrderComponent
+    OrderCreateComponent
   ],
   imports: [
     BrowserModule,

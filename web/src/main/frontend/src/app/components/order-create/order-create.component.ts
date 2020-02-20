@@ -6,10 +6,10 @@ import {AuthenticationService} from "../../_services";
 
 @Component({
   selector: 'app-create-order',
-  templateUrl: './create-order.component.html',
-  styleUrls: ['./create-order.component.css']
+  templateUrl: './order-create.component.html',
+  styleUrls: ['./order-create.component.css']
 })
-export class CreateOrderComponent implements OnInit {
+export class OrderCreateComponent implements OnInit {
   isLogged: boolean;
   orderLines: {productId: number ; quantity: number} [] ;
   products: Product[];

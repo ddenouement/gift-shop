@@ -4,18 +4,18 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProductEditComponent} from "./components/product-edit/product-edit.component";
-import {ViewProductComponent} from "./components/view-product/view-product.component";
+import {ProductViewComponent} from "./components/product-view/product-view.component";
 import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.component";
-import {CreateOrderComponent} from "./components/create-order/create-order.component";
+import {OrderCreateComponent} from "./components/order-create/order-create.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'product/edit/:id', component: ProductEditComponent },
-  {path: 'viewproduct/:id', component: ViewProductComponent},
+  {path: 'product/:id', component: ProductViewComponent},
   {path: 'cart', component: ShoppingCartComponent},
-  {path: 'order', component: CreateOrderComponent}
+  {path: 'order', component: OrderCreateComponent}
 ];
 
 @NgModule({
