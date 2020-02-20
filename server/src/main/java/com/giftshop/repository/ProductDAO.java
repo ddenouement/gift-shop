@@ -43,8 +43,12 @@ public class ProductDAO implements IProductDAO {
     @Value("${update_product}")
     private String updateProduct;
 
-    @Value("${get_categories}")
-    private String getCategories;
+    @Value("${get_categories_for_product}")
+    private String getCategoriesForProduct;
+    @Value("${add_category_for_product}")
+    private String addCategoryForProduct;
+    @Value("${delete_categories_for_product}")
+    private String deleteCategoriesForProduct;
 
     @Override
     public Product getById(Integer productId) {
@@ -148,18 +152,50 @@ public class ProductDAO implements IProductDAO {
         int status = template.update(updateProduct, param);
         if(status != 0){
             System.out.println("Product data updated for ID " + product.getProductId());
+            updateCategoriesForProduct(product.getProductId(), product.getCategories());
         }else{
             System.out.println("No Product found with ID " + product.getProductId());
         }
     }
 
-    public ArrayList<Integer> getCategories(Integer productId){
+    private ArrayList<Integer> getCategoriesForProduct(Integer productId){
         SqlParameterSource param = new MapSqlParameterSource(
                 "id_param", productId);
         List<Integer> categoriesIds =
-                template.query(getCategories, param,
+                template.query(getCategoriesForProduct, param,
                         (resultSet, i) -> resultSet.getInt("category_id"));
         return (ArrayList<Integer>) categoriesIds;
+    }
+
+    private void updateCategoriesForProduct(Integer productId, ArrayList<Integer> categories){
+        deleteCategoriesForProduct(productId);
+
+        for (Integer category : categories) {
+            addCategoryForProduct(productId, category);
+        }
+    }
+
+    private void deleteCategoriesForProduct(Integer productId){
+        SqlParameterSource param = new MapSqlParameterSource(
+                "id_param", productId);
+        int status = template.update(deleteCategoriesForProduct, param);
+        if(status != 0){
+            System.out.println("Categories deleted for product ID " + productId);
+        }else{
+            System.out.println("No Categories found with product ID " + productId);
+        }
+    }
+
+    private void addCategoryForProduct(Integer productId, Integer categoryId) {
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("product_id", productId)
+                .addValue("category_id", categoryId);
+        int status = template.update(addCategoryForProduct, param);
+        if(status != 0){
+            System.out.println("Category " + categoryId + " added successfully for product ID " + productId);
+        }else{
+            System.out.println("Couldn't add category " + categoryId + "  for product ID " + productId);
+        }
     }
 
     private Product toProduct(final ResultSet resultSet) throws SQLException {
@@ -172,7 +208,7 @@ public class ProductDAO implements IProductDAO {
         product.setPhoto(resultSet.getString("photo"));
         ArrayList<Integer> categories = new ArrayList<>();
 
-        categories.addAll(getCategories(product.getProductId()));
+        categories.addAll(getCategoriesForProduct(product.getProductId()));
         product.setCategories(categories);
 
         return product;

@@ -28,8 +28,8 @@ public class WishListDAO implements IWishListDAO {
     private String addProductToUsersWishList;
     @Value("${remove_product_from_users_wish_list}")
     private String removeProductFromUsersWishList;
-    @Value("${get_categories}")
-    private String getCategories;
+    @Value("${get_categories_for_product}")
+    private String getCategoriesForProduct;
 
 
     public ArrayList<Integer> getCategories(Integer productId) {
@@ -37,7 +37,7 @@ public class WishListDAO implements IWishListDAO {
                 "id_param", productId);
         System.out.println(param);
         List<Integer> categoriesIds =
-                template.query(getCategories, param,
+                template.query(getCategoriesForProduct, param,
                         (resultSet, i) -> resultSet.getInt("category_id"));
         return (ArrayList<Integer>) categoriesIds;
     }
