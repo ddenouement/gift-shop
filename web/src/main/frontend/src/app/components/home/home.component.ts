@@ -15,30 +15,69 @@ export const DEFAULT_PRODUCTS_PER_PAGE = 12;
 export class HomeComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
-  products: Product[];
   productsToShow: Product[];
   page: number;
   pages: number;
   isLoading: boolean;
 
+  lastRow = 0;
+  maxProductsOnPage = 200;
+  productsChunkSize = 12;
+  scrollDistance = 12;
+  products: Product[];
+  private sub: Subscription;
+
+
   constructor(
     private authenticationService: AuthenticationService,
     private productService: ProductService
-  ) {
+  ) {  }
+
+  ngOnInit() {
     this.isLoading = true;
     this.products = [];
     this.page = 1;
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
     });
-    this.productService.getAll()
-      .subscribe(products => {
-        this.isLoading = false;
-        this.products = products;
-        this.productsToShow = products.slice(0, DEFAULT_PRODUCTS_PER_PAGE);
-        this.pages = Math.floor(products.length / DEFAULT_PRODUCTS_PER_PAGE);
-      });
+
+    this.loadProductsChunk();
   }
 
-  ngOnInit() {}
+  onScrollDown() {
+    this.loadProductsChunk();
+  }
+
+  loadProductsChunk() {
+    if (this.lastRow < this.maxProductsOnPage) {
+      this.isLoading = true;
+
+      /*this.productService.getFromTo(this.lastRow, this.productsChunkSize).subscribe(data =>
+      {
+        this.isLoading = false;
+        if (data) {
+          this.lastRow += data.length;
+          console.log(data);
+          this.products.push(...data);
+        }
+      }, error => {
+        console.log(error);
+      })*/
+      console.log(this.products);
+
+      this.productService.getFromTo(this.lastRow, this.productsChunkSize).toPromise().then(
+        data => {
+          this.isLoading = false;
+          if (data) {
+            this.lastRow += data.length;
+            console.log(data);
+            this.products.push(...data);
+          }
+        }, error => {
+          console.log(error);
+        })
+
+
+    }
+  }
 }
