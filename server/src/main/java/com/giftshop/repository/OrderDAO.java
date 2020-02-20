@@ -4,7 +4,6 @@ import com.giftshop.dto.OrderDTO;
 import com.giftshop.models.*;
 import com.giftshop.repository.interfaces.IOrderDAO;
 import com.giftshop.services.interfaces.IProductService;
-import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;

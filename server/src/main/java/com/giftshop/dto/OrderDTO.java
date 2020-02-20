@@ -1,15 +1,10 @@
 package com.giftshop.dto;
 
-import com.giftshop.models.OrderState;
-import com.giftshop.models.Product;
 import com.giftshop.models.ProductIdQuantityPair;
-import javafx.util.Pair;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.HashMap;
 
 public class OrderDTO {
     private Integer orderId;
