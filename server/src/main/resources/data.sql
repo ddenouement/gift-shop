@@ -220,6 +220,29 @@ INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `p
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (100, 'minus', 'Quo dicta sed in totam velit ut dicta. Aspernatur error molestias vel amet voluptas. Maiores quod eaque eius excepturi.', 590272, '', 0);
 
 
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (101, 'lamp', 'Des', 200, '', 1);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (102,'tiny gold jewelry box', 'Tiny gold jewelry box for your things',400, 'https://images.freeimages.com/images/large-previews/8e6/tiny-gold-jewelry-box-1425092.jpg',1);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (103,'shell pendant', 'Shell pendant for your voyages', 250, 'https://images.freeimages.com/images/large-previews/1a8/jewelry-series-1-1516743.jpg',1);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (104,'bracelet', 'Bracelet', 300, 'https://images.freeimages.com/images/large-previews/033/bracelet-1529510.jpg',1);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (105,'brown wrist watch', 'Wrist watch with a brown watchband', 1500, 'https://images.freeimages.com/images/large-previews/5c6/sri-watch-1-1198442.jpg',0);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (106,'butterfly pendant', 'Pendant with a butterfly', 350, 'https://images.freeimages.com/images/large-previews/0d0/bijoux-1185254.jpg',1);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (107,'ring with a green gemstone', 'Ring with a green gemstone', 1200, 'https://images.freeimages.com/images/large-previews/521/accessories-5-1426954.jpg',1);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (108,'ring with a yellow gemstone', 'Ring with a yellow gemstone', 1600, 'https://images.freeimages.com/images/large-previews/abe/bracelet-1-1424771.jpg',0);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (109,'violet bell', 'Violet bell', 150, 'https://images.freeimages.com/images/large-previews/6b9/purple-bell-1413716.jpg',1);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (110,'yellow gloves', 'yellow gloves', 200, 'https://images.freeimages.com/images/large-previews/4c3/gloves-1421253.jpg',1);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (111,'metal wrist watch','Wrist watch of metal', 5000, 'https://images.freeimages.com/images/large-previews/72b/hand-watch-1414683.jpg',1);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (112,'red refrigerator', 'Red mini refrigerator', 4000, 'https://images.freeimages.com/images/large-previews/578/refrigerator-1195164.jpg',1);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (113,'home stove', 'Home stove', 6000, 'https://images.freeimages.com/images/large-previews/b25/home-stove-1426468.jpg',1);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (114,'iron', 'Iron', 1200, 'https://images.freeimages.com/images/large-previews/119/iron-1467058.jpg',0);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (115,'vacuum cleaner', 'Vacuum cleaner', 3000, 'https://images.freeimages.com/images/large-previews/27d/vacuum-cleaner-1191384.jpg',1);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (116,'lamp','Lamp with a candle', 350, 'https://images.freeimages.com/images/large-previews/111/lamp-1423564.jpg',0);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (117,'plasma TV', 'Plasma TV', 8000, 'https://images.freeimages.com/images/large-previews/7c9/plasma-tv-1422857.jpg',1)
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (118,'washing machine', 'Washing machine', 7000,'https://images.freeimages.com/images/large-previews/027/washing-machine-1418432.jpg',0);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (119,'golden earring', 'Golden earrings', 1000, 'https://images.freeimages.com/images/large-previews/324/golden-earring-4-1472393.jpg',0);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (120,'retro boombox', 'Retro boombox', 1800, 'https://gratisography.com/thumbnails/gratisography-371-thumbnail.jpg',1);
+INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (121,'microwave oven', 'Microwave oven', 2300,'https://images.freeimages.com/images/large-previews/dca/microwave-oven-1-1413667.jpg',1);
+
+
 INSERT INTO `product_category` (`category_id`, `product_id`) VALUES (1, 15);
 INSERT INTO `product_category` (`category_id`, `product_id`) VALUES (1, 18);
 INSERT INTO `product_category` (`category_id`, `product_id`) VALUES (1, 35);
