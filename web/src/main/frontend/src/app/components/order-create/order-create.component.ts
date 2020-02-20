@@ -10,6 +10,7 @@ import {AuthenticationService} from "../../_services";
   styleUrls: ['./order-create.component.css']
 })
 export class OrderCreateComponent implements OnInit {
+  selectedLink: string="";
   isLogged: boolean;
   orderLines: {productId: number ; quantity: number} [] ;
   products: Product[];
@@ -39,25 +40,38 @@ export class OrderCreateComponent implements OnInit {
       error => {alert(error.message)});
   }
 
-  sendExampleData() {
-    //todo example of sending created Order to backend
-    const order : OrderDTO = new OrderDTO();
-    order.orderDate=new Date();
-    order.cashPayment=true;
-    order.address="Kyiv";
-    order.orderId=0;
-    order.postDelivery=false;
-    order.totalSum=100;
-    //will get on server from token
-    order.userId=0;
-    //CREATED status = 1
-    order.orderState=1;
-//set array to  DTO to send to server
-    order.orderItems = this.orderLines;
+  sendData(inputCashPayment:boolean, inputAddress:string, inputPostDelivery:boolean, inputTotalSum:number) {
+      //todo example of sending created Order to backend
+      const order : OrderDTO = new OrderDTO();
+      order.orderDate = new Date();
+      order.cashPayment = inputCashPayment;
+      order.address = inputAddress;
+      order.orderId = 0;
+      order.postDelivery = inputPostDelivery;
+      order.totalSum = inputTotalSum;
+      //will get on server from token
+      order.userId = 0;
+      //CREATED status = 1
+      order.orderState = 1;
+  //set array to  DTO to send to server
+      order.orderItems = this.orderLines;
 
-    this.orderService.create(order).subscribe(data =>  {
-        alert("success");
-      },
-      error => {alert("error"+error.message)});
-  }
+      this.orderService.create(order).subscribe(data =>  {
+          alert("success");
+        },
+        error => {alert("error"+error.message)});
+    }
+
+    setRadio(e: string): void{
+      this.selectedLink = e;
+    }
+
+    isSelected(s: string): boolean{
+      if (!this.selectedLink) {
+        // if no radio button is selected, always return false so every nothing is shown
+        return false;
+      }
+      // if current radio button is selected, return true, else return false
+      return (this.selectedLink === s);
+      }
 }
