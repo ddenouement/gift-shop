@@ -120,7 +120,7 @@ insert  into user (firstname, surname, patronymic, birth_date, is_activated, ema
 
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (1, 'Bracelet CLAW with rose quartz', 'CLAW silver bracelet is beautiful and sharp with the two stones that nearly meet. The bracelet is comfortable to wear as it cannot turn around with its oval shape. The bracelet is easy to put on as it has a hinge that flips open and close, smart. \n The rose quartz exists in various pink nuances, from light pink to dark and all stones are different.  The stone shines and sparkles very nicely in the light. It exists in another three stones: smokey quartz, onyx, and quartz. ', 1299, 'https://quickbutik.imgix.net/2482K/products/5e4123ba71b6d.jpeg', 0);
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (2, 'Sterling Silver Rose Quartz Bracelet', 'Natural rose quartz is often a very pale pink. The stronger the pink color, the more valuable most consider it, though metaphysically the paler pinks are equally valuable. \n In the psychic and spiritual realms, rose quartz is often used to attract love, for love spells and charms. Rose quartz can also be helpful for dream recall and dream work. Emotionally, rose quartz is used to balance emotions and bring peace and calm. Fear, resentments, and anger can be removed.', 499, 'https://i0.wp.com/www.laurelnymph.com/wp-content/uploads/2017/05/rose-quartz-bracelet-silver-cuff-dangle-chain-sterling-925-handmade-gemstone-gothic-dark-antique-vintage-jewelry-5914c8021.jpg?fit=1500%2C1112&ssl=1', 1);
-INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (3, 'qui', 'Maiores esse est dolorem sunt et. Atque itaque voluptas quibusdam molestiae rerum nobis. Ducimus veniam laboriosam aut. Et explicabo dolorem sed dolorem dolorum.', 51909, '', 1);
+/*INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (3, 'qui', 'Maiores esse est dolorem sunt et. Atque itaque voluptas quibusdam molestiae rerum nobis. Ducimus veniam laboriosam aut. Et explicabo dolorem sed dolorem dolorum.', 51909, '', 1);
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (4, 'deleniti', 'Quo veniam odio repellat qui repellendus. Autem iure voluptatem nihil et amet. Labore quis temporibus cumque ea illo id. Eveniet nihil qui est.', 642, '', 1);
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (5, 'dicta', 'Repellendus quos ex blanditiis est. Rem quia rerum aut nobis voluptatem ut. Saepe ducimus qui ipsa quis officiis nesciunt. Repellendus sed nemo sit nostrum.', 25098877, '', 1);
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (6, 'ipsum', 'Debitis ipsum nisi hic et suscipit. Unde odio eveniet corrupti et neque dolore ut ut. Enim veniam et velit quisquam. Labore qui dolores vitae perspiciatis tempore.', 1217, '', 0);
@@ -219,7 +219,7 @@ INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `p
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (99, 'modi', 'Repellat aut quis voluptatum unde est accusantium. Inventore facere soluta molestiae quasi. Ducimus nobis quasi nesciunt voluptas possimus quos rem.', 0, '', 1);
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (100, 'minus', 'Quo dicta sed in totam velit ut dicta. Aspernatur error molestias vel amet voluptas. Maiores quod eaque eius excepturi.', 590272, '', 0);
 
-
+*/
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (101,'tiny gold jewelry box', 'Tiny gold jewelry box for your things',400, 'https://images.freeimages.com/images/large-previews/8e6/tiny-gold-jewelry-box-1425092.jpg',1);
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (102,'shell pendant', 'Shell pendant for your voyages', 250, 'https://images.freeimages.com/images/large-previews/1a8/jewelry-series-1-1516743.jpg',1);
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (103,'bracelet', 'Bracelet', 300, 'https://images.freeimages.com/images/large-previews/033/bracelet-1529510.jpg',1);
@@ -241,7 +241,7 @@ INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `p
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (119,'retro boombox', 'Retro boombox', 1800, 'https://gratisography.com/thumbnails/gratisography-371-thumbnail.jpg',1);
 INSERT INTO `product` (`uid`, `product_name`, `product_description`, `price`, `photo`, `is_available`) VALUES (120,'microwave oven', 'Microwave oven', 2300,'https://images.freeimages.com/images/large-previews/dca/microwave-oven-1-1413667.jpg',1);
 
-
+/*
 INSERT INTO `product_category` (`category_id`, `product_id`) VALUES (1, 15);
 INSERT INTO `product_category` (`category_id`, `product_id`) VALUES (1, 18);
 INSERT INTO `product_category` (`category_id`, `product_id`) VALUES (1, 35);
@@ -341,7 +341,7 @@ INSERT INTO `product_category` (`category_id`, `product_id`) VALUES (10, 32);
 INSERT INTO `product_category` (`category_id`, `product_id`) VALUES (10, 56);
 INSERT INTO `product_category` (`category_id`, `product_id`) VALUES (10, 79);
 INSERT INTO `product_category` (`category_id`, `product_id`) VALUES (10, 90);
-
+*/
 
 INSERT INTO `state` (`state_name`) VALUES ('NEW');
 INSERT INTO `state` (`state_name`) VALUES ('INPROGRESS');
@@ -555,7 +555,7 @@ INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`) VALUES (3, 61, 1
 
 
 */
-
+/*
 
 INSERT INTO `wishlist_item` (`product_id`, `user_id`) VALUES (1, 69);
 INSERT INTO `wishlist_item` (`product_id`, `user_id`) VALUES (1, 79);
@@ -658,4 +658,4 @@ INSERT INTO `wishlist_item` (`product_id`, `user_id`) VALUES (98, 30);
 INSERT INTO `wishlist_item` (`product_id`, `user_id`) VALUES (98, 36);
 INSERT INTO `wishlist_item` (`product_id`, `user_id`) VALUES (98, 41);
 
-
+*/
