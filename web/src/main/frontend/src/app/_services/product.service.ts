@@ -17,8 +17,8 @@ export class ProductService {
     return this.http.get<number>(`${environment.apiUrl}/products/amount`);
   }
 
-  getFromTo(from: number, to:number): Observable<Product[]> {
-    return this.http.get<Product[]>(`${environment.apiUrl}/products/${from}/${to}`);
+  getFromTo(min: number, max: number, from: number, to:number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${environment.apiUrl}/products/${min}/${max}/${from}/${to}`);
   }
 
   getById(id: number) {

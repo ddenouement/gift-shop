@@ -5,7 +5,7 @@ import { AuthenticationService } from '../../_services';
 import { ProductService } from '../../_services/product.service';
 import { Product } from '../../_models/product';
 
-export const DEFAULT_PRODUCTS_PER_PAGE = 12;
+export const DEFAULT_PRODUCTS_PER_PAGE = 15;
 
 @Component({
   selector: 'app-home',
@@ -25,6 +25,8 @@ export class HomeComponent implements OnInit {
   products: Product[];
   private sub: Subscription;
 
+  min = 0;
+  max = 10000;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -68,7 +70,7 @@ export class HomeComponent implements OnInit {
       })*/
       console.log(this.products);
 
-      this.productService.getFromTo(DEFAULT_PRODUCTS_PER_PAGE*(this.page-1), DEFAULT_PRODUCTS_PER_PAGE).subscribe(
+      this.productService.getFromTo(this.min, this.max,DEFAULT_PRODUCTS_PER_PAGE*(this.page-1), DEFAULT_PRODUCTS_PER_PAGE).subscribe(
         data => {
           this.isLoading = false;
           if (data) {

@@ -97,10 +97,12 @@ public class ProductDAO implements IProductDAO {
     }
 
     @Override
-    public ArrayList<Product> getFromTo(Integer startRow, Integer endRow) {
+    public ArrayList<Product> getFromTo(Integer min, Integer max, Integer startRow, Integer endRow) {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("from", startRow)
-                .addValue("to", endRow);
+                .addValue("to", endRow)
+                .addValue("min", min)
+                .addValue("max", max);
         List<Product> products =
                 template.query(getFromTo, param,
                                 (resultSet, i) -> toProduct(resultSet));
@@ -108,11 +110,13 @@ public class ProductDAO implements IProductDAO {
     }
 
     @Override
-    public ArrayList<Product> getByCategoryFromTo(Integer categoryId, Integer startRow, Integer endRow) {
+    public ArrayList<Product> getByCategoryFromTo(Integer min, Integer max, Integer categoryId, Integer startRow, Integer endRow) {
         SqlParameterSource param = new MapSqlParameterSource(
                 "id_param", categoryId)
                 .addValue("from", startRow)
-                .addValue("to", endRow);
+                .addValue("to", endRow)
+                .addValue("min", min)
+                .addValue("max", max);
         List<Product> products =
                 template.query(getByCategory, param,
                         (resultSet, i) -> toProduct(resultSet));
@@ -120,11 +124,13 @@ public class ProductDAO implements IProductDAO {
     }
 
     @Override
-    public ArrayList<Product> getByCategoriesFromTo(ArrayList<Integer> categories, Integer startRow, Integer endRow) {
+    public ArrayList<Product> getByCategoriesFromTo(Integer min, Integer max, ArrayList<Integer> categories, Integer startRow, Integer endRow) {
         SqlParameterSource param = new MapSqlParameterSource(
                 "id_params", categories)
                 .addValue("from", startRow)
-                .addValue("to", endRow);
+                .addValue("to", endRow)
+                .addValue("min", min)
+                .addValue("max", max);
         List<Product> products =
                 template.query(getByCategories, param,
                         (resultSet, i) -> toProduct(resultSet));

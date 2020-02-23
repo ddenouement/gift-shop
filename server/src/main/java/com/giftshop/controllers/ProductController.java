@@ -35,10 +35,12 @@ public class ProductController {
     @GetMapping("/products/amount")
     public Integer getAmount() { return productService.getAmount(); }
 
-    @GetMapping("/products/{start-row}/{end-row}")
-    public Iterable<Product> getFromTo(@PathVariable("start-row") Integer startRow,
+    @GetMapping("/products/{min}/{max}/{start-row}/{end-row}")
+    public Iterable<Product> getFromTo(@PathVariable("min") Integer min,
+                                       @PathVariable("max") Integer max,
+                                       @PathVariable("start-row") Integer startRow,
                                        @PathVariable("end-row") Integer endRow) {
-        return productService.getFromTo(startRow, endRow);
+        return productService.getFromTo(min,max, startRow, endRow);
     }
 
     @GetMapping("/products/{product-id}")
@@ -51,11 +53,13 @@ public class ProductController {
         return productService.getByCategory(categoryId);
     }
 
-    @GetMapping("/products/category/{category-id}/{start-row}/{end-row}")
-    public Iterable<Product> getFromTo(@PathVariable("category-id") Integer categoryId,
+    @GetMapping("/products/{min}/{max}/category/{category-id}/{start-row}/{end-row}")
+    public Iterable<Product> getFromTo(@PathVariable("min") Integer min,
+                                       @PathVariable("max") Integer max,
+                                       @PathVariable("category-id") Integer categoryId,
                                        @PathVariable("start-row") Integer startRow,
                                        @PathVariable("end-row") Integer endRow) {
-        return productService.getByCategoryFromTo(categoryId, startRow, endRow);
+        return productService.getByCategoryFromTo(min, max, categoryId, startRow, endRow);
     }
 
     @GetMapping("/products/category")
@@ -66,14 +70,16 @@ public class ProductController {
         return productService.getByCategories(list);
     }
 
-    @GetMapping("/products/category/{start-row}/{end-row}")
+    @GetMapping("/products/{min}/{max}/category/{start-row}/{end-row}")
     public Iterable<Product> getByCategoriesFromTo(@RequestParam("categories") Integer[] categories,
-                                                                   @PathVariable("start-row") Integer startRow,
-                                                                   @PathVariable("end-row") Integer endRow) {
+                                                   @PathVariable("min") Integer min,
+                                                   @PathVariable("max") Integer max,
+                                                   @PathVariable("start-row") Integer startRow,
+                                                   @PathVariable("end-row") Integer endRow) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         Collections.addAll(list, categories);
 
-        return productService.getByCategoriesFromTo(list, startRow, endRow);
+        return productService.getByCategoriesFromTo(min, max, list, startRow, endRow);
     }
 
     @PostMapping("/products")
