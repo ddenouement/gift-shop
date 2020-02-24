@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { Ng5SliderModule } from 'ng5-slider';
 
 /* Routing */
 import { AppRoutingModule } from './app-routing.module';
@@ -62,7 +64,9 @@ import { OrderCreateComponent } from './components/order-create/order-create.com
     FlexLayoutModule,
     HttpClientModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgMultiSelectDropDownModule,
+    Ng5SliderModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

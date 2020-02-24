@@ -14,3 +14,41 @@
 .paginator {
   width: 100%;
 }
+.categories{
+  display: inline-block;
+  width: 30%;
+}
+.custom-slider{
+  display: inline-block;
+  width: 40%;
+  margin-top: 0;
+}
+.search_filtered_btn {
+  display: inline-block;
+  background-color: #ff9b83;
+  color: #dcedc2;
+  width: 200px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  height: 60px;
+}
+.clear_filters_btn{
+  background-color: #880000;
+  display: inline-block;
+color: #dcedc2;
+  width: 100px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  height: 60px;
+}
+.filter-panel{
+  background-color: #dcedc2;
+  padding: 10px;
+  border-radius: 5px;
+}
+.filter-panel > div{
+
+  padding: 5px;
+}

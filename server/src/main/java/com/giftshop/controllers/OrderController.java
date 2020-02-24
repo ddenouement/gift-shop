@@ -4,6 +4,7 @@ import com.giftshop.config.TokenProvider;
 import com.giftshop.dto.OrderDTO;
 import com.giftshop.models.Order;
 import com.giftshop.models.ProductIdQuantityPair;
+import com.giftshop.models.ProductQuantityPair;
 import com.giftshop.services.OrderService;
 import com.giftshop.services.interfaces.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,16 @@ public class OrderController {
         return orderService.getById(orderId);
     }
 
+    @GetMapping("/orders/{id}/products")
+    public Iterable<ProductQuantityPair> GetOrderProductsById(@PathVariable("id") Integer orderId){
+        return orderService.getOrderProductsById(orderId);
+    }
+
     @GetMapping("/orders")
-    public Iterable<Order> getAll(){
+    public Iterable<OrderDTO> getAll(){
         return orderService.getAll();
     }
+
 
     @PostMapping("/orders")
     public ResponseEntity insertOrder(@CookieValue("token") String token,  @RequestBody OrderDTO order){

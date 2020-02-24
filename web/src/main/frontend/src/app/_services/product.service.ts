@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { Product } from '../_models/product';
@@ -19,6 +19,24 @@ export class ProductService {
 
   getFromTo(min: number, max: number, from: number, to:number): Observable<Product[]> {
     return this.http.get<Product[]>(`${environment.apiUrl}/products/${min}/${max}/${from}/${to}`);
+  }
+  getFromToByCategories(min: number, max: number, from: number, to:number, categoriesIds:number[], isFiltersUsed:boolean): Observable<Product[]>{
+  if(isFiltersUsed) {
+    if(!categoriesIds || categoriesIds.length===0){
+      return this.getFromTo(min, max, from, to);
+    }
+    else {
+      let params = new HttpParams();
+      categoriesIds.forEach((n: number) => {
+        params = params.append(`categories`, "" + n);
+      });
+      return this.http.get<Product[]>(`${environment.apiUrl}/products/${min}/${max}/category/${from}/${to}`, {params: params});
+    }
+  }
+  else{
+    return this.getFromTo(min, max, from, to);
+  }
+
   }
 
   getById(id: number) {

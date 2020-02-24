@@ -57,10 +57,24 @@ public class OrderDAO implements IOrderDAO {
     }
 
     @Override
-    public ArrayList<Order> getAll(){
-        List<Order> orders =
-                template.query(getAll, ((resultSet, i) -> toOrder(resultSet)));
-        return  (ArrayList<Order>) orders;
+    public ArrayList<OrderDTO> getAll(){
+        List<OrderDTO> orders =
+                template.query(getAll, ((resultSet, i) -> toOrderDto(resultSet)));
+        return  (ArrayList<OrderDTO>) orders;
+    }
+
+    private OrderDTO toOrderDto(ResultSet resultSet) throws SQLException{
+        OrderDTO order = new OrderDTO();
+        order.setOrderId(resultSet.getInt("uid"));
+        order.setAddress(resultSet.getString("address"));
+        order.setCashPayment(resultSet.getBoolean("cash_payment"));
+        order.setPostDelivery(resultSet.getBoolean("post_delivery"));
+        order.setOrderDate(resultSet.getTimestamp("order_date").toLocalDateTime());
+        order.setTotalSum(resultSet.getBigDecimal("total_sum").toBigInteger());
+        order.setUserId(resultSet.getInt("user_id"));
+        int stateId = resultSet.getInt("state_id");
+        order.setOrderStateId(stateId);
+        return order;
     }
 
     @Override
@@ -123,6 +137,11 @@ return order.getOrderId();
         return result;
     }
 
+    @Override
+    public ArrayList<ProductQuantityPair> getOrderProductsById(Integer orderId) {
+        return getOrderItems(orderId);
+    }
+
     private OrderState findStateById(int stateId) {
         SqlParameterSource namedParameters = new MapSqlParameterSource("id_param", stateId);
         String stateName = template.queryForObject(findStateOfOrder, namedParameters, String.class);
@@ -140,7 +159,7 @@ return order.getOrderId();
         order.setUser(resultSet.getInt("user_id"));
         int stateId = resultSet.getInt("state_id");
         order.setOrderState(findStateById(stateId));
-        order.setOrderItems(getOrderItems(order.getOrderId()));
+  //      order.setOrderItems(getOrderItems(order.getOrderId()));
         return order;
     }
 

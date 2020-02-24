@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import static org.springframework.http.ResponseEntity.badRequest;
@@ -76,6 +77,9 @@ public class ProductController {
                                                    @PathVariable("max") Integer max,
                                                    @PathVariable("start-row") Integer startRow,
                                                    @PathVariable("end-row") Integer endRow) {
+        System.out.println(Arrays.toString(categories));
+        System.out.println("min"+min);
+        System.out.println("max"+max);
         ArrayList<Integer> list = new ArrayList<Integer>();
         Collections.addAll(list, categories);
 
