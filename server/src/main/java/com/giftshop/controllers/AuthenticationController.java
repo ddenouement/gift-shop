@@ -75,6 +75,16 @@ public class AuthenticationController {
         return  1;
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')" )
+    @GetMapping(value = "/user/role")
+    public ResponseEntity getCurrentUserRole(@CookieValue("token")   String token ) {
+
+            int my_id =  jwtTokenProvider.getUserId(token);
+            String role = authService.userRole(my_id);
+        Map<Object, Object> model = new HashMap<>();
+        model.put("role",  role);
+        return ok(model);
+    }
 
     private ResponseEntity doAuthentication( String password, String email, final HttpServletResponse response){
         authenticationManager.authenticate( new UsernamePasswordAuthenticationToken(email, password));

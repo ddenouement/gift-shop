@@ -23,7 +23,7 @@ export class SideNavigationComponent implements OnInit {
   public linkText: boolean = false;
 
   public pages: Page[] = [
-    {name: 'Cart', routerLink:'/cart', icon: 'inbox',  alt: "Cart" },
+    {name: 'Cart', routerLink:'/cart', icon: 'shopping-cart',  alt: "Cart" },
     {name: 'Wishlist', routerLink:'some-link', icon: 'star', alt: "My Wishlist" }
   ]
 

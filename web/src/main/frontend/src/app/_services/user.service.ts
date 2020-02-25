@@ -27,4 +27,8 @@ export class UserService {
     delete(id: number) {
         return this.http.delete(`${environment.apiUrl}/users/${id}`);
     }
+
+    getRole(){
+      return this.http.get(`${environment.apiUrl}/user/role`);
+    }
 }

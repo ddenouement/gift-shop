@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../_models/product';
 import {LocalStorageService} from "../../_services/localstorage.service";
+import {Router} from "@angular/router";
+import {UserService} from "../../_services";
 
 @Component({
   selector: 'app-card',
@@ -9,9 +11,14 @@ import {LocalStorageService} from "../../_services/localstorage.service";
 })
 export class CardComponent implements OnInit {
   @Input() product: Product;
+  role: string;
 
-  constructor(private local: LocalStorageService){}
-  ngOnInit() {}
+  constructor(private local: LocalStorageService, private router: Router, private userService : UserService){}
+  ngOnInit() {
+    this.userService.getRole().subscribe( data => {
+      this.role = data['role'];
+    });
+  }
 
   addProductToCart() {
     let products = [];
@@ -36,4 +43,9 @@ export class CardComponent implements OnInit {
   }
 
   addProductToWishlist() {}
+
+  navigateToItemPage() {
+    if(this.role == 'ADMIN'){   this.router.navigate(["/product/edit/"+this.product.productId]);}
+    else  this.router.navigate(["/product/"+this.product.productId]);
+  }
 }
