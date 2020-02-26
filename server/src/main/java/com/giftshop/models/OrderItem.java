@@ -1,12 +1,15 @@
 package com.giftshop.models;
 
-public class ProductQuantityPair {
+public class OrderItem {
+
     private Product product;
     private Integer quantity;
+    private Integer savedPrice;
 
-    public ProductQuantityPair(Product p, Integer q){
-        this.product=p;
+    public OrderItem(Product p, Integer q, Integer savedPrice){
+        this.product =p;
         this.quantity=q;
+        this.savedPrice = savedPrice;
     }
     public void setProduct(Product product) {
         this.product = product;
@@ -16,6 +19,10 @@ public class ProductQuantityPair {
         this.quantity = quantity;
     }
 
+    public void setSavedPrice(Integer savedPrice) {
+        this.savedPrice = savedPrice;
+    }
+
     public Integer getQuantity() {
         return quantity;
     }
@@ -23,4 +30,9 @@ public class ProductQuantityPair {
     public Product getProduct() {
         return product;
     }
+
+    public Integer getSavedPrice() {
+        return savedPrice;
+    }
+
 }

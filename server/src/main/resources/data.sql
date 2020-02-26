@@ -232,13 +232,13 @@ INSERT INTO `orders` (`uid`, `address`, `cash_payment`, `post_delivery`, `order_
 INSERT INTO `orders` (`uid`, `address`, `cash_payment`, `post_delivery`, `order_date`, `total_sum`, `user_id`, `state_id`) VALUES (2, '75763 Ena Canyon Suite 266\nOthastad, IA 96539', 0, 1, '2019-07-03 15:27:25', 9467, 102, 3);
 INSERT INTO `orders` (`uid`, `address`, `cash_payment`, `post_delivery`, `order_date`, `total_sum`, `user_id`, `state_id`) VALUES (3, '9090 Macejkovic Park\nEast Drake, ND 62459-5135', 1, 1, '2018-06-12 17:07:38', 2189, 102, 2);
 
-INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`) VALUES (5, 1, 101);
-INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`) VALUES (2, 1, 103);
-INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`) VALUES (1, 1, 2);
-INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`) VALUES (2, 2, 117);
-INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`) VALUES (1, 2, 113);
-INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`) VALUES (9, 3, 104);
-INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`) VALUES (1, 3, 1);
+INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`, `saved_price`) VALUES (5, 1, 101, 400);
+INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`, `saved_price`) VALUES (2, 1, 103, 500);
+INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`, `saved_price`) VALUES (1, 1, 2, 600);
+INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`, `saved_price`) VALUES (2, 2, 117, 700);
+INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`, `saved_price`) VALUES (1, 2, 113, 800);
+INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`, `saved_price`) VALUES (9, 3, 104, 900);
+INSERT INTO `order_line` (`quantity`, `order_id`, `product_id`, `saved_price`) VALUES (1, 3, 1, 1000);
 
 /*
 

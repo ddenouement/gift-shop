@@ -14,6 +14,8 @@ public interface IProductDAO {
     ArrayList<Product> getByCategoryFromTo(Integer min, Integer max, Integer categoryId, Integer startRow, Integer endRow);
     ArrayList<Product> getByCategoriesFromTo(Integer min, Integer max, ArrayList<Integer> categories, Integer startRow, Integer endRow);
 
+
+
     Integer insertProduct(Product product);
     void updateProduct(Product product);
 

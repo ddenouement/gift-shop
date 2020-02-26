@@ -2,8 +2,7 @@ package com.giftshop.services;
 
 import com.giftshop.dto.OrderDTO;
 import com.giftshop.models.Order;
-import com.giftshop.models.ProductIdQuantityPair;
-import com.giftshop.models.ProductQuantityPair;
+import com.giftshop.models.OrderItem;
 import com.giftshop.repository.OrderDAO;
 import com.giftshop.repository.interfaces.IOrderDAO;
 import com.giftshop.services.interfaces.IOrderService;
@@ -40,12 +39,12 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Integer getSum(ProductIdQuantityPair[] order) {
+    public Integer getSum(OrderItem[] order) {
         return  orderDAO.getSum(order);
     }
 
     @Override
-    public ArrayList<ProductQuantityPair> getOrderProductsById(Integer orderId) {
+    public ArrayList<OrderItem> getOrderProductsById(Integer orderId) {
         return orderDAO.getOrderProductsById(orderId);
     }
 }

@@ -7,9 +7,8 @@ import { Product } from '../../_models/product';
 import {PageEvent} from "@angular/material/paginator";
 import {Category} from "../../_models/category";
 import {CategoryService} from "../../_services/category.service";
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { Options, LabelType } from 'ng5-slider';
-import {Ng5SliderModule} from  'ng5-slider';
+import { IDropdownSettings } from "ng-multiselect-dropdown";
+import { Options, LabelType } from "ng5-slider";
 export const DEFAULT_PRODUCTS_PER_PAGE = 15;
 
 @Component({

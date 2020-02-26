@@ -2,8 +2,7 @@ package com.giftshop.repository.interfaces;
 
 import com.giftshop.dto.OrderDTO;
 import com.giftshop.models.Order;
-import com.giftshop.models.ProductIdQuantityPair;
-import com.giftshop.models.ProductQuantityPair;
+import com.giftshop.models.OrderItem;
 
 import java.util.ArrayList;
 
@@ -13,7 +12,7 @@ public interface IOrderDAO {
     Integer insertOrder(OrderDTO order);
     void updateOrder(Order order);
 
-    Integer getSum(ProductIdQuantityPair[] order);
+    Integer getSum(OrderItem[] order);
 
-    ArrayList<ProductQuantityPair> getOrderProductsById(Integer orderId);
+    ArrayList<OrderItem> getOrderProductsById(Integer orderId);
 }

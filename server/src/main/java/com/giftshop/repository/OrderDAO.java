@@ -24,15 +24,15 @@ import java.util.*;
 public class OrderDAO implements IOrderDAO {
     @Autowired
     private NamedParameterJdbcTemplate template;
-    @Value("select uid, address, cash_payment, post_delivery, order_date, total_sum, user_id, state_id from orders where uid=id_param;")
+    @Value("${get_order_by_id}")
     private String getById;
-    @Value("select uid, address, cash_payment, post_delivery, order_date, total_sum, user_id, state_id from orders")
+    @Value("${get_all_orders}")
     private String getAll;
-    @Value("insert into orders (address, cash_payment, post_delivery, order_date, total_sum, user_id, state_id) values (:address, :cash_payment, :post_delivery, :order_date, :total_sum, :user_id, :state_id);")
+    @Value("${insert_order}")
     private String insertOrder;
-    @Value("update orders ((address, cash_payment, post_delivery, order_date, total_sum, user_id, state_id) set (:address, :cash_payment, :post_delivery, :order_date, :total_sum, :user_id, :state_id) where uid = :uid;")
+    @Value("${update_order}")
     private String updateOrder;
-    @Value("select state_name from state where uid=:id_param;")
+    @Value("${find_state_of_order}")
     String findStateOfOrder;
     @Value("${insert_order_item}")
     private String insertOrderItem;
@@ -92,11 +92,11 @@ public class OrderDAO implements IOrderDAO {
         if (holder.getKeys() != null) {
             order.setOrderId(Objects.requireNonNull(holder.getKey()).intValue());
         }
-        for (ProductIdQuantityPair entry : order.getOrderItems()){
-            System.out.println(entry.getProductId() + " "+entry.getQuantity());
-            saveOrderItem(entry.getProductId(),entry.getQuantity(),order.getOrderId());
+        for (OrderItem entry : order.getOrderItems()){
+            System.out.println(entry.getProduct() + " "+entry.getQuantity());
+            saveOrderItem(entry.getProduct().getProductId(),entry.getQuantity(),order.getOrderId());
         }
-return order.getOrderId();
+        return order.getOrderId();
     }
 
     private void saveOrderItem(Integer product_id, Integer quantity, Integer orderId) {
@@ -128,17 +128,18 @@ return order.getOrderId();
     }
 
     @Override
-    public Integer getSum(ProductIdQuantityPair[] order) {
+    public Integer getSum(OrderItem[] order) {
         int result = 0;
-        for( ProductIdQuantityPair pair: order){
-            Product p = productService.getById(pair.getProductId());
+        //gets current price instead of saved
+        for( OrderItem pair: order){
+            Product p = productService.getById(pair.getProduct().getProductId());
             result+=p.getPrice()*pair.getQuantity();
         }
         return result;
     }
 
     @Override
-    public ArrayList<ProductQuantityPair> getOrderProductsById(Integer orderId) {
+    public ArrayList<OrderItem> getOrderProductsById(Integer orderId) {
         return getOrderItems(orderId);
     }
 
@@ -163,15 +164,16 @@ return order.getOrderId();
         return order;
     }
 
-    private ArrayList<ProductQuantityPair> getOrderItems(Integer orderId) {
+    private ArrayList<OrderItem> getOrderItems(Integer orderId) {
 
-        ArrayList<ProductQuantityPair> mapRet= new ArrayList<>();
+        ArrayList<OrderItem> mapRet= new ArrayList<>();
         SqlParameterSource param = new MapSqlParameterSource()
             .addValue("order_id_param", orderId);
         template.query(getOrderItems,param, (ResultSetExtractor<ArrayList>) rs -> {
             while(rs.next()){
                 Product product = productService.getById(rs.getInt("product_id"));
-                mapRet.add(new ProductQuantityPair(product,rs.getInt("quantity")));
+                //product.setPrice(rs.getInt("saved_price"));
+                mapRet.add(new OrderItem(product,rs.getInt("quantity"),rs.getInt("saved_price")));
             }
             return mapRet;
         });

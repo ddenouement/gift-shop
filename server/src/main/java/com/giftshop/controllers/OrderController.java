@@ -3,16 +3,12 @@ package com.giftshop.controllers;
 import com.giftshop.config.TokenProvider;
 import com.giftshop.dto.OrderDTO;
 import com.giftshop.models.Order;
-import com.giftshop.models.ProductIdQuantityPair;
-import com.giftshop.models.ProductQuantityPair;
+import com.giftshop.models.OrderItem;
 import com.giftshop.services.OrderService;
 import com.giftshop.services.interfaces.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
 
 import static org.springframework.http.ResponseEntity.badRequest;
 
@@ -34,7 +30,7 @@ public class OrderController {
     }
 
     @GetMapping("/orders/{id}/products")
-    public Iterable<ProductQuantityPair> GetOrderProductsById(@PathVariable("id") Integer orderId){
+    public Iterable<OrderItem> GetOrderProductsById(@PathVariable("id") Integer orderId){
         return orderService.getOrderProductsById(orderId);
     }
 
@@ -54,7 +50,7 @@ public class OrderController {
         return ResponseEntity.ok().build();
     }
     @PostMapping("/orders/checkSum")
-    public Integer checkSum(@RequestBody ProductIdQuantityPair[] order){
+    public Integer checkSum(@RequestBody OrderItem[] order){
         System.out.println(order.length);
         return orderService.getSum((order)) ;
     }

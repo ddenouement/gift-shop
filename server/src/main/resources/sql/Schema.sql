@@ -37,7 +37,8 @@ CREATE TABLE orders (
 CREATE TABLE order_line (
                               quantity integer NOT NULL,
                               order_id integer NOT NULL,
-                              product_id integer NOT NULL
+                              product_id integer NOT NULL,
+                              saved_price integer not null
 );
 
 CREATE TABLE product (

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {OrderDTO} from "../../_models/OrderDTO";
+import {Order} from "../../_models/order";
 import {Product} from "../../_models/product";
 import {OrderService} from "../../_services/order.service";
 import {AuthenticationService} from "../../_services";
@@ -42,7 +42,7 @@ export class OrderCreateComponent implements OnInit {
 
   sendData(inputCashPayment:boolean, inputAddress:string, inputPostDelivery:boolean, inputTotalSum:number) {
       //todo example of sending created Order to backend
-      const order : OrderDTO = new OrderDTO();
+      const order : Order = new Order();
       order.orderDate = new Date();
       order.cashPayment = inputCashPayment;
       order.address = inputAddress;

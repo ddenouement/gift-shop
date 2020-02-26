@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
-import {OrderDTO} from "../_models/OrderDTO";
+import {Order} from "../_models/order";
 import {Observable} from "rxjs";
 import {Category} from "../_models/category";
 import {Product} from "../_models/product";
@@ -14,15 +14,15 @@ export class OrderService {
 
   }
 
-  create(orderDTO: OrderDTO) {
-    return this.http.post(`${environment.apiUrl}/orders`, orderDTO);
+  create(order: Order) {
+    return this.http.post(`${environment.apiUrl}/orders`, order);
   }
   getSumByOrderLines(ord:{productId:number, quantity:number}[]){
      return this.http.post(`${environment.apiUrl}/orders/checkSum`, ord);
 }
 
-  getAll(): Observable<OrderDTO[]> {
-    return this.http.get<OrderDTO[]>(`${environment.apiUrl}/orders`);
+  getAll(): Observable<Order[]> {
+    return this.http.get<Order[]>(`${environment.apiUrl}/orders`);
   }
 
   getOrderProducts(id:number): Observable<{product:Product, quantity:number}[]> {

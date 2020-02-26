@@ -22,16 +22,16 @@ public class ProductDAO implements IProductDAO {
 
     @Autowired
     private NamedParameterJdbcTemplate template;
-    @Value("${get_by_id}")
+    @Value("${get_product_by_id}")
     private String getById;
-    @Value("${get_all}")
+    @Value("${get_all_products}")
     private String getAll;
     @Value("${get_by_category}")
     private String getByCategory;
     @Value("${get_by_categories}")
     private String getByCategories;
 
-    @Value("${get_from_to}")
+    @Value("${get_products_from_to}")
     private String getFromTo;
     @Value("${get_by_category_from_to}")
     private String getByCategoryFromTo;
@@ -50,7 +50,7 @@ public class ProductDAO implements IProductDAO {
     @Value("${delete_categories_for_product}")
     private String deleteCategoriesForProduct;
 
-    @Value("${get_amount}")
+    @Value("${get_products_amount}")
     private String getAmount;
 
     @Override

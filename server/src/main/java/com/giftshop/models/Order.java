@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Order implements Serializable {
     private Integer orderId;
     private Integer userId;
-    private ArrayList<ProductQuantityPair> orderItems;
+    private ArrayList<OrderItem> orderItems;
     private OrderState orderState;
     private String address;
     private boolean cashPayment;
@@ -35,11 +35,11 @@ public class Order implements Serializable {
         this.userId = userId;
     }
 
-    public ArrayList<ProductQuantityPair> getOrderItems() {
+    public ArrayList<OrderItem> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(ArrayList<ProductQuantityPair>orderItems) {
+    public void setOrderItems(ArrayList<OrderItem> orderItems) {
         this.orderItems = orderItems;
     }
 
