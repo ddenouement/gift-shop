@@ -49,6 +49,7 @@ public class OrderController {
         if(orderService.insertOrder((order)) == -1) return badRequest().body("Error");
         return ResponseEntity.ok().build();
     }
+
     @PostMapping("/orders/checkSum")
     public Integer checkSum(@RequestBody OrderItem[] order){
         System.out.println(order.length);

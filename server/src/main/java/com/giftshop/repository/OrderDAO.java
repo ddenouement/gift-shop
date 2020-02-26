@@ -94,16 +94,17 @@ public class OrderDAO implements IOrderDAO {
         }
         for (OrderItem entry : order.getOrderItems()){
             System.out.println(entry.getProduct() + " "+entry.getQuantity());
-            saveOrderItem(entry.getProduct().getProductId(),entry.getQuantity(),order.getOrderId());
+            saveOrderItem(entry,order.getOrderId());
         }
         return order.getOrderId();
     }
 
-    private void saveOrderItem(Integer product_id, Integer quantity, Integer orderId) {
+    private void saveOrderItem(OrderItem orderItem, Integer orderId) {
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("quantity_param", quantity)
-                .addValue("product_id_param", product_id)
-                .addValue("order_id_param", orderId);
+                .addValue("quantity_param", orderItem.getQuantity())
+                .addValue("product_id_param", orderItem.getProduct().getProductId())
+                .addValue("order_id_param", orderId)
+                .addValue("saved_price_param", orderItem.getSavedPrice());
         template.update(insertOrderItem, param);
     }
 
