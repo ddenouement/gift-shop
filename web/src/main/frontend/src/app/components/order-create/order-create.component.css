@@ -1,0 +1,148 @@
+body{
+width:100%;
+height:100%;
+background-color:transparent;
+text-shadow: white 0 0 2px;
+}
+.title{
+display:inline-block;
+horizontal-align: middle;
+text-align:center;
+font-family: verdana;
+font-size: 30px;
+font-weight: bold;
+}
+.card-data{
+horizontal-align: middle;
+text-align:center;
+font-family: courier;
+font-size: 18px;
+padding: 10px;
+}
+.card-data-title{
+horizontal-align: middle;
+text-align:center;
+font-family: verdana;
+font-size: 23px;
+font-weight: 600;
+}
+.card-data-number{
+horizontal-align: middle;
+text-align:center;
+font-family: courier;
+font-size: 20px;
+font-weight: bold;
+}
+.card-data-owner{
+horizontal-align: middle;
+text-align:center;
+font-family: Harrington;
+font-size: 20px;
+font-weight: bold;
+}
+.order-sum{
+horizontal-align: middle;
+text-align:center;
+font-family: courier;
+font-size: 18px;
+}
+.order-sum-text{
+horizontal-align: middle;
+text-align:center;
+font-family: verdana;
+font-size: 23px;
+font-weight: 600;
+}
+.radio{
+horizontal-align: middle;
+text-align:center;
+font-family: Palatino;
+font-size: 23px;
+padding:5px;
+font-weight: bold;
+}
+.hidden-block{
+horizontal-align: middle;
+text-align:center;
+font-size: 18px;
+font-family: courier;
+padding:5px;
+font-weight: 600;
+}
+input {
+font-size: 16px;
+}
+.submit-order-button{
+display:block;
+margin-left: auto;
+margin-right: auto;
+text-align:center;
+width:100px;
+horizontal-align:middle;
+height:50px;
+font-family: verdana;
+font-weight: bold;
+background-color: rgba(10, 180, 200, 1);
+border: 2px dotted rgba(255, 255, 255, 1);
+border-radius:10px;
+overflow:hidden;
+transition: all .5s;
+}
+
+.submit-order-button:hover {
+  width:50px;
+  background-color: rgba(255, 255, 255, 1);
+  border: 2px dotted rgba(10, 180, 200, 1);
+  transform:rotate(-90deg);
+  cursor: pointer;
+  transition: all .5s;
+}
+
+.submit-order-button-content {
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+  position:relative;
+  width:100px;
+  height:50px;
+  font-family: verdana;
+  text-align:center;
+  vertical-align: middle;
+  color: rgba(255, 255, 255, 1);
+  font-weight:bold;
+  font-size: 14px;
+  line-height:50px;
+  white-space:none;
+  left:-10px;
+  transition: all .5s;
+}
+
+.submit-order-button:hover .submit-order-button-content {
+  left:-103px;
+  transition: all .5s;
+}
+
+.submit-order-button-content:after {
+  position: absolute;
+  width:50px;
+  height:50px;
+  left:95px;
+  bottom:3px;
+  transform-origin: center center;
+  transform:rotate(90deg);
+  content: '🎁';
+  font-size:20px;
+  color: rgba(10, 180, 200, 1);
+}
+.container {
+  width:100%;
+  height:50px;
+  margin:5px;
+  float:left;
+  vertical-align:middle;
+}
+
+#billingAddressLine{
+width:600px;
+height:50px;
+}

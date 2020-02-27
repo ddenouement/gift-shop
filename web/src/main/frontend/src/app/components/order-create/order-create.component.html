@@ -1,18 +1,21 @@
-<p>Order-create!</p>
-
-<p>Card data:</p>
-0000 0000 0000 0000
-Mykhailo Verbytsky
-
-<p>Your order sum:</p>
-{{sum}}
+<body>
+<div class="title">Create order</div>
+<div class="card-data">
+  <div class="card-data-title">Card data:</div>
+  <div class="card-data-number">0000 0000 0000 0000</div>
+  <div class="card-data-owner">Mykhailo Verbytsky</div>
+</div>
+<div class="order-sum">
+  <div class="order-sum-text">Your order sum:</div>
+  {{sum}}
+</div>
 
 <div class="radio">
-  <input type="radio" id="cashPaymentRadio" name="cashPaymentRadio" value="cashPaymentRadio" (click)="setRadio('cashPaymentRadio')" [checked]='true' ngModel>
+  <input type="radio" id="cashPaymentRadio" name="payment" value="cashPaymentRadio" (click)="setRadio('cashPaymentRadio');" [checked]='true' ngModel>
   <label for="cashPaymentRadio">Cash payment</label><br>
 </div>
 
-<div *ngIf="isSelected('cashPaymentRadio')" >
+<div class="hidden-block" *ngIf="isSelected('cashPaymentRadio')" >
   <form>
     <!--
         <label for="zipcode">ZIP code:</label><br>
@@ -31,12 +34,18 @@ Mykhailo Verbytsky
 </div>
 
 <div class="radio">
-  <input type="radio" id="PostDeliveryRadio" name="postDeliveryRadio" value="postDeliveryRadio" (click)="setRadio('postDeliveryRadio')" [checked]='false' ngModel>
+  <input type="radio" id="PostDeliveryRadio" name="payment" value="postDeliveryRadio" (click)="setRadio('postDeliveryRadio')" [checked]='false' ngModel>
   <label for="postDeliveryRadio">Post delivery</label><br>
 </div>
 
-<div *ngIf="isSelected('postDeliveryRadio')" >
+<div class="hidden-block" *ngIf="isSelected('postDeliveryRadio')" >
   7v Pobedy avenue, Kyiv, 01135
 </div>
-
-<button [disabled]="!isLogged" (click)="sendData(isSelected('cashPaymentRadio'), document.getElementById('billingAddressLine').value, isSelected('postDeliveryRadio'), $sum)">Submit order</button>
+<div class="container">
+  <button class="submit-order-button" [disabled]="!isLogged" (click)="sendData(isSelected('cashPaymentRadio'), document.getElementById('billingAddressLine').value, isSelected('postDeliveryRadio'))">
+    <div class="submit-order-button-content">
+      Submit
+    </div>
+  </button>
+</div>
+</body>

@@ -40,7 +40,7 @@ export class OrderCreateComponent implements OnInit {
       error => {alert(error.message)});
   }
 
-  sendData(inputCashPayment:boolean, inputAddress:string, inputPostDelivery:boolean, inputTotalSum:number) {
+  sendData(inputCashPayment:boolean, inputAddress:string, inputPostDelivery:boolean) {
       //todo example of sending created Order to backend
       const order : Order = new Order();
       order.orderDate = new Date();
@@ -48,7 +48,7 @@ export class OrderCreateComponent implements OnInit {
       order.address = inputAddress;
       order.orderId = 0;
       order.postDelivery = inputPostDelivery;
-      order.totalSum = inputTotalSum;
+      order.totalSum = this.sum;
       //will get on server from token
       order.userId = 0;
       //CREATED status = 1
