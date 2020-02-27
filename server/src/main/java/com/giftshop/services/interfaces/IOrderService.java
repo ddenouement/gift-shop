@@ -10,9 +10,9 @@ public interface IOrderService {
     Order getById(Integer orderId);
     ArrayList<OrderDTO> getAll();
     Integer insertOrder(OrderDTO order);
-    void updateOrder(Order order);
+    void updateOrder(OrderDTO order);
 
-    Integer getSum(OrderItem[] order);
+    Integer getSum(ProductIdQuantityPair[] order);
 
     ArrayList<OrderItem> getOrderProductsById(Integer orderId);
 }

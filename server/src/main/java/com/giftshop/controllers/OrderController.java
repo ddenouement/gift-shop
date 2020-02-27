@@ -4,6 +4,7 @@ import com.giftshop.config.TokenProvider;
 import com.giftshop.dto.OrderDTO;
 import com.giftshop.models.Order;
 import com.giftshop.models.OrderItem;
+import com.giftshop.models.ProductIdQuantityPair;
 import com.giftshop.services.OrderService;
 import com.giftshop.services.interfaces.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,14 +51,9 @@ public class OrderController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/orders/checkSum")
-    public Integer checkSum(@RequestBody OrderItem[] order){
-        System.out.println(order.length);
-        return orderService.getSum((order)) ;
-    }
 
     @PutMapping("/orders")
-    public ResponseEntity updateOrder(@RequestBody Order order){
+    public ResponseEntity updateOrder(@RequestBody OrderDTO order){
         orderService.updateOrder(order);
         return ResponseEntity.ok().build();
     }

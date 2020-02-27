@@ -18,7 +18,7 @@ export class OrderService {
     return this.http.post(`${environment.apiUrl}/orders`, order);
   }
   getSumByOrderLines(ord:{productId:number, quantity:number}[]){
-     return this.http.post(`${environment.apiUrl}/orders/checkSum`, ord);
+     return this.http.post(`${environment.apiUrl}/cart/checkSum`, ord);
 }
 
   getAll(): Observable<Order[]> {

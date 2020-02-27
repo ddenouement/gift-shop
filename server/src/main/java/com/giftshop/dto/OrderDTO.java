@@ -1,6 +1,7 @@
 package com.giftshop.dto;
 
 import com.giftshop.models.OrderItem;
+import com.giftshop.models.ProductIdQuantityPair;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public class OrderDTO {
     private Integer orderId;
     private Integer userId;
-    private ArrayList<OrderItem> orderItems;
+    private ArrayList<ProductIdQuantityPair> orderItems;
     private Integer orderState;
     private String address;
     private boolean cashPayment;
@@ -34,11 +35,11 @@ public class OrderDTO {
         this.userId = userId;
     }
 
-    public ArrayList<OrderItem> getOrderItems() {
+    public ArrayList<ProductIdQuantityPair> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(ArrayList<OrderItem> orderItems) {
+    public void setOrderItems(ArrayList<ProductIdQuantityPair> orderItems) {
         this.orderItems = orderItems;
     }
 

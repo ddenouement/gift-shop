@@ -3,6 +3,7 @@ import {Order} from "../../_models/order";
 import {Product} from "../../_models/product";
 import {OrderService} from "../../_services/order.service";
 import {AuthenticationService} from "../../_services";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-order',
@@ -17,8 +18,10 @@ export class OrderCreateComponent implements OnInit {
   sum:number;
   cashPayment: boolean;
   postDelivery: boolean;
+  billingAddressLine: string;
 
-  constructor(private orderService:OrderService, private auth: AuthenticationService) {
+
+  constructor(private orderService:OrderService, private auth: AuthenticationService, private router: Router) {
 
   }
 
@@ -40,12 +43,11 @@ export class OrderCreateComponent implements OnInit {
       error => {alert(error.message)});
   }
 
-  sendData(inputCashPayment:boolean, inputAddress:string, inputPostDelivery:boolean) {
-      //todo example of sending created Order to backend
+  sendData(inputCashPayment:boolean,  inputPostDelivery:boolean) {
       const order : Order = new Order();
       order.orderDate = new Date();
       order.cashPayment = inputCashPayment;
-      order.address = inputAddress;
+      order.address = this.billingAddressLine;
       order.orderId = 0;
       order.postDelivery = inputPostDelivery;
       order.totalSum = this.sum;
@@ -57,7 +59,8 @@ export class OrderCreateComponent implements OnInit {
       order.orderItems = this.orderLines;
 
       this.orderService.create(order).subscribe(data =>  {
-          alert("success");
+          alert("Successfully created order! ");
+          this.router.navigate(["/"]);
         },
         error => {alert("error"+error.message)});
     }

@@ -92,11 +92,22 @@ public class OrderDAO implements IOrderDAO {
         if (holder.getKeys() != null) {
             order.setOrderId(Objects.requireNonNull(holder.getKey()).intValue());
         }
-        for (OrderItem entry : order.getOrderItems()){
-            System.out.println(entry.getProduct() + " "+entry.getQuantity());
-            saveOrderItem(entry,order.getOrderId());
+        for (ProductIdQuantityPair entry : order.getOrderItems()){
+            Product p =  productService.getById(entry.getProductId());
+            if(p!=null)
+              saveOrderItem(entry.getProductId(),entry.getQuantity(),order.getOrderId(), p.getPrice());
         }
         return order.getOrderId();
+    }
+
+
+    private void saveOrderItem(Integer product_id, Integer quantity, Integer orderId, Integer saved_price) {
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("quantity_param", quantity)
+                .addValue("product_id_param", product_id)
+                .addValue("order_id_param", orderId)
+           .addValue("saved_price_param", saved_price);
+        template.update(insertOrderItem, param);
     }
 
     private void saveOrderItem(OrderItem orderItem, Integer orderId) {
@@ -109,7 +120,7 @@ public class OrderDAO implements IOrderDAO {
     }
 
     @Override
-    public void updateOrder(Order order) {
+    public void updateOrder(OrderDTO order) {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("uid", order.getOrderId())
                 .addValue("address", order.getAddress())
@@ -117,8 +128,8 @@ public class OrderDAO implements IOrderDAO {
                 .addValue("post_delivery", order.getPostDelivery())
                 .addValue("order_date", order.getOrderDate())
                 .addValue("total_sum", order.getTotalSum())
-                .addValue("user_id", order.getUser())
-                .addValue("state_id", order.getOrderState().getOrderStateId());
+                .addValue("user_id", order.getUserId())
+                .addValue("state_id", order.getOrderState());
         int status = template.update(updateOrder, param);
         if(status != 0){
             System.out.println("order data updated");
@@ -129,11 +140,11 @@ public class OrderDAO implements IOrderDAO {
     }
 
     @Override
-    public Integer getSum(OrderItem[] order) {
+    public Integer getSum(ProductIdQuantityPair[] order) {
         int result = 0;
-        //gets current price instead of saved
-        for( OrderItem pair: order){
-            Product p = productService.getById(pair.getProduct().getProductId());
+        //gets current price instead of saved, because it must be used to check Cart, not order
+        for( ProductIdQuantityPair pair: order){
+            Product p = productService.getById(pair.getProductId());
             result+=p.getPrice()*pair.getQuantity();
         }
         return result;

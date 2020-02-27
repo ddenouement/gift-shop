@@ -9,7 +9,7 @@ import {Category} from "../../_models/category";
 import {CategoryService} from "../../_services/category.service";
 import { IDropdownSettings } from "ng-multiselect-dropdown";
 import { Options, LabelType } from "ng5-slider";
-export const DEFAULT_PRODUCTS_PER_PAGE = 15;
+export const DEFAULT_PRODUCTS_PER_PAGE = 10;
 
 @Component({
   selector: 'app-home',

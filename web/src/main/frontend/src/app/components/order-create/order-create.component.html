@@ -1,10 +1,5 @@
 <body>
 <div class="title">Create order</div>
-<div class="card-data">
-  <div class="card-data-title">Card data:</div>
-  <div class="card-data-number">0000 0000 0000 0000</div>
-  <div class="card-data-owner">Mykhailo Verbytsky</div>
-</div>
 <div class="order-sum">
   <div class="order-sum-text">Your order sum:</div>
   {{sum}}
@@ -16,21 +11,9 @@
 </div>
 
 <div class="hidden-block" *ngIf="isSelected('cashPaymentRadio')" >
-  <form>
-    <!--
-        <label for="zipcode">ZIP code:</label><br>
-        <input type="text" id="zipcode" name="zipcode">
-
-        <label for="state">State:</label><br>
-        <input type="text" id="state" name="state">
-
-        <label for="city">City:</label><br>
-        <input type="text" id="city" name="city"><br>
-    //-->
-    <label for="billingAddressLine">Billing address line:</label><br>
-    <input type="text" id="billingAddressLine" name="billingAddressLine" ngModel>
-
-  </form>
+ <br> You can visit our office to pay in cash and get your order there.
+  <br>Our address:
+<br>  7 Pobedy avenue, Kyiv, 01135
 </div>
 
 <div class="radio">
@@ -39,10 +22,21 @@
 </div>
 
 <div class="hidden-block" *ngIf="isSelected('postDeliveryRadio')" >
-  7v Pobedy avenue, Kyiv, 01135
+
+  <div class="card-data">
+    <div class="card-data-title">Our card:</div>
+    <div class="card-data-number">0000 0000 0000 0000</div>
+    <div class="card-data-owner">Mykhailo Verbytsky</div>
+  </div>
+  <form>
+    <label for="billingAddressLine">Input your address:</label><br>
+    <input type="text" id="billingAddressLine" name="billingAddressLine"  [(ngModel)]="billingAddressLine">
+  </form>
 </div>
+<div class="info-class" *ngIf="( (isSelected('postDeliveryRadio')) &&(!billingAddressLine))">You selected post delivery: please, input your address so we can send your order</div>
+<div class="info-class" *ngIf="!isLogged"> Please, log in / register before making an order</div>
 <div class="container">
-  <button class="submit-order-button" [disabled]="!isLogged" (click)="sendData(isSelected('cashPaymentRadio'), document.getElementById('billingAddressLine').value, isSelected('postDeliveryRadio'))">
+  <button class="submit-order-button" [disabled]="!isLogged || ( (isSelected('postDeliveryRadio')) &&(billingAddressLine.length < 1))" (click)="sendData(isSelected('cashPaymentRadio'),  isSelected('postDeliveryRadio'))">
     <div class="submit-order-button-content">
       Submit
     </div>
