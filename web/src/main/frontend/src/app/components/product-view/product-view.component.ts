@@ -3,6 +3,10 @@ import {ActivatedRoute} from "@angular/router";
 import {Product} from "../../_models/product";
 import {LocalStorageService} from "../../_services/localstorage.service";
 import {ProductService} from "../../_services/product.service";
+import {WishlistService} from "../../_services/wishlist.service";
+import {UserService} from "../../_services";
+import {error} from "util";
+import {CategoryService} from "../../_services/category.service";
 
 @Component({
   selector: 'app-product-view',
@@ -16,7 +20,12 @@ export class ProductViewComponent implements OnInit, OnDestroy {
   isLoading: boolean;
   amount_added_to_cart: number;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService, private local: LocalStorageService) {}
+  constructor(private route: ActivatedRoute, private productService: ProductService,
+              private wishService: WishlistService, private local: LocalStorageService,
+              private  userService: UserService,
+              private categoryService: CategoryService
+  ) {
+  }
 
   ngOnInit() {
 
@@ -26,7 +35,7 @@ export class ProductViewComponent implements OnInit, OnDestroy {
       this.id = +params['id']; // (+) converts string 'id' from path to a number
       //when ID loaded, we can access DB to get Product Object
       this.productService.getById(+this.id)
-        .subscribe(productData =>{
+        .subscribe(productData => {
           this.isLoading = false;
           this.current_product = productData;
 //todo load categories
@@ -37,38 +46,72 @@ export class ProductViewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    this.amount_added_to_cart=1;
+    this.amount_added_to_cart = 1;
   }
 
-  decrease(){
-    if(this.amount_added_to_cart >0){
-      this.amount_added_to_cart -=1;
+  decrease() {
+    if (this.amount_added_to_cart > 0) {
+      this.amount_added_to_cart -= 1;
     }
   }
+
   increase() {
-    this.amount_added_to_cart+=1;
+    this.amount_added_to_cart += 1;
   }
 
   addToCart() {
     let products = [];
-    if(this.local.existsCartInMemory()){
-      products =this.local.getOrderLines();
+    if (this.local.existsCartInMemory()) {
+      products = this.local.getOrderLines();
     }
-    const  index =  products.findIndex(k => k.productId===this.id);
-    if( index === -1){
-      products.push({'productId' : this.id, 'quantity' : this.amount_added_to_cart});
+    const index = products.findIndex(k => k.productId === this.id);
+    if (index === -1) {
+      products.push({
+        'productId': this.id,
+        'quantity': this.amount_added_to_cart
+      });
 
     }
     //якщо вже такий продукт є, додаємо кількість до існючого (замінюємо на нове значення)
     else {
-      const first_quantity = products[index].amount;
+      const first_quantity = products[index].quantity;
       const new_quantity = first_quantity + this.amount_added_to_cart;
-      products.splice(index,1);
-      products.push({'productId' : this.id, 'quantity' : new_quantity});
+      products.splice(index, 1);
+      products.push({'productId': this.id, 'quantity': new_quantity});
 
-      alert("changed amount of products");
+      alert("changed amount of products: existing amount of "+ first_quantity+" plus "+ new_quantity);
     }
     localStorage.setItem('products', JSON.stringify(products));
     alert("saved to cart");
   }
+
+  addToWishlist() {
+    this.userService.getRole().subscribe(data => {
+      if (data['role'] == 'USER') {
+        this.doAddToWishList();
+      } else {
+        alert("please login as a user to use wishlist");
+      }
+    });
+  }
+
+  private doAddToWishList() {
+    this.wishService.addWishedProduct(this.current_product.productId + "").subscribe(data => {
+        alert("succesfully added");
+      },
+      error => {
+        alert("you have it already in wishlist");
+      });
+
+  }
+
+  getNameOfCategory(categoryId: number) {
+    this.categoryService.getById(categoryId).subscribe( data => {
+      return data.categoryName;
+    },
+      error =>{
+      return "";
+      })
+  }
 }
+

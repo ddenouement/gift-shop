@@ -7,7 +7,7 @@ export class LocalStorageService {
    return localStorage.getItem('products');
   }
   clearLocalStorage(){
-    localStorage.clear() ;
+    localStorage.removeItem('products') ;
   }
   getOrderLines() {
     return JSON.parse(localStorage.getItem('products'));

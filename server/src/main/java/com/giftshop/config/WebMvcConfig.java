@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -46,20 +47,27 @@ public class WebMvcConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(customUserDetailsService);
     }
 
+
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
         http
+
                 .headers()
                 .frameOptions()
                 .disable()// to enable /h2 console in browser
                 .httpBasic().disable()
                      .csrf().disable()
+
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
+              //  .addFilter(new CorsFilter())
                 .apply(new JwtConfigurer(jwtTokenProvider)) ;
     }
 
-
+    @Bean
+    public static NoOpPasswordEncoder passwordEncoder() {
+        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+    }
 }

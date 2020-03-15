@@ -31,7 +31,7 @@
           </span>
    </div>
   <button class="add-to-cart" (click)="addToCart()">ADD TO CART</button>
-  <button class="add-to-wishlist">ADD TO WISHLIST</button>
+  <button  class="add-to-wishlist" (click)="addToWishlist()">ADD TO WISHLIST</button>
 
    </div>
 
@@ -40,7 +40,7 @@
        <div class="list-inline">
          <div *ngFor="let cat of current_product.categories" class="col-md-2" style="padding: 7px;">
            <div class="list-inline-item">
-             <span class="badge badge-pill"> {{cat}}   </span>
+             <span class="badge badge-pill"> {{getNameOfCategory(cat)}}   </span>
            </div>
          </div>
        </div>

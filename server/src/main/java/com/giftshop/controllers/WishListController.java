@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class WishListController {
 
     private IWishListService wishListService;
@@ -29,6 +29,13 @@ public class WishListController {
     @GetMapping("user/wishlist/{userId}")
     public Iterable<Product> getUsersWishList(@PathVariable String userId) {
         return wishListService.getAllWishedProducts(userId);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
+    @GetMapping("user/wishlist/")
+    public Iterable<Product> getCurrentUsersWishlist(@CookieValue("token") String token)
+    {  String my_id = String.valueOf(jwtTokenProvider.getUserId(token));
+        return wishListService.getAllWishedProducts(my_id);
     }
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")

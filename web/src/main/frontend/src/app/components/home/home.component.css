@@ -13,6 +13,7 @@
 
 .paginator {
   width: 100%;
+  margin-bottom: 10px;
 }
 .categories{
   display: inline-block;
@@ -24,29 +25,38 @@
   margin-top: 0;
 }
 .search_filtered_btn {
-  display: inline-block;
-  background-color: #ff9b83;
-  color: #dcedc2;
-  width: 200px;
+  background-color: #4CAF50;
+  color: white;
   outline: none;
   border: none;
   cursor: pointer;
-  height: 60px;
+  height: 30px;
+  display:flex;
+  flex-direction:column;
+
 }
 .clear_filters_btn{
   background-color: #880000;
-  display: inline-block;
-color: #dcedc2;
-  width: 100px;
+color: white;
   outline: none;
   border: none;
   cursor: pointer;
-  height: 60px;
+  height: 30px;
+  width: 30px;
+  display:flex;
+  flex-direction:column;
+
+}
+.filter-buttons {
+  display:flex;
+  flex-direction:row;
+  justify-content: space-around;
 }
 .filter-panel{
-  background-color: #dcedc2;
+margin-bottom: 5px;
   padding: 10px;
   border-radius: 5px;
+  background: lightgoldenrodyellow;
 }
 .filter-panel > div{
 

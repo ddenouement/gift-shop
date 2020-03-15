@@ -1,0 +1,14 @@
+spring:
+ datasource:
+  url: jdbc:h2:mem:testdb;MODE=PostgreSQL
+  username: sa
+  password:
+  continue-on-error: false
+  schema: classpath:sql/Schema.sql
+  driver-class-name: org.h2.Driver
+  initialization-mode: always
+  data: data2.sql
+ profiles:
+  active: test
+
+

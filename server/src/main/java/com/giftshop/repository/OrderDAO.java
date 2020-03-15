@@ -145,6 +145,7 @@ public class OrderDAO implements IOrderDAO {
         //gets current price instead of saved, because it must be used to check Cart, not order
         for( ProductIdQuantityPair pair: order){
             Product p = productService.getById(pair.getProductId());
+            if(p.getPrice()!=null)
             result+=p.getPrice()*pair.getQuantity();
         }
         return result;

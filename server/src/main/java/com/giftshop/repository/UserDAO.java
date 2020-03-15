@@ -35,12 +35,15 @@ public class UserDAO implements IUserDAO {
     private String insertNewUser;
     @Value("${update_existing_user}")
     private String updateExistingUser;
+    @Value("${delete_user_by_email}")
+    private String deleteUserByEmail;
 
     @Override
     public boolean isEmailUsed(String email) {
         return findUserByEmail(email) != null;
     }
-    private Integer getRoleId(String roleName) {
+    public Integer getRoleId(String roleName) {
+
         SqlParameterSource namedParameters = new MapSqlParameterSource(
                 "name_param", roleName);
         return template.queryForObject(findRoleIdByName, namedParameters,
@@ -146,5 +149,18 @@ public class UserDAO implements IUserDAO {
         return person;
     }
 
+    @Override
+     public Integer deleteUser(String email){
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("email_param",email);
+        int status = template.update(deleteUserByEmail, param);
+        if(status != 0){
+            System.out.println("User data deleted for  " + email);
+            return 1;
+        }else{
+            System.out.println("No User found with  " + email);
+            return -1;
+        }
+    }
 
 }

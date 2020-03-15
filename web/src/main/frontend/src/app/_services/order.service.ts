@@ -18,6 +18,7 @@ export class OrderService {
     return this.http.post(`${environment.apiUrl}/orders`, order);
   }
   getSumByOrderLines(ord:{productId:number, quantity:number}[]){
+    console.log("sum of  : "+ord.toString());
      return this.http.post(`${environment.apiUrl}/cart/checkSum`, ord);
 }
 

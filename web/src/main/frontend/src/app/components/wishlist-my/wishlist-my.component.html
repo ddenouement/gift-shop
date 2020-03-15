@@ -1,0 +1,8 @@
+<h2>My wishlist</h2>
+<mat-list>
+  <mat-list-item *ngFor="let p of products" >
+    <img [routerLink]="['/product/'+p.productId]" mat-card-image class="list-image" [src]="p.photo || 'http://img.rg.ru/img/content/165/56/41/iStock-1126800352_d_850.jpg'">
+    <p [routerLink]="['/product/'+p.productId]" class="product-name">{{p.productName}}</p>
+    <button mat-flat-button class="remove-btn" (click)="removeProduct(p.productId)"> REMOVE </button>
+  </mat-list-item>
+</mat-list>

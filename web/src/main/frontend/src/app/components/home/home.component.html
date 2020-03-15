@@ -1,5 +1,5 @@
-<div style="height: 100vh">
-  <div class="filter-panel">
+<div style="height: 100vh; padding-bottom: 30px">
+  <div class="filter-panel  z-depth-5">
     <ng-multiselect-dropdown class="categories"
       [placeholder]="'Categories filter'"
       [data]="categories"
@@ -10,13 +10,13 @@
     <div class="custom-slider">
     <ng5-slider class="price" [(value)]="min" [(highValue)]="max" [options]="optionsPriceSlider"></ng5-slider>
     </div>
-    <button class="search_filtered_btn" (click)="applyFilters()">APPLY</button>
-    <button class="clear_filters_btn" (click)="clearFilters()">CLEAR</button>
+    <div class="filter-buttons">
+    <button class="search_filtered_btn  z-depth-5" mat-button (click)="applyFilters()">APPLY</button>
+    <button class="clear_filters_btn  z-depth-5"  mat-button (click)="clearFilters()"> <mat-icon style="padding-right:5px;" >highlight_off</mat-icon> </button>
+  </div>
   </div>
   <div fxLayout="row wrap"  class="card-deck-container mat-elevation-z4">
-    <div fxFlex *ngFor="let product of products"  class="card-item">
-      <app-card [product]="product"></app-card>
-    </div>
+
 
     <div class="paginator mat-elevation-z4"  >
       <mat-paginator
@@ -27,6 +27,9 @@
         (page)="pageEvent = $event; handlePage($event)"
         >
       </mat-paginator>
+    </div>
+    <div fxFlex *ngFor="let product of products"  class="card-item">
+      <app-card [product]="product"></app-card>
     </div>
   </div>
 </div>

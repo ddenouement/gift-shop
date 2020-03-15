@@ -41,4 +41,9 @@ public class UserService implements IUserService {
     public String userRole(Integer userId) {
         return findUserRoleById(userId).getRoleName();
     }
+
+    @Override
+    public Integer deleteUser(String email) {
+        return userDAO.deleteUser(email);
+    }
 }

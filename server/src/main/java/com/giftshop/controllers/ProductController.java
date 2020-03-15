@@ -17,7 +17,7 @@ import static org.springframework.http.ResponseEntity.badRequest;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class ProductController {
 
     private IProductService productService;

@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.springframework.http.ResponseEntity.badRequest;
 import static org.springframework.http.ResponseEntity.ok;
 
 /**
@@ -52,7 +53,7 @@ public class AuthenticationController {
             return doAuthentication(data.password, data.email, response);
     }
 
-    //TODO приклад як взяти id юзера з запиту
+
     //тільки залогінений юзер може побачити свій id
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')" )
     @GetMapping(value = "/user/id")
@@ -89,11 +90,13 @@ public class AuthenticationController {
     private ResponseEntity doAuthentication( String password, String email, final HttpServletResponse response){
         authenticationManager.authenticate( new UsernamePasswordAuthenticationToken(email, password));
         User user = authService.findUserByEmail(email);
+        if(user== null) return new ResponseEntity(HttpStatus.BAD_REQUEST);
         String  role = user.getRole().getRoleName();
         List<String> roles = new ArrayList();
         roles.add(role);
         String token = jwtTokenProvider.createToken(email, roles, user.getUserId());
         Map<Object, Object> model = new HashMap<>();
+
         model.put("email", email);
         model.put("token", token);
         model.put("role",  user.getRole().getRoleName());

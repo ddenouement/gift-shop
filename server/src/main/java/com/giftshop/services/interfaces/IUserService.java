@@ -11,7 +11,7 @@ public interface IUserService {
 
     Role findUserRoleById(Integer id);
     String userRole(Integer userId);
-
+Integer deleteUser(String email);
 
 
 }

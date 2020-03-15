@@ -36,6 +36,8 @@ import { MatCheckboxModule } from '@angular/material';
 import { CardComponent } from './components/product-card/card.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { OrderCreateComponent } from './components/order-create/order-create.component';
+import { WishlistOtherComponent } from './components/wishlist-other/wishlist-other.component';
+import { WishlistMyComponent } from './components/wishlist-my/wishlist-my.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { OrderCreateComponent } from './components/order-create/order-create.com
     SpinnerComponent,
     CardComponent,
     ShoppingCartComponent,
-    OrderCreateComponent
+    OrderCreateComponent,
+    WishlistOtherComponent,
+    WishlistMyComponent
   ],
   imports: [
     BrowserModule,

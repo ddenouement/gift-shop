@@ -1,0 +1,17 @@
+<h2>I really like these products:</h2>
+<mat-card  *ngFor="let p of products" class="product-card">
+
+  <mat-card-header>
+    <mat-card-title  [routerLink]="['/product/'+p.productId]"  class="card-title">{{p.productName}}</mat-card-title>
+    <mat-card-subtitle>{{'$'+p.price}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <img mat-card-image class="card-image" [src]="p.photo || 'http://img.rg.ru/img/content/165/56/41/iStock-1126800352_d_850.jpg'">
+
+  <mat-card-content>
+    <p>
+      {{p.description.length <= 150 ? p.description : p.description.slice(0,150) + '...'}}
+    </p>
+  </mat-card-content>
+
+</mat-card>

@@ -1,0 +1,17 @@
+.product-card {
+  max-width: 350px;
+  width: 350px;
+  min-height: 550px;
+  max-height: 550px;
+  margin-bottom: 40px;
+}
+
+.card-image {
+  height: 300px;
+  width: 350px;
+}
+
+
+.card-title {
+  cursor: pointer;
+}

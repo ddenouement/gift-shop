@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AuthenticationService } from '../../_services';
+import {AuthenticationService, UserService} from '../../_services';
+import {SidenavService} from "../../_services/sidenav.service";
 
 @Component({
   selector: 'app-log-in',
@@ -17,6 +18,8 @@ export class LogInComponent implements OnInit {
   returnUrl: string;
 
   constructor(
+    private userService:UserService,
+    private sideNav: SidenavService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -56,9 +59,25 @@ export class LogInComponent implements OnInit {
       .subscribe(
         data => {
           this.router.navigate([this.returnUrl]);
+
+          this.userService.getRole().subscribe(data=>{
+              if(data['role']=='USER'){
+                SidenavService.pages.push({name: 'Wishlist', routerLink:'/wishlist', icon: 'star', alt: "My Wishlist" });
+              }
+              if(data['role']=='ADMIN'){
+                SidenavService.pages = [];
+                SidenavService.pages.push({name: 'All Orders', routerLink:'/', icon: 'cart', alt: "All Orders" });
+
+              }
+            },
+            error =>{
+              //means not registered
+            })
+
         },
         error => {
           this.loading = false;
+          alert("no such user exists");
         });
   }
 
