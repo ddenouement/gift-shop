@@ -9,4 +9,8 @@ export class Order {
   public postDelivery: boolean;
   public orderDate: Date;
   public totalSum: number;
+  get  getPaymentString(): string{
+   if( this.cashPayment) return "CASH";
+   else return "POST DELIVERY";
+  }
 }

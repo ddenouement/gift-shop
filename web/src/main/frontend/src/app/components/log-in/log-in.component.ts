@@ -16,6 +16,7 @@ export class LogInComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  error: boolean;
 
   constructor(
     private userService:UserService,
@@ -37,6 +38,7 @@ export class LogInComponent implements OnInit {
       password: ['', Validators.required]
     });
 
+    this.error = false;
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
@@ -46,6 +48,7 @@ export class LogInComponent implements OnInit {
     this.router.navigate(['/']);
   }
   onSubmit() {
+    this.error= false;
     this.submitted = true;
 
     // stop here if form is invalid
@@ -66,7 +69,7 @@ export class LogInComponent implements OnInit {
               }
               if(data['role']=='ADMIN'){
                 SidenavService.pages = [];
-                SidenavService.pages.push({name: 'All Orders', routerLink:'/', icon: 'cart', alt: "All Orders" });
+                SidenavService.pages.push({name: 'All Orders', routerLink:'/orders', icon: 'star', alt: "All Orders" });
 
               }
             },
@@ -77,7 +80,7 @@ export class LogInComponent implements OnInit {
         },
         error => {
           this.loading = false;
-          alert("no such user exists");
+          this.error = true;
         });
   }
 

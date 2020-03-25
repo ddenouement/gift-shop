@@ -1,0 +1,13 @@
+.mat-cell {
+  font-size: 14px;
+  min-height: 48px;
+  text-align: center;
+  border-right: 1px solid #cccccc;
+  padding: 10px;
+}
+.mat-header-cell {
+  padding: 10px;
+}
+table {
+  width:90%;
+}

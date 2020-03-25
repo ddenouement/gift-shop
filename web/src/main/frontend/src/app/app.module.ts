@@ -38,6 +38,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { OrderCreateComponent } from './components/order-create/order-create.component';
 import { WishlistOtherComponent } from './components/wishlist-other/wishlist-other.component';
 import { WishlistMyComponent } from './components/wishlist-my/wishlist-my.component';
+import { OrderViewAdminComponent } from './components/order-view-admin/order-view-admin.component';
+import {AgGridModule} from "ag-grid-angular";
 
 @NgModule({
   declarations: [
@@ -56,9 +58,11 @@ import { WishlistMyComponent } from './components/wishlist-my/wishlist-my.compon
     ShoppingCartComponent,
     OrderCreateComponent,
     WishlistOtherComponent,
-    WishlistMyComponent
+    WishlistMyComponent,
+    OrderViewAdminComponent
   ],
   imports: [
+    AgGridModule.withComponents([]),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -80,5 +84,4 @@ import { WishlistMyComponent } from './components/wishlist-my/wishlist-my.compon
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-
 export class AppModule { }

@@ -1,0 +1,12 @@
+.list-image {
+  width: 50px;
+  height: auto;
+  margin-top: 10px;
+}
+.remove-btn {
+  background-color: darkviolet;
+  color: white;
+}
+.product-name{
+  margin:20px;
+}

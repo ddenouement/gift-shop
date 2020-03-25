@@ -22,6 +22,9 @@ export class AuthenticationService {
     public isLoggedAsUser(){
       return this.http.get<any>(`${environment.apiUrl}/user/islogged`, );
     }
+  public isLogged(){
+    return this.http.get<any>(`${environment.apiUrl}/user/id`, );
+  }
 
     login(email: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/user/login`, { email, password })

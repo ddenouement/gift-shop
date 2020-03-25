@@ -38,7 +38,7 @@ export class SideNavigationComponent implements OnInit {
         }
         if(data['role']=='ADMIN'){
           SidenavService.pages = [];
-          SidenavService.pages.push({name: 'All Orders', routerLink:'/', icon: 'briefcase', alt: "All Orders" });
+          SidenavService.pages.push({name: 'All Orders', routerLink:'/orders', icon: 'star', alt: "All Orders" });
 
         }
       },

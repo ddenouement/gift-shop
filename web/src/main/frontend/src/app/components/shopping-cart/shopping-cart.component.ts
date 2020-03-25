@@ -4,6 +4,7 @@ import {OrderService} from "../../_services/order.service";
 import {AuthenticationService} from "../../_services";
 import {Router} from "@angular/router";
 import {LocalStorageService} from "../../_services/localstorage.service";
+import {ProductService} from "../../_services/product.service";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -13,9 +14,9 @@ import {LocalStorageService} from "../../_services/localstorage.service";
 export class ShoppingCartComponent implements OnInit {
     isLogged: boolean;
   orderLines: {productId: number ; quantity: number} [] ;
-  products: Product[];
+  products: { product: Product ; quantity: number}[];
   sum:number;
-  constructor(private router: Router ,private orderService:OrderService, private auth: AuthenticationService, private localservice: LocalStorageService) {
+  constructor(private local: LocalStorageService, private  productService: ProductService, private router: Router ,private orderService:OrderService, private auth: AuthenticationService, private localservice: LocalStorageService) {
 
   }
 
@@ -23,12 +24,19 @@ export class ShoppingCartComponent implements OnInit {
     if(this.localservice.existsCartInMemory()){
       this.orderLines = this.localservice.getOrderLines();
     }
-this.isLogged = false;
+    for (let ord of this.orderLines)
+    {
+      this.productService.getById(ord.productId).subscribe(
+        data=>{
+          this.products.push({'product': data, 'quantity': ord.quantity});
+        }
+      )
+    }
+    this.isLogged = false;
     this.auth.isLoggedAsUser().subscribe(x =>{if(x===1) this.isLogged = true}, error => {this.isLogged = false;});
     this.getSum();
-    //todo load all these products by id from server
-
   }
+
   private  getSum() {
       this.orderService.getSumByOrderLines(this.orderLines).subscribe(data =>{
           this.sum  = +data;
@@ -42,8 +50,28 @@ this.isLogged = false;
     this.products=[];
   }
  createOrder(){
-    //todo if user not authorized  ask him to login
-   this.router.navigate(['/order']);
+    if(this.isLogged) {
+      this.router.navigate(['/order']);
+    }
+
+    else {
+      this.router.navigate(['/login']);
+    }
  }
 
+  removeProduct(productId: number) {
+
+    let products = [];
+    if (this.local.existsCartInMemory()) {
+      products = this.local.getOrderLines();
+    }
+    const local_index = products.findIndex(k => k.productId === productId);
+    products.splice(local_index, 1);
+
+   localStorage.setItem('products', JSON.stringify(products));
+
+   const p_index = this.products.findIndex(k => k.product.productId === productId);
+   this.products.splice(p_index, 1);
+
+}
 }

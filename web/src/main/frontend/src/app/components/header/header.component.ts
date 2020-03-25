@@ -14,12 +14,14 @@ export class HeaderComponent implements OnInit {
   @Input() sidenav: MatSidenav;
 
     currentUser: User;
+    isLogged: boolean;
 
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    this.authenticationService.isLogged().subscribe(x=>this.isLogged = true);
   }
 
   logout() {
