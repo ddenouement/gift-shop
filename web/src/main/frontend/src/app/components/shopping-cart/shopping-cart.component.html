@@ -1,15 +1,17 @@
-<p>your shopping-cart:</p>
-<mat-list>
-<mat-list-item  *ngFor="let p of products" class="one-cart-item" >
-  <img [routerLink]="['/product/'+p.product.productId]" mat-card-image class="list-image" [src]="p.product.photo || 'http://img.rg.ru/img/content/165/56/41/iStock-1126800352_d_850.jpg'">
-  <p [routerLink]="['/product/'+p.product.productId]" class="product-name">{{p.product.productName}}</p>
-  <button mat-flat-button class="remove-btn" (click)="removeProduct(p.product.productId)"> REMOVE </button>
-  <p>Quantity: <span >{{p.quantity}}</span></p>
-</mat-list-item>
-</mat-list>
-<p >
-  SUM : <span class="sum-field">{{sum}}</span>
-</p>
-<button (click)="deleteLocalStorage()" class="delete-cart-btn">DELETE CART</button>
-<button   (click)="createOrder()" class="create-order-btn">ORDER THESE ITEMS</button>
-<div *ngIf="isNotLogged" style="color: red" >Please login to order items</div>
+<mat-card class="box">
+  <p>your shopping-cart:</p>
+  <mat-list>
+  <mat-list-item  *ngFor="let p of products" class="one-cart-item" >
+    <img [routerLink]="['/product/'+p.product.productId]" mat-card-image class="list-image" [src]="p.product.photo || 'http://img.rg.ru/img/content/165/56/41/iStock-1126800352_d_850.jpg'">
+    <p [routerLink]="['/product/'+p.product.productId]" class="product-name">{{p.product.productName}}</p>
+    <button mat-flat-button class="remove-btn" (click)="removeProduct(p.product.productId)"> REMOVE </button>
+    <p>Quantity: <span >{{p.quantity}}</span></p>
+  </mat-list-item>
+  </mat-list>
+  <p >
+    SUM : <span class="sum-field">{{sum}}</span>
+  </p>
+  <button (click)="deleteLocalStorage()" class="delete-cart-btn">DELETE CART</button>
+  <button   (click)="createOrder()" class="create-order-btn">ORDER THESE ITEMS</button>
+  <div *ngIf="!isNotLogged" style="color: red" >Please login to order items</div>
+</mat-card>

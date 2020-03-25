@@ -32,8 +32,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  ngOnInit(): void{
-
+  ngOnInit(): void {
   }
 
 }
