@@ -12,28 +12,32 @@ import {ProductService} from "../../_services/product.service";
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-    isLogged: boolean;
+  isNotLogged: boolean;
   orderLines: {productId: number ; quantity: number} [] ;
-  products: { product: Product ; quantity: number}[];
+  products: { product: Product ; quantity: number}[] = [];
   sum:number;
   constructor(private local: LocalStorageService, private  productService: ProductService, private router: Router ,private orderService:OrderService, private auth: AuthenticationService, private localservice: LocalStorageService) {
 
   }
 
   ngOnInit() {
+
+    this.isNotLogged = true;
     if(this.localservice.existsCartInMemory()){
       this.orderLines = this.localservice.getOrderLines();
     }
+
     for (let ord of this.orderLines)
     {
       this.productService.getById(ord.productId).subscribe(
         data=>{
           this.products.push({'product': data, 'quantity': ord.quantity});
+
         }
+
       )
     }
-    this.isLogged = false;
-    this.auth.isLoggedAsUser().subscribe(x =>{if(x===1) this.isLogged = true}, error => {this.isLogged = false;});
+    this.auth.isLoggedAsUser().subscribe(x =>{if(x===1) this.isNotLogged = false}, error => {this.isNotLogged = true;});
     this.getSum();
   }
 
@@ -50,7 +54,7 @@ export class ShoppingCartComponent implements OnInit {
     this.products=[];
   }
  createOrder(){
-    if(this.isLogged) {
+    if(!this.isNotLogged) {
       this.router.navigate(['/order']);
     }
 
@@ -61,6 +65,7 @@ export class ShoppingCartComponent implements OnInit {
 
   removeProduct(productId: number) {
 
+    alert(this.products.length);
     let products = [];
     if (this.local.existsCartInMemory()) {
       products = this.local.getOrderLines();

@@ -16,14 +16,14 @@ export class AuthenticationService {
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
-    public get currentUserValue(): User {
+  public get currentUserValue(): User {
         return this.currentUserSubject.value;
     }
     public isLoggedAsUser(){
       return this.http.get<any>(`${environment.apiUrl}/user/islogged`, );
     }
   public isLogged(){
-    return this.http.get<any>(`${environment.apiUrl}/user/id`, );
+    return   this.http.get<any>(`${environment.apiUrl}/user/id` )     ;
   }
 
     login(email: string, password: string) {

@@ -12,4 +12,4 @@
 </p>
 <button (click)="deleteLocalStorage()" class="delete-cart-btn">DELETE CART</button>
 <button   (click)="createOrder()" class="create-order-btn">ORDER THESE ITEMS</button>
-<div *ngIf="!isLogged" style="color: red" >Please login to order items</div>
+<div *ngIf="isNotLogged" style="color: red" >Please login to order items</div>
