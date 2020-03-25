@@ -34,13 +34,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     const MOBILE_PATTERN = /[0-9\+\-\ ]/;
     this.registerForm = this.formBuilder.group({
-      firstname: ['', Validators.required],
+      name: ['', Validators.required],
       surname: ['', Validators.required],
       patronymic: [''],
-      birth_date: ['', Validators.required],
+      birthDate: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      phone_number: ['', Validators.compose([Validators.required, Validators.pattern(MOBILE_PATTERN)])]
+      phoneNumber: ['', Validators.compose([Validators.required, Validators.pattern(MOBILE_PATTERN)])]
     });
   }
 
@@ -53,6 +53,8 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
+
+    //console.log(this.f);
 
     this.loading = true;
     this.userService.register(this.registerForm.value)

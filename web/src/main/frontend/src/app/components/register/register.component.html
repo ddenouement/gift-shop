@@ -16,8 +16,8 @@
         <div class="row">
           <div class="col-sm-6">
         <mat-form-field  >
-          <input matInput [formControl]="f.firstname" placeholder="First name" required autofocus>
-          <mat-error *ngIf="f.firstname.errors">
+          <input matInput [formControl]="f.name" placeholder="First name" required autofocus>
+          <mat-error *ngIf="f.name.errors">
             First name is required
           </mat-error>
         </mat-form-field>
@@ -43,10 +43,10 @@
           </div>
           <div class="col-sm-6">
         <mat-form-field class="example-full-width">
-          <input matInput [formControl]="f.birth_date" [matDatepicker]="myDatepicker" placeholder="Birthday" required>
+          <input matInput [formControl]="f.birthDate" [matDatepicker]="myDatepicker" placeholder="Birthday" required>
           <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
           <mat-datepicker #myDatepicker></mat-datepicker>
-          <mat-error *ngIf="f.birth_date.errors">
+          <mat-error *ngIf="f.birthDate.errors">
             Birthday is required
           </mat-error>
         </mat-form-field>
@@ -56,8 +56,8 @@
           <div class="row">
             <div class="col-sm-6">
         <mat-form-field class="example-full-width">
-          <input matInput [formControl]="f.phone_number" placeholder="Phone number" required>
-          <mat-error *ngIf="f.phone_number.errors">
+          <input matInput [formControl]="f.phoneNumber" placeholder="Phone number" required>
+          <mat-error *ngIf="f.phoneNumber.errors">
             Please enter valid phone
           </mat-error>
         </mat-form-field>

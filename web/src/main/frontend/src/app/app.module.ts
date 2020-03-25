@@ -39,7 +39,6 @@ import { OrderCreateComponent } from './components/order-create/order-create.com
 import { WishlistOtherComponent } from './components/wishlist-other/wishlist-other.component';
 import { WishlistMyComponent } from './components/wishlist-my/wishlist-my.component';
 import { OrderViewAdminComponent } from './components/order-view-admin/order-view-admin.component';
-import {AgGridModule} from "ag-grid-angular";
 
 @NgModule({
   declarations: [
@@ -62,7 +61,6 @@ import {AgGridModule} from "ag-grid-angular";
     OrderViewAdminComponent
   ],
   imports: [
-    AgGridModule.withComponents([]),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
