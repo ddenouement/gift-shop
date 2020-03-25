@@ -1,4 +1,4 @@
-<mat-card class="box">
+
   <p>your shopping-cart:</p>
   <mat-list>
   <mat-list-item  *ngFor="let p of products" class="one-cart-item" >
@@ -13,5 +13,5 @@
   </p>
   <button (click)="deleteLocalStorage()" class="delete-cart-btn">DELETE CART</button>
   <button   (click)="createOrder()" class="create-order-btn">ORDER THESE ITEMS</button>
-  <div *ngIf="!isNotLogged" style="color: red" >Please login to order items</div>
-</mat-card>
+  <div *ngIf="isNotLogged" style="color: red" >Please login to order items</div>
+

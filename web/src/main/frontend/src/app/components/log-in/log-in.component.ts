@@ -68,6 +68,7 @@ export class LogInComponent implements OnInit {
 
           this.userService.getRole().subscribe(data=>{
               if(data['role']=='USER'){
+                SidenavService.pages=[];
                 SidenavService.pages.push({name: 'Wishlist', routerLink:'/wishlist', icon: 'star', alt: "My Wishlist" });
               }
               if(data['role']=='ADMIN'){

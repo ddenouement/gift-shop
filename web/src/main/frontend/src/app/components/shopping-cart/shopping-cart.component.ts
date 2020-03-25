@@ -23,6 +23,8 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit() {
 
     this.isNotLogged = true;
+    this.auth.isLoggedAsUser().subscribe(x =>{if(x===1) this.isNotLogged = false}, error => {this.isNotLogged = true;});
+
     if(this.localservice.existsCartInMemory()){
       this.orderLines = this.localservice.getOrderLines();
     }
@@ -37,8 +39,7 @@ export class ShoppingCartComponent implements OnInit {
 
       )
     }
-    this.auth.isLoggedAsUser().subscribe(x =>{if(x===1) this.isNotLogged = false}, error => {this.isNotLogged = true;});
-    this.getSum();
+        this.getSum();
   }
 
   private  getSum() {
@@ -52,14 +53,15 @@ export class ShoppingCartComponent implements OnInit {
     this.localservice.clearLocalStorage() ;
     this.orderLines=[];
     this.products=[];
+    this.sum = undefined;
   }
  createOrder(){
-    if(!this.isNotLogged) {
-      this.router.navigate(['/order']);
-    }
-
-    else {
-      this.router.navigate(['/login']);
+    if(this.sum && this.orderLines) {
+      if (!this.isNotLogged) {
+        this.router.navigate(['/order']);
+      } else {
+        this.router.navigate(['/login']);
+      }
     }
  }
 
