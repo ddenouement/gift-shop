@@ -24,9 +24,8 @@ this.products = data;
      })
   }
   removeProduct(  id: number){
-    alert("removing");
     this._wishService.removeMyWishedProduct(id+"").subscribe(data => {
-     alert("product removed");
+
       },
       error => {
         console.log(error.message);

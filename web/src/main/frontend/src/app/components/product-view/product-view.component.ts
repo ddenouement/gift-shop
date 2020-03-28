@@ -4,9 +4,10 @@ import {Product} from "../../_models/product";
 import {LocalStorageService} from "../../_services/localstorage.service";
 import {ProductService} from "../../_services/product.service";
 import {WishlistService} from "../../_services/wishlist.service";
-import {UserService} from "../../_services";
+import {AuthenticationService, UserService} from "../../_services";
 import {error} from "util";
 import {CategoryService} from "../../_services/category.service";
+import {User} from "../../_models";
 
 @Component({
   selector: 'app-product-view',
@@ -18,16 +19,21 @@ export class ProductViewComponent implements OnInit, OnDestroy {
   private sub: any;
   current_product: Product;
   isLoading: boolean;
+  categories: string[] = [];
   amount_added_to_cart: number;
+  currentUser: User;
 
   constructor(private route: ActivatedRoute, private productService: ProductService,
               private wishService: WishlistService, private local: LocalStorageService,
-              private  userService: UserService,
+              private  auth: AuthenticationService,
               private categoryService: CategoryService
   ) {
   }
 
   ngOnInit() {
+    this.auth.currentUser.subscribe(res => {
+      this.currentUser = res;
+    });
 
     this.amount_added_to_cart = 1;
     this.sub = this.route.params.subscribe(params => {
@@ -36,13 +42,23 @@ export class ProductViewComponent implements OnInit, OnDestroy {
       //when ID loaded, we can access DB to get Product Object
       this.productService.getById(+this.id)
         .subscribe(productData => {
-          this.isLoading = false;
-          this.current_product = productData;
-//todo load categories
-        });
+            this.isLoading = false;
+            this.current_product = productData;
+            for (let cat of this.current_product.categories) {
+              this.getNameOfCategory(cat).subscribe(data => {
+                  this.categories[cat] = data.categoryName;
+                },
+                error => {
+                  this.categories[cat] = "";
+                });
+            }
+
+          }
+        );
 
     });
   }
+
 
   ngOnDestroy() {
     this.sub.unsubscribe();
@@ -79,20 +95,20 @@ export class ProductViewComponent implements OnInit, OnDestroy {
       products.splice(index, 1);
       products.push({'productId': this.id, 'quantity': new_quantity});
 
-      alert("changed amount of products: existing amount of "+ first_quantity+" plus "+ new_quantity);
     }
     localStorage.setItem('products', JSON.stringify(products));
     alert("saved to cart");
   }
 
   addToWishlist() {
-    this.userService.getRole().subscribe(data => {
-      if (data['role'] == 'USER') {
+    if (this.currentUser) {
+      let r = localStorage.getItem('role').toString();
+      if (r == 'USER') {
         this.doAddToWishList();
       } else {
         alert("please login as a user to use wishlist");
       }
-    });
+    }
   }
 
   private doAddToWishList() {
@@ -106,12 +122,7 @@ export class ProductViewComponent implements OnInit, OnDestroy {
   }
 
   getNameOfCategory(categoryId: number) {
-    this.categoryService.getById(categoryId).subscribe( data => {
-      return data.categoryName;
-    },
-      error =>{
-      return "";
-      })
+    return this.categoryService.getById(categoryId);
   }
 }
 

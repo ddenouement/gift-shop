@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SidenavService} from "../../_services/sidenav.service";
 import {animateText, onSideNavChange} from "../../_helpers/animations";
-import {UserService} from "../../_services";
+import {AuthenticationService, UserService} from "../../_services";
 
 
 
@@ -27,26 +27,53 @@ export class SideNavigationComponent implements OnInit {
   public pages: Page[] = [
     {name: 'Cart', routerLink:'/cart', icon: 'shopping-cart',  alt: "Cart" }
   ]
-  constructor(private userService : UserService , private _sidenavService: SidenavService) { }
+  constructor(private auth : AuthenticationService , private _sidenavService: SidenavService) { }
 
   ngOnInit() {
-    this.userService.getRole().subscribe(data=>{
-        if(data['role']=='USER'){
-          SidenavService.pages=[];
-          SidenavService.pages.push({name: 'Cart', routerLink:'/cart', icon: 'shopping-cart',  alt: "Cart" });
-          SidenavService.pages.push({name: 'Wishlist', routerLink:'/wishlist', icon: 'star', alt: "My Wishlist" });
-        }
-        if(data['role']=='ADMIN'){
+    this.auth.currentUser.subscribe(
+      data => {
+
+         let r  = this.auth.getRole();
+
+        if (r == 'USER') {
           SidenavService.pages = [];
-          SidenavService.pages.push({name: 'All Orders', routerLink:'/orders', icon: 'star', alt: "All Orders" });
+          SidenavService.pages.push({
+            name: 'Cart',
+            routerLink: '/cart',
+            icon: 'shopping-cart',
+            alt: "Cart"
+          });
+          SidenavService.pages.push({
+            name: 'Wishlist',
+            routerLink: '/wishlist',
+            icon: 'star',
+            alt: "My Wishlist"
+          });
+        }
+        if (r == 'ADMIN') {
+          SidenavService.pages = [];
+          SidenavService.pages.push({
+            name: 'All Orders',
+            routerLink: '/orders',
+            icon: 'star',
+            alt: "All Orders"
+          });
 
         }
-      },
-      error =>{
-        //means not registered
-      })
+      }
+       ,
+      error => {
+        SidenavService.pages = [];
+        SidenavService.pages.push({
+          name: 'Cart',
+          routerLink: '/cart',
+          icon: 'shopping-cart',
+          alt: "Cart"
+        });
+      }
+  ); }
 
-  }
+
   public getPages(){
     return SidenavService.pages;
   }

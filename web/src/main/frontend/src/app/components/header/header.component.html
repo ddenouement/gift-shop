@@ -5,8 +5,8 @@
   </button>
   <div  ><a href="/" class="logo">GiftShop</a></div>
   <span class="nav-tool-items">
-    <a mat-button routerLink="/login" class="nav-btn" routerLinkActive="active" *ngIf="!currentUser">Log in</a>
-    <a mat-button mat-raised-button class="nav-btn-active" routerLink="/register" routerLinkActive="active" *ngIf="!currentUser" >Register</a>
+    <a mat-button  routerLink="/login" [queryParams]="{returnUrl: url}" class="nav-btn" routerLinkActive="active" *ngIf="!currentUser">Log in</a>
+    <a mat-button mat-raised-button class="nav-btn-active" routerLink="/register" [queryParams]="{returnUrl: url}" routerLinkActive="active" *ngIf="!currentUser" >Register</a>
     <button mat-button mat-raised-button class="logout-button nav-btn-active" *ngIf="currentUser" (click)="logout()" >Log out</button>
   </span>
 </mat-toolbar>

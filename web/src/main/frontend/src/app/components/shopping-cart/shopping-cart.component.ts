@@ -5,6 +5,7 @@ import {AuthenticationService} from "../../_services";
 import {Router} from "@angular/router";
 import {LocalStorageService} from "../../_services/localstorage.service";
 import {ProductService} from "../../_services/product.service";
+import {User} from "../../_models";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -12,7 +13,7 @@ import {ProductService} from "../../_services/product.service";
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  isNotLogged: boolean;
+  currentUser: User;
   orderLines: {productId: number ; quantity: number} [] ;
   products: { product: Product ; quantity: number}[] = [];
   sum:number;
@@ -21,9 +22,7 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.isNotLogged = true;
-    this.auth.isLoggedAsUser().subscribe(x =>{if(x===1) this.isNotLogged = false}, error => {this.isNotLogged = true;});
+    this.auth.currentUser.subscribe(data => {this.currentUser=data;});
 
     if(this.localservice.existsCartInMemory()){
       this.orderLines = this.localservice.getOrderLines();
@@ -57,10 +56,10 @@ export class ShoppingCartComponent implements OnInit {
   }
  createOrder(){
     if(this.sum && this.orderLines) {
-      if (!this.isNotLogged) {
+      if (this.currentUser &&   this.auth.getRole() == 'USER') {
         this.router.navigate(['/order']);
       } else {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login'], {queryParams: {returnUrl: '/cart'}});
       }
     }
  }

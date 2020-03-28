@@ -27,8 +27,8 @@ export class LogInComponent implements OnInit {
     private authenticationService: AuthenticationService
   ) {
     // redirect to home if already logged in
-     this.authenticationService.isLogged().subscribe(data=>{
-        this.router.navigate(['/']);
+     this.authenticationService.currentUser.subscribe(data=>{
+        this.router.navigate([this.returnUrl]);
       },
        error=>{
 
@@ -40,15 +40,23 @@ export class LogInComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+    /*
+    SidenavService.pages = [];
+    SidenavService.pages.push({
+      name: 'Cart',
+      routerLink: '/cart',
+      icon: 'shopping-cart',
+      alt: "Cart"
+    });*/
 
     this.error = false;
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   get f() { return this.loginForm.controls; }
   close(){
-    this.router.navigate(['/']);
+    this.router.navigate([this.returnUrl]);
   }
   onSubmit() {
     this.error= false;
@@ -66,19 +74,11 @@ export class LogInComponent implements OnInit {
         data => {
           this.router.navigate([this.returnUrl]);
 
-          this.userService.getRole().subscribe(data=>{
-              if(data['role']=='USER'){
-                SidenavService.pages=[];
-                SidenavService.pages.push({name: 'Wishlist', routerLink:'/wishlist', icon: 'star', alt: "My Wishlist" });
-              }
-              if(data['role']=='ADMIN'){
-                SidenavService.pages = [];
-                SidenavService.pages.push({name: 'All Orders', routerLink:'/orders', icon: 'star', alt: "All Orders" });
-
-              }
+          this.authenticationService.currentUser.subscribe(data=>{
+//todo
             },
             error =>{
-              //means not registered
+
             })
 
         },

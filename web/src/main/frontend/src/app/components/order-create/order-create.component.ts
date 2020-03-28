@@ -4,6 +4,7 @@ import {Product} from "../../_models/product";
 import {OrderService} from "../../_services/order.service";
 import {AuthenticationService} from "../../_services";
 import {Router} from "@angular/router";
+import {User} from "../../_models";
 
 @Component({
   selector: 'app-create-order',
@@ -12,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class OrderCreateComponent implements OnInit {
   selectedLink: string="";
-  isLogged: boolean;
+  currentUser: User;
   orderLines: {productId: number ; quantity: number} [] ;
   products: Product[];
   sum:number;
@@ -29,10 +30,7 @@ export class OrderCreateComponent implements OnInit {
     if(localStorage.getItem('products')){
       this.orderLines = JSON.parse(localStorage.getItem('products'));
     }
-    this.auth.isLoggedAsUser().subscribe(x =>{if(x===1) this.isLogged = true}, error => {this.isLogged = false;});
-
-
-
+    this.auth.currentUser.subscribe(x =>{this.currentUser=x;});
     this.getSum();
   }
 
@@ -57,7 +55,6 @@ export class OrderCreateComponent implements OnInit {
       order.orderState = 1;
   //set array to  DTO to send to server
       order.orderItems = this.orderLines;
-
       this.orderService.create(order).subscribe(data =>  {
           alert("Successfully created order! ");
           this.router.navigate(["/"]);

@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
     currentUser: User;
     isLogged: boolean;
+    url:string;
 
   constructor(
     private router: Router,
@@ -22,7 +23,7 @@ export class HeaderComponent implements OnInit {
   ) {
     this.isLogged = false;
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-
+   this.url =  this.router.url;
      // this.authenticationService.isLogged().subscribe(x=>this.isLogged = true);
    //   alert("check logged");
   }

@@ -34,9 +34,9 @@
   </form>
 </div>
 <div class="info-class" *ngIf="( (isSelected('postDeliveryRadio')) &&(!billingAddressLine))">You selected post delivery: please, input your address so we can send your order</div>
-<div class="info-class" *ngIf="!isLogged"> Please, log in / register before making an order</div>
+<div class="info-class" *ngIf="!currentUser"> Please, log in / register before making an order</div>
 <div class="container">
-  <button class="submit-order-button" [disabled]="!isLogged || ( (isSelected('postDeliveryRadio')) &&(billingAddressLine.length < 1))" (click)="sendData(isSelected('cashPaymentRadio'),  isSelected('postDeliveryRadio'))">
+  <button class="submit-order-button" [disabled]="!currentUser || ( (isSelected('postDeliveryRadio')) &&(billingAddressLine.length < 1))" (click)="sendData(isSelected('cashPaymentRadio'),  isSelected('postDeliveryRadio'))">
     <div class="submit-order-button-content">
       Submit
     </div>

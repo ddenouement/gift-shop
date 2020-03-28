@@ -2,8 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../_models/product';
 import {LocalStorageService} from "../../_services/localstorage.service";
 import {Router} from "@angular/router";
-import {UserService} from "../../_services";
+import {AuthenticationService, UserService} from "../../_services";
 import {WishlistService} from "../../_services/wishlist.service";
+import {SidenavService} from "../../_services/sidenav.service";
 
 @Component({
   selector: 'app-card',
@@ -14,10 +15,10 @@ export class CardComponent implements OnInit {
   @Input() product: Product;
   role: string;
 
-  constructor( private wishService: WishlistService, private local: LocalStorageService, private router: Router, private userService : UserService){}
+  constructor( private wishService: WishlistService, private local: LocalStorageService, private router: Router, private authService : AuthenticationService){}
   ngOnInit() {
-    this.userService.getRole().subscribe( data => {
-      this.role = data['role'];
+    this.authService.currentUser.subscribe( data => {
+      this.role = this.authService.getRole();
     });
   }
 

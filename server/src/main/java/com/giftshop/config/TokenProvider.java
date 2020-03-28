@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 public class TokenProvider {
 
     private String secretKey;
-    private int validity_ms = 7200000; // 2h
+    private int validity_ms = 604800000;//7d //7200000; // 2h
 
     @Autowired
     private CustomAuthService userDetailsService;

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AlertService, UserService, AuthenticationService } from '../../_services';
+import {SidenavService} from "../../_services/sidenav.service";
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,7 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private alertService: AlertService
   ) {
-    this.authenticationService.isLogged().subscribe(data=>{
+    this.authenticationService.currentUser.subscribe(data=>{
         this.router.navigate(['/']);
       },
       error=>{
@@ -34,6 +35,8 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['/']);
   }
   ngOnInit() {
+
+
     const MOBILE_PATTERN = /[0-9\+\-\ ]/;
     this.registerForm = this.formBuilder.group({
       name: ['', Validators.required],

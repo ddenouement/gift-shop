@@ -1,10 +1,10 @@
-
+<!--
   <div class="overlay" *ngIf="isLoading">
     <div class="spinner-wrapper">
       <app-spinner></app-spinner>
     </div>
   </div>
-
+-->
 
  <div class="loaded-content" [class.blurred]="isLoading">
   <div class="img-wrapper"  >
@@ -13,8 +13,8 @@
    <div class="info-wrapper">
   <p class="name">{{current_product.productName}}</p>
   <p class="artikul">ARTIKUL:  {{id}}</p>
-     <p class="available" *ngIf="current_product.isAvailable">AVAILABLE</p>
-     <p class="not-available" *ngIf="!current_product.isAvailable">NOT AVAILABLE</p>
+     <p class="available" *ngIf="current_product && current_product.isAvailable">AVAILABLE</p>
+     <p class="not-available" *ngIf="current_product && !current_product.isAvailable">NOT AVAILABLE</p>
      <div class="price-field">{{current_product.price}}</div>
 
      <div class="input-group">
@@ -37,10 +37,10 @@
 
    <div class='container scrollable-horizontal'>
      <div class="row">
-       <div class="list-inline">
-         <div *ngFor="let cat of current_product.categories" class="col-md-2" style="padding: 7px;">
-           <div class="list-inline-item">
-             <span class="badge badge-pill"> {{getNameOfCategory(cat)}}   </span>
+       <div  class="list-inline">
+         <div *ngFor="let cat of categories" class="col-md-2" style="padding: 7px;">
+           <div *ngIf="cat && cat.length>0" class="list-inline-item">
+             <span *ngIf="cat && cat.length>0" class="badge badge-pill"> {{cat}}   </span>
            </div>
          </div>
        </div>

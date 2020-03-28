@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 import { User } from '../_models';
+import {SidenavService} from "./sidenav.service";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -19,12 +20,9 @@ export class AuthenticationService {
   public get currentUserValue(): User {
         return this.currentUserSubject.value;
     }
-    public isLoggedAsUser(){
-      return this.http.get<any>(`${environment.apiUrl}/user/islogged`, );
+    public getRole() : string{
+      return JSON.parse(localStorage.getItem('role'));
     }
-  public isLogged(){
-    return   this.http.get<any>(`${environment.apiUrl}/user/id` )     ;
-  }
 
     login(email: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/user/login`, { email, password })
@@ -33,6 +31,7 @@ export class AuthenticationService {
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
+                    localStorage.setItem('role', JSON.stringify(user.role));
                     this.currentUserSubject.next(user);
                 }
 
@@ -44,9 +43,16 @@ export class AuthenticationService {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+        localStorage.removeItem('role');
 
         this.http.get<any>(`${environment.apiUrl}/user/logout`);
       document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-
+      SidenavService.pages = [];
+      SidenavService.pages.push({
+        name: 'Cart',
+        routerLink: '/cart',
+        icon: 'shopping-cart',
+        alt: "Cart"
+      });
     }
 }
