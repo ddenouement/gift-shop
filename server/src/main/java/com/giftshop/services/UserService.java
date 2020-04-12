@@ -33,6 +33,9 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User getUserInfo(Integer userId) { return userDAO.getUserInfo(userId); }
+
+    @Override
     public Role findUserRoleById(Integer id) {
         return userDAO.findUserRoleById(id);
     }

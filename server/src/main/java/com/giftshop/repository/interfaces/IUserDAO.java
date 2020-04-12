@@ -12,4 +12,5 @@ public interface IUserDAO {
     Integer insertUser(User user);
     void updateUser(User user);
     Integer deleteUser(String email);
+    User getUserInfo(Integer userId);
 }

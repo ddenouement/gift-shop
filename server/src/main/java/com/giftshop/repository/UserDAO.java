@@ -37,6 +37,8 @@ public class UserDAO implements IUserDAO {
     private String updateExistingUser;
     @Value("${delete_user_by_email}")
     private String deleteUserByEmail;
+    @Value("${get_user_info}")
+    private String getUserInfo;
 
     @Override
     public boolean isEmailUsed(String email) {
@@ -69,6 +71,17 @@ public class UserDAO implements IUserDAO {
             return null;
         } else {
             return foundUsers.get(0);
+        }
+    }
+
+    @Override
+    public User getUserInfo(Integer u_id) {
+        SqlParameterSource param = new MapSqlParameterSource().addValue("id_param", u_id);
+        List<User> foundUser = template.query(getUserInfo, param, (resultSet, i) -> toPerson(resultSet));
+        if (foundUser.size() == 0) {
+            return null;
+        } else {
+            return foundUser.get(0);
         }
     }
 

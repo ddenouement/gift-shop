@@ -8,10 +8,12 @@ public interface IUserService {
     int insertNewUser(User user);
     User findUserById(Integer userId);
     User findUserByEmail(String email );
+    User getUserInfo(Integer userId);
 
     Role findUserRoleById(Integer id);
     String userRole(Integer userId);
-Integer deleteUser(String email);
+    Integer deleteUser(String email);
+
 
 
 }
