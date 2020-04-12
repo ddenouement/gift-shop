@@ -1,4 +1,5 @@
 package com.giftshop.services;
+import com.giftshop.dto.UserDTO;
 import com.giftshop.repository.UserDAO;
 import com.giftshop.repository.interfaces.IUserDAO;
 import com.giftshop.models.Role;
@@ -6,6 +7,8 @@ import com.giftshop.models.User;
 import com.giftshop.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 public class UserService implements IUserService {
@@ -33,7 +36,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User getUserInfo(Integer userId) { return userDAO.getUserInfo(userId); }
+    public ArrayList<UserDTO> getUserInfo(Integer userId) { return userDAO.getUserInfo(userId); }
 
     @Override
     public Role findUserRoleById(Integer id) {
