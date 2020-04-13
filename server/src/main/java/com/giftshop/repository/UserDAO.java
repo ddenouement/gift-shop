@@ -1,4 +1,6 @@
 package com.giftshop.repository;
+
+import com.giftshop.dto.UserDTO;
 import com.giftshop.dto.UserRegistrationDTO;
 import com.giftshop.repository.interfaces.IUserDAO;
 import com.giftshop.models.Role;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -37,11 +40,14 @@ public class UserDAO implements IUserDAO {
     private String updateExistingUser;
     @Value("${delete_user_by_email}")
     private String deleteUserByEmail;
+    @Value("${get_user_info}")
+    private String getUserInfo;
 
     @Override
     public boolean isEmailUsed(String email) {
         return findUserByEmail(email) != null;
     }
+
     public Integer getRoleId(String roleName) {
 
         SqlParameterSource namedParameters = new MapSqlParameterSource(
@@ -50,12 +56,12 @@ public class UserDAO implements IUserDAO {
                 Integer.class);
     }
 
-    private Role findRoleById( Integer roleId) {
+    private Role findRoleById(Integer roleId) {
         SqlParameterSource namedParameters = new MapSqlParameterSource(
                 "id_param", roleId);
-        String name =  template.queryForObject(findRoleNameById, namedParameters,
+        String name = template.queryForObject(findRoleNameById, namedParameters,
                 String.class);
-        return  new Role(roleId, name);
+        return new Role(roleId, name);
     }
 
     @Override
@@ -73,37 +79,44 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
+    public ArrayList<UserDTO> getUserInfo(Integer u_id) {
+        SqlParameterSource param = new MapSqlParameterSource("id_param", u_id);
+        List<UserDTO> foundUser = template.query(getUserInfo, param, (resultSet, i) -> toUserDTO(resultSet));
+        return (ArrayList<UserDTO>) foundUser;
+    }
+
+    @Override
     public Integer insertUser(User user) {
         if (isEmailUsed(user.getEmail())) return null;
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("firstname", user.getName())
                 .addValue("surname", user.getSurname())
                 .addValue("patronymic", user.getPatronymic())
-                .addValue("birth_date",user.getBirthDate())
-                .addValue("email",user.getEmail())
-                .addValue("phone_number",user.getPhoneNumber())
-                .addValue("password",user.getPassword())
-                .addValue("role",getRoleId("USER"));
-        return template.update(insertNewUser,param);
+                .addValue("birth_date", user.getBirthDate())
+                .addValue("email", user.getEmail())
+                .addValue("phone_number", user.getPhoneNumber())
+                .addValue("password", user.getPassword())
+                .addValue("role", getRoleId("USER"));
+        return template.update(insertNewUser, param);
     }
 
     @Override
     public void updateUser(User user) {
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("uid",user.getUserId())
+                .addValue("uid", user.getUserId())
                 .addValue("firstname", user.getName())
                 .addValue("surname", user.getSurname())
                 .addValue("patronymic", user.getPatronymic())
-                .addValue("birth_date",user.getBirthDate())
-                .addValue("email",user.getEmail())
-                .addValue("phone_number",user.getPhoneNumber())
-                .addValue("password",user.getPassword())
+                .addValue("birth_date", user.getBirthDate())
+                .addValue("email", user.getEmail())
+                .addValue("phone_number", user.getPhoneNumber())
+                .addValue("password", user.getPassword())
                 .addValue("role", user.getRole())
                 .addValue("is_activated", user.getIsActivated());
         int status = template.update(updateExistingUser, param);
-        if(status != 0){
+        if (status != 0) {
             System.out.println("User data updated for ID " + user.getUserId());
-        }else{
+        } else {
             System.out.println("No User found with ID " + user.getUserId());
         }
     }
@@ -127,20 +140,34 @@ public class UserDAO implements IUserDAO {
     public Role findUserRoleById(Integer uid) {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("id_param", uid);
-         int role_id =        template.queryForObject(findRoleIdOfUser, param, Integer.class);
+        int role_id = template.queryForObject(findRoleIdOfUser, param, Integer.class);
 
         return findRoleById(role_id);
 
+    }
+
+    private UserDTO toUserDTO(final ResultSet resultSet) throws SQLException {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUserId(resultSet.getInt("uid"));
+        userDTO.setName(resultSet.getString("firstname"));
+        userDTO.setSurname(resultSet.getString("surname"));
+        userDTO.setPatronymic(resultSet.getString("patronymic"));
+        userDTO.setEmail(resultSet.getString("email"));
+        userDTO.setPhoneNumber(resultSet.getString("phone_number"));
+        userDTO.setBirthDate(resultSet.getDate("birth_date").toLocalDate());
+        int roleId = resultSet.getInt("role_id");
+        userDTO.setRole(findRoleById(roleId));
+        return userDTO;
     }
 
     private User toPerson(final ResultSet resultSet) throws SQLException {
         User person = new User();
         person.setUserId(resultSet.getInt("uid"));
         person.setName(resultSet.getString("firstname"));
-        person.setSurname(       resultSet.getString("surname"));
+        person.setSurname(resultSet.getString("surname"));
         person.setPatronymic(resultSet.getString("patronymic"));
         person.setEmail(resultSet.getString("email"));
-        person .setPassword(resultSet.getString("password"));
+        person.setPassword(resultSet.getString("password"));
         person.setIsActivated(resultSet.getBoolean("is_activated"));
         person.setPhoneNumber(resultSet.getString("phone_number"));
         person.setBirthDate(resultSet.getDate("birth_date").toLocalDate());
@@ -150,14 +177,14 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-     public Integer deleteUser(String email){
+    public Integer deleteUser(String email) {
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("email_param",email);
+                .addValue("email_param", email);
         int status = template.update(deleteUserByEmail, param);
-        if(status != 0){
+        if (status != 0) {
             System.out.println("User data deleted for  " + email);
             return 1;
-        }else{
+        } else {
             System.out.println("No User found with  " + email);
             return -1;
         }
