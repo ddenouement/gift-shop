@@ -23,10 +23,6 @@ export class OrderViewAdminComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userService.getUserInfo(+102).subscribe(info => {
-      console.log(info);
-    })
-
     this.orderService.getAll().subscribe( data=>{
 
       this.orders = data;
