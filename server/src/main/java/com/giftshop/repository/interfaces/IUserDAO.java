@@ -15,5 +15,5 @@ public interface IUserDAO {
     Integer insertUser(User user);
     void updateUser(User user);
     Integer deleteUser(String email);
-    ArrayList<UserDTO> getUserInfo(Integer userId);
+    UserDTO getUserInfo(Integer userId);
 }

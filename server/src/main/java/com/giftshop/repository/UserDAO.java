@@ -79,10 +79,14 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public ArrayList<UserDTO> getUserInfo(Integer u_id) {
+    public UserDTO getUserInfo(Integer u_id) {
         SqlParameterSource param = new MapSqlParameterSource("id_param", u_id);
-        List<UserDTO> foundUser = template.query(getUserInfo, param, (resultSet, i) -> toUserDTO(resultSet));
-        return (ArrayList<UserDTO>) foundUser;
+        List<UserDTO> foundUsers = template.query(getUserInfo, param, (resultSet, i) -> toUserDTO(resultSet));
+        if (foundUsers.size() == 0) {
+            return null;
+        } else {
+            return foundUsers.get(0);
+        }
     }
 
     @Override

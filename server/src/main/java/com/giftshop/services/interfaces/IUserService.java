@@ -11,7 +11,7 @@ public interface IUserService {
     int insertNewUser(User user);
     User findUserById(Integer userId);
     User findUserByEmail(String email );
-    ArrayList<UserDTO> getUserInfo(Integer userId);
+    UserDTO getUserInfo(Integer userId);
 
     Role findUserRoleById(Integer id);
     String userRole(Integer userId);

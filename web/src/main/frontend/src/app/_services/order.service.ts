@@ -26,6 +26,10 @@ export class OrderService {
     return this.http.get<Order[]>(`${environment.apiUrl}/orders`);
   }
 
+  getById(id: number){
+    return this.http.get<Order>(`${environment.apiUrl}/orders/${id}`);
+  }
+
   getOrderProducts(id:number): Observable<{product:Product, quantity:number}[]> {
     return this.http.get<{product:Product, quantity:number}[]>(`${environment.apiUrl}/orders/${id}/products`);
   }

@@ -36,7 +36,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public ArrayList<UserDTO> getUserInfo(Integer userId) { return userDAO.getUserInfo(userId); }
+    public UserDTO getUserInfo(Integer userId) { return userDAO.getUserInfo(userId); }
 
     @Override
     public Role findUserRoleById(Integer id) {
