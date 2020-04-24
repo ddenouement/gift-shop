@@ -3,6 +3,7 @@ package com.giftshop.controllers;
 import com.giftshop.config.TokenProvider;
 import com.giftshop.dto.UserLoginRequestDTO;
 import com.giftshop.models.User;
+import com.giftshop.repository.UserDAO;
 import com.giftshop.services.UserService;
 import com.giftshop.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,25 @@ public class AuthenticationController {
             return doAuthentication(data.password, data.email, response);
     }
 
+    private ResponseEntity doAuthentication( String password, String email, final HttpServletResponse response){
+        authenticationManager.authenticate( new UsernamePasswordAuthenticationToken(email, password));
+        User user = authService.findUserByEmail(email);
+        if(user== null) return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        String  role = user.getRole().getRoleName();
+        List<String> roles = new ArrayList();
+        roles.add(role);
+        String token = jwtTokenProvider.createToken(email, roles, user.getUserId());
+        Map<Object, Object> model = new HashMap<>();
+
+        model.put("email", email);
+        model.put("token", token);
+        model.put("role",  user.getRole().getRoleName());
+        System.out.println("User: " + email + " ; his token: " + token);
+        saveToken(response, token);
+        return ok(model);
+    }
+
+
 
     //тільки залогінений юзер може побачити свій id
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')" )
@@ -84,24 +104,6 @@ public class AuthenticationController {
             String role = authService.userRole(my_id);
         Map<Object, Object> model = new HashMap<>();
         model.put("role",  role);
-        return ok(model);
-    }
-
-    private ResponseEntity doAuthentication( String password, String email, final HttpServletResponse response){
-        authenticationManager.authenticate( new UsernamePasswordAuthenticationToken(email, password));
-        User user = authService.findUserByEmail(email);
-        if(user== null) return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        String  role = user.getRole().getRoleName();
-        List<String> roles = new ArrayList();
-        roles.add(role);
-        String token = jwtTokenProvider.createToken(email, roles, user.getUserId());
-        Map<Object, Object> model = new HashMap<>();
-
-        model.put("email", email);
-        model.put("token", token);
-        model.put("role",  user.getRole().getRoleName());
-        System.out.println("User: " + email + " ; his token: " + token);
-        saveToken(response, token);
         return ok(model);
     }
 

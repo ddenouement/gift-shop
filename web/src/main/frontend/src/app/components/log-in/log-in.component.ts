@@ -27,12 +27,12 @@ export class LogInComponent implements OnInit {
     private authenticationService: AuthenticationService
   ) {
     // redirect to home if already logged in
-     this.authenticationService.currentUser.subscribe(data=>{
-        this.router.navigate([this.returnUrl]);
+   /*  this.authenticationService.currentUser.subscribe(data=>{
+        this.router.navigate(['/']);//[this.returnUrl]);
       },
        error=>{
 
-       });
+       });*/
   }
 
   ngOnInit() {
@@ -51,7 +51,7 @@ export class LogInComponent implements OnInit {
 
     this.error = false;
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+ //   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   get f() { return this.loginForm.controls; }
@@ -72,7 +72,7 @@ export class LogInComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+          this.router.navigate(['/']);//this.returnUrl]);
 
           this.authenticationService.currentUser.subscribe(data=>{
 //todo

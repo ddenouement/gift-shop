@@ -66,7 +66,6 @@ export class ShoppingCartComponent implements OnInit {
 
   removeProduct(productId: number) {
 
-    alert(this.products.length);
     let products = [];
     if (this.local.existsCartInMemory()) {
       products = this.local.getOrderLines();

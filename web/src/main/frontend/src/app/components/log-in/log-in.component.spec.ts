@@ -21,7 +21,8 @@ describe('LogInComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display an error message to the user if they provided incorrect credentials', () => {
+  it('should display an error message to the user if they provided ' +
+    'incorrect credentials', () => {
 
     browser.wait(EC.visibilityOf(page.email));
     page.email.sendKeys('123@email.com');
@@ -31,7 +32,8 @@ describe('LogInComponent', () => {
     expect(page.errorMessage.getText()).toEqual('Provided password and login are invalid');
   });
 
-  it('should redirect the user to the main page if they provided correct credentials', () => {
+  it('should redirect the user to the main page if they provided' +
+    ' correct credentials', () => {
     const mainPage = new HomePage();
     page.email.sendKeys('julia@gmail.com');
     page.password.sendKeys('julia');

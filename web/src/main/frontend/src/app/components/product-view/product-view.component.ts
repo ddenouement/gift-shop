@@ -97,23 +97,22 @@ export class ProductViewComponent implements OnInit, OnDestroy {
 
     }
     localStorage.setItem('products', JSON.stringify(products));
-    alert("saved to cart");
+   // alert("saved to cart");
   }
 
   addToWishlist() {
+
     if (this.currentUser) {
-      let r = localStorage.getItem('role').toString();
-      if (r == 'USER') {
-        this.doAddToWishList();
+      this.doAddToWishList();
       } else {
-        alert("please login as a user to use wishlist");
+        alert("please login to use wishlist");
       }
-    }
+
   }
 
   private doAddToWishList() {
     this.wishService.addWishedProduct(this.current_product.productId + "").subscribe(data => {
-        alert("succesfully added");
+     //   alert("succesfully added");
       },
       error => {
         alert("you have it already in wishlist");

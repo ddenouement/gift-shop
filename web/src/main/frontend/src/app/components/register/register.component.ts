@@ -24,12 +24,12 @@ export class RegisterComponent implements OnInit {
     private userService: UserService,
     private alertService: AlertService
   ) {
-    this.authenticationService.currentUser.subscribe(data=>{
+   /* this.authenticationService.currentUser.subscribe(data=>{
         this.router.navigate(['/']);
       },
       error=>{
 
-      });
+      });*/
   }
   close(){
     this.router.navigate(['/']);
