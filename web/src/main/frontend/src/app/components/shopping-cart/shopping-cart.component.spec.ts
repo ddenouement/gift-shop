@@ -54,11 +54,21 @@ describe('ShoppingCartComponent', () => {
   }
 
   it('should delete all products from cart', () => {
+    browser.get('/#/product/' + id_of_product);
+    product_page = new ProductViewPage();
+
+    browser.wait(EC.visibilityOf(product_page.addToCartBtn));
+    product_page.addToCartBtn.click();
+
+    browser.get('/#/cart');
     browser.wait(EC.visibilityOf(page.deleteCartBtn));
     page.deleteCartBtn.click();
 
     expect(tryDisplayed(by.className('one-cart-item'))).toBeFalsy();
   });
+
+
+
   it('should display correct sum of one added product', () => {
     browser.wait(EC.visibilityOf(page.deleteCartBtn));
     page.deleteCartBtn.click();
@@ -74,7 +84,7 @@ describe('ShoppingCartComponent', () => {
     );
 
     product_page.addToCartBtn.click();
-    browser.driver.switchTo().alert().accept();
+    //browser.driver.switchTo().alert().accept();
     browser.get('/#/cart');
     browser.wait(EC.visibilityOf(page.sumField));
     let sum_all = 0;
@@ -84,6 +94,8 @@ describe('ShoppingCartComponent', () => {
     expect(sum_all == product_price).toBeTruthy();
 
   });
+
+
 
   it('should display correct sum of several same added products', () => {
     browser.wait(EC.visibilityOf(page.deleteCartBtn));
@@ -99,7 +111,7 @@ describe('ShoppingCartComponent', () => {
 
     for (var i = 0; i < amount_of_product; i++) {
       product_page.addToCartBtn.click();
-      browser.driver.switchTo().alert().accept();
+  //    browser.driver.switchTo().alert().accept();
     }
 
 
@@ -128,7 +140,7 @@ describe('ShoppingCartComponent', () => {
      browser.wait(EC.visibilityOf(product_page.priceField));
     for (var i = 0; i < amount_of_product; i++) {
       product_page.addToCartBtn.click();
-      browser.driver.switchTo().alert().accept();
+ //     browser.driver.switchTo().alert().accept();
     }
 
     browser.get('/#/cart');
